@@ -1,39 +1,54 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CameraPanning : MonoBehaviour
 {
     Vector3 cameraPosition;
+    public double modulusMaxYValue;
+    public double modulusMaxXValue;
 
     void Update()
     {
         cameraPosition = transform.position;
 
-        if (Input.GetKeyDown("a") || Input.GetKey(KeyCode.LeftArrow))
+            if (Input.GetKeyDown("a") || Input.GetKey(KeyCode.LeftArrow))
             {
-            cameraPosition.x = cameraPosition.x - 5f;
-            Debug.Log("left");
+            if (cameraPosition.x <= -modulusMaxXValue) {}
+            else cameraPosition.x = cameraPosition.x - 5f;
             }
 
-            if (Input.GetKeyDown("w") || Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKeyDown("w") || Input.GetKey(KeyCode.UpArrow))
             {
-            cameraPosition.y = cameraPosition.y + 5f;
-
-            Debug.Log("up");
-
+            if (cameraPosition.y >= modulusMaxYValue) {}
+            else cameraPosition.y = cameraPosition.y + 5f;
         }
         if (Input.GetKeyDown("s") || Input.GetKey(KeyCode.DownArrow))
             {
-            cameraPosition.y = cameraPosition.y - 5f;
-            Debug.Log("down");
-
-        }
+            if (cameraPosition.y <= -modulusMaxYValue) {}
+            else cameraPosition.y = cameraPosition.y - 5f;
+            }
         if (Input.GetKeyDown("d") || Input.GetKey(KeyCode.RightArrow))
             {
-            cameraPosition.x = cameraPosition.x + 5f;
-            Debug.Log("right");
-        }
+            if (cameraPosition.x >= modulusMaxXValue) {}
+            else cameraPosition.x = cameraPosition.x + 5f;
+            }
         transform.position = cameraPosition;
     }
+
+    private void VerticalAxisMovement()
+{
+       if (cameraPosition.y <= 110 ) {}
+       else cameraPosition.y = cameraPosition.y + 5f;
+
+  //  if (-pitch.transform.position.y > cameraPosition.y) { }
+    //else cameraPosition.y = cameraPosition.y - 5f;
+}
+
+private void HorizontalAxisMovement()
+{
+  //  if (pitch.transform.position.x * 1.5 < cameraPosition.x) { }
+   // else cameraPosition.x = cameraPosition.x + 5f;
+
+   // if (pitch.transform.position.x * 1.5 > cameraPosition.x) { }
+  //  else cameraPosition.x = cameraPosition.x - 5f;
+}
 }
