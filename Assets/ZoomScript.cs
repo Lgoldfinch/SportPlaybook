@@ -8,7 +8,6 @@ public class ZoomScript : MonoBehaviour
     private float zoomSize = 110;
     public Transform farLeft;
     public Transform farRight;
-    Vector2 cameraPosition;
 
     // Update is called once per frame
     void Update()
@@ -32,6 +31,4 @@ public class ZoomScript : MonoBehaviour
 
         GetComponent<Camera>().orthographicSize = zoomSize;
     }
-
-  
 }
