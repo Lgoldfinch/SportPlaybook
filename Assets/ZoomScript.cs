@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ZoomScript : MonoBehaviour
 {
-
-    public float zoomSize = 110;
+    public float speed = 0.1f;
+    private float zoomSize = 110;
 
     // Update is called once per frame
     void Update()
@@ -14,7 +14,7 @@ public class ZoomScript : MonoBehaviour
         {
             if (zoomSize > 2)
             {
-                zoomSize -= 1;
+                zoomSize -= 5;
             }
         }
 
@@ -22,12 +22,11 @@ public class ZoomScript : MonoBehaviour
         {
             if (zoomSize < 110)
             { 
-                zoomSize += 1;
+                zoomSize += 5;
             }
 
         }
 
         GetComponent<Camera>().orthographicSize = zoomSize;
-
     }
 }

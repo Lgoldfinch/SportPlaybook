@@ -13,8 +13,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Pitch
+  - PlayersAndLines
   - 
   - 
   - 
@@ -38,6 +38,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Pitch
+    uniqueID: 423730227
+    locked: 0
+  - name: PlayersAndLines
+    uniqueID: 2228975333
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
