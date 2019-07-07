@@ -33,22 +33,4 @@ public class CameraPanning : MonoBehaviour
             }
         transform.position = cameraPosition;
     }
-
-    private void VerticalAxisMovement()
-{
-       if (cameraPosition.y <= 110 ) {}
-       else cameraPosition.y = cameraPosition.y + 5f;
-
-  //  if (-pitch.transform.position.y > cameraPosition.y) { }
-    //else cameraPosition.y = cameraPosition.y - 5f;
-}
-
-private void HorizontalAxisMovement()
-{
-  //  if (pitch.transform.position.x * 1.5 < cameraPosition.x) { }
-   // else cameraPosition.x = cameraPosition.x + 5f;
-
-   // if (pitch.transform.position.x * 1.5 > cameraPosition.x) { }
-  //  else cameraPosition.x = cameraPosition.x - 5f;
-}
 }
