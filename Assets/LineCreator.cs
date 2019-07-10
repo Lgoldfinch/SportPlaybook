@@ -10,7 +10,7 @@ public class LineCreator : MonoBehaviour
 
      void Update()
     {
-         if (Input.GetMouseButton(0))
+         if (Input.GetMouseButtonDown(0))
         {
             GameObject lineGo = Instantiate(linePrefab);
             activeLine = lineGo.GetComponent<Line>();
