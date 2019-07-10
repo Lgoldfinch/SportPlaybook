@@ -158,6 +158,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccc41aada877fa745bfbda7447c65de6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lineRenderer: {fileID: 0}
+  lineRenderer: {fileID: 902899087084756381}
   edgeCollider: {fileID: 902899087084756382}
   lineSpacing: 0

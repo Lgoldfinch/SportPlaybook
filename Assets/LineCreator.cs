@@ -8,15 +8,22 @@ public class LineCreator : MonoBehaviour
 
     Line activeLine;
 
-    void Update()
+     void Update()
     {
-        if (Input.GetMouseButton(0))
+         if (Input.GetMouseButton(0))
         {
             GameObject lineGo = Instantiate(linePrefab);
             activeLine = lineGo.GetComponent<Line>();
         }
 
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        activeLine.UpdateLine(mousePos);
+         if (Input.GetMouseButtonUp(0)) {
+            activeLine = null;
+        }
+
+        if (activeLine != null)
+        {
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            activeLine.UpdateLine(mousePos);
+        }
     }
 }
