@@ -1,17 +1,14 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class LineCreator : MonoBehaviour { 
 
     public GameObject linePrefab;
 
     Line activeLine;
-   public int clicked = 0;
-   public float clickTime = 0;
-   public float clickDelay = 0.5f;
-
+    int clicked = 0;
+    float clickTime = 0;
+    float clickDelay = 0.5f;
 
 
     void Update()
