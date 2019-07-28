@@ -9,15 +9,10 @@ public class Line : MonoBehaviour
     public EdgeCollider2D edgeCollider;
     public float lineSpacing;
 
-    public List<Vector2> points;
+    private List<Vector2> points;
 
     public void UpdateLine(Vector2 mousePosition)
     {
-        //if (player.transform.childCount >= 2)
-        //{
-        //    Debug.Log("delete existing line");
-        //}
-
         if (points == null)
         {
             points = new List<Vector2>();
@@ -27,7 +22,6 @@ public class Line : MonoBehaviour
 
         if (Vector2.Distance(points.Last(), mousePosition) > lineSpacing)
         {
-            Debug.Log("how often you called");
             AddPoint(mousePosition);
         }
     }
