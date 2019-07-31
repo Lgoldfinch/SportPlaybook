@@ -4,7 +4,7 @@ using UnityEngine;
 public class LineCreator : MonoBehaviour { 
 
     public GameObject linePrefab;
-
+    public GameObject player; 
     Line activeLine;
     int clicked = 0;
     float clickTime = 0;
@@ -47,7 +47,9 @@ public class LineCreator : MonoBehaviour {
 
     private void MakeLine()
     {
+      
         GameObject lineGo = Instantiate(linePrefab);
         activeLine = lineGo.GetComponent<Line>();
+		activeLine.transform.SetParent(player.transform);   
     }
 }
