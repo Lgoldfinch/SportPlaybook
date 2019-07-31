@@ -15,7 +15,6 @@ public class LineCreator : MonoBehaviour {
     {
         if (Input.GetMouseButtonDown(0))                                  
         {
-
             DoubleClickLineCreation();
         }
 
@@ -51,8 +50,6 @@ public class LineCreator : MonoBehaviour {
       
         GameObject lineGo = Instantiate(linePrefab);
         activeLine = lineGo.GetComponent<Line>();
-        activeLine.transform.SetParent(player.transform);
-
-        
+		activeLine.transform.SetParent(player.transform);   
     }
 }

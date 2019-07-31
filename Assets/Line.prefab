@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1527876185763655896}
   m_Layer: 9
   m_Name: Line
-  m_TagString: Untagged
+  m_TagString: Lines
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -68,7 +68,7 @@ LineRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2065991963
-  m_SortingLayer: -2
+  m_SortingLayer: -1
   m_SortingOrder: 1
   m_Positions:
   - {x: 0, y: 0, z: 0}
@@ -161,3 +161,4 @@ MonoBehaviour:
   lineRenderer: {fileID: 902899087084756381}
   edgeCollider: {fileID: 902899087084756382}
   lineSpacing: 0
+  player: {fileID: 852057191641292961, guid: ffe3667845c844d89899fd299f2f1ec6, type: 3}
