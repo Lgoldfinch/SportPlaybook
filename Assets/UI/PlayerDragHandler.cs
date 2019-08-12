@@ -7,7 +7,7 @@ public class PlayerDragHandler : MonoBehaviour, IDragHandler
 
     public void OnDrag(PointerEventData eventData)
     {
-        GameObject eh = GameObject.Find("DrawOrDragBtn");
+        GameObject eh = GameObject.Find("DrawOrDragBtn"); // I reckon write a helper function for this. Ugly AF 
         ctScript = eh.GetComponent<ChangeTextOfButton>();
 
         if (ctScript.isDragPlayerEnabled == true)
