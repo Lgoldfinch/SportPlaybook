@@ -416,12 +416,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a661284fde64b49d7869d2be9483246e, type: 3}
---- !u!1 &726554416 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 852057191641292961, guid: ffe3667845c844d89899fd299f2f1ec6,
-    type: 3}
-  m_PrefabInstance: {fileID: 852057191878800223}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &777477827
 GameObject:
   m_ObjectHideFlags: 0
@@ -628,6 +622,7 @@ GameObject:
   - component: {fileID: 1066661423}
   - component: {fileID: 1066661422}
   - component: {fileID: 1066661421}
+  - component: {fileID: 1066661424}
   m_Layer: 5
   m_Name: DrawOrDragBtn
   m_TagString: Untagged
@@ -734,6 +729,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1066661419}
   m_CullTransparentMesh: 0
+--- !u!114 &1066661424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1066661419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86edae4a3a8a14834bb1bce7415fb3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firstText: Draw
+  secondText: 
 --- !u!1 &1071378823
 GameObject:
   m_ObjectHideFlags: 0
@@ -831,7 +840,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   linePrefab: {fileID: 902899087084756383, guid: e35062e14ff0da849913037c94af8200,
     type: 3}
-  player: {fileID: 726554416}
 --- !u!4 &1194133734
 Transform:
   m_ObjectHideFlags: 0
