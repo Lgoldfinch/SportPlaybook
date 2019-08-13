@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class ChangeTextOfButton : MonoBehaviour
@@ -33,6 +31,3 @@ public class ChangeTextOfButton : MonoBehaviour
          text.text = newText;
 	}
 }
-//GameObject lineGo = Instantiate(linePrefab);
-//activeLine = lineGo.GetComponent<Line>();
-//		activeLine.transform.SetParent(transform); 

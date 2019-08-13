@@ -3,23 +3,26 @@ using UnityEngine.EventSystems;
 
 public class PlayerDragHandler : MonoBehaviour, IDragHandler
 {
-    private ChangeTextOfButton ctScript;
+    private ChangeTextOfButton changeTextScript;
+
+    private void Awake()
+    {
+        GameObject drawOrDragBtn = GameObject.Find("DrawOrDragBtn");
+        changeTextScript = drawOrDragBtn.GetComponent<ChangeTextOfButton>();
+    }
 
     public void OnDrag(PointerEventData eventData)
     {
-        GameObject eh = GameObject.Find("DrawOrDragBtn");
-        ctScript = eh.GetComponent<ChangeTextOfButton>();
-
-        if (ctScript.isDragPlayerEnabled == true)
+        if (changeTextScript.isDragPlayerEnabled == true)
         {
             transform.position = eventData.position;
         }
     }
+}
+	//public void OnEndDrag(PointerEventData eventData)
+	//{
+	//    transform.localPosition = Vector2.zero;
+	//}/
 
-        //public void OnEndDrag(PointerEventData eventData)
-        //{
-        //    transform.localPosition = Vector2.zero;
-        //}
-    }
 
 // transform.localPosition = Vector2.zero; This will be useful for BinBehaviour. 

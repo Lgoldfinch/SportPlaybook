@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class LineCreator : MonoBehaviour { 
 
@@ -8,32 +7,19 @@ public class LineCreator : MonoBehaviour {
     int clicked = 0;
     float clickTime = 0;
     float clickDelay = 0.5f;
+    private ChangeTextOfButton changeTextScript;
 
-    void OnMouseDown() ///// So things to consider - We need to cater to 2 different types of event. B) DoubleClick C) drag. Both drag and DC follow the click.
-        // Both the player drag and the player click need to be initated when the object is clicked.
-        //  So the order of priority needs to be : Person clicks on player and drags. If the player follows this with another click in a certain timeframe then a line will be drawn instead (ending the drag maybe???). So maybe I have to go
-        // from 
+    private void Awake()
     {
-        DoubleClickLineCreation();
-
-        if (Input.GetMouseButtonUp(0))
-        {
-            Debug.Log("unclick hit");
-            activeLine = null;
-        }
-
-        if (activeLine != null)
-        {
-            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            activeLine.UpdateLine(mousePos);
-        }
+        GameObject drawOrDragBtn = GameObject.Find("DrawOrDragBtn");
+        changeTextScript = drawOrDragBtn.GetComponent<ChangeTextOfButton>();
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && changeTextScript.isDragPlayerEnabled == false)
         {
-            DoubleClickLineCreation();
+            MakeLine();
         }
 
         if (Input.GetMouseButtonUp(0))
@@ -46,21 +32,6 @@ public class LineCreator : MonoBehaviour {
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             activeLine.UpdateLine(mousePos);
         }
-    }
-
-    private void DoubleClickLineCreation()
-    {
-        clicked++;
-        if (clicked == 1) clickTime = Time.time;
-
-        if (clicked > 1 && Time.time - clickTime < clickDelay)
-        {
-            clicked = 0;
-            clickTime = 0;
-            MakeLine();
-
-        }
-        else if (clicked > 2 || Time.time - clickTime > 1) clicked = 0;
     }
 
     private void MakeLine()
@@ -71,3 +42,18 @@ public class LineCreator : MonoBehaviour {
 		activeLine.transform.SetParent(transform);   
     }
 }
+
+//private void DoubleClickLineCreation()
+//{
+//    clicked++;
+//    if (clicked == 1) clickTime = Time.time;
+
+//    if (clicked > 1 && Time.time - clickTime < clickDelay)
+//    {
+//        clicked = 0;
+//        clickTime = 0;
+//        MakeLine();
+
+//    }
+//    else if (clicked > 2 || Time.time - clickTime > 1) clicked = 0;
+//}
