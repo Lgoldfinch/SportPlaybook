@@ -4,18 +4,13 @@ public class LineCreator : MonoBehaviour {
 
     public GameObject linePrefab;
     Line activeLine;
-    int clicked = 0;
-    float clickTime = 0;
+    int clicked;
+    float clickTime;
     float clickDelay = 0.5f;
     private ChangeTextOfButton changeTextScript;
+    public bool isPlayerDraggable = true;
 
-    private void Awake()
-    {
-        GameObject drawOrDragBtn = GameObject.Find("DrawOrDragBtn");
-        changeTextScript = drawOrDragBtn.GetComponent<ChangeTextOfButton>();
-    }
-
-    void Update()
+  void Update()
     {
         if (Input.GetMouseButtonDown(0) && changeTextScript.isDragPlayerEnabled == false)
         {
@@ -33,7 +28,24 @@ public class LineCreator : MonoBehaviour {
             activeLine.UpdateLine(mousePos);
         }
     }
+  
+    private void DoubleClickLineCreation()
+    {
+        isPlayerDraggable = true;
+        clicked++;
+        if (clicked == 1) clickTime = Time.time; // initial click 
 
+        if (clicked > 1 && Time.time - clickTime < clickDelay) // double click 
+        {
+            clicked = 0;
+            clickTime = 0;
+            MakeLine();
+            isPlayerDraggable = false; 
+
+        }
+        else if (clicked > 2 || Time.time - clickTime > 1) clicked = 0; // too long
+    }
+  
     private void MakeLine()
     {
       
