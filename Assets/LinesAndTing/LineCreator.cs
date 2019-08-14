@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class LineCreator : MonoBehaviour { 
 
@@ -11,17 +10,11 @@ public class LineCreator : MonoBehaviour {
     private ChangeTextOfButton changeTextScript;
     public bool isPlayerDraggable = true;
 
-    //private void Awake()
-    //{
-    //    GameObject drawOrDragBtn = GameObject.Find("DrawOrDragBtn");
-    //    changeTextScript = drawOrDragBtn.GetComponent<ChangeTextOfButton>();
-    //}
-
-    void Update()
+  void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && changeTextScript.isDragPlayerEnabled == false)
         {
-            DoubleClickLineCreation();
+            MakeLine();
         }
 
         if (Input.GetMouseButtonUp(0))
@@ -35,7 +28,7 @@ public class LineCreator : MonoBehaviour {
             activeLine.UpdateLine(mousePos);
         }
     }
-
+  
     private void DoubleClickLineCreation()
     {
         isPlayerDraggable = true;
@@ -52,7 +45,7 @@ public class LineCreator : MonoBehaviour {
         }
         else if (clicked > 2 || Time.time - clickTime > 1) clicked = 0; // too long
     }
-
+  
     private void MakeLine()
     {
       
@@ -61,3 +54,18 @@ public class LineCreator : MonoBehaviour {
 		activeLine.transform.SetParent(transform);   
     }
 }
+
+//private void DoubleClickLineCreation()
+//{
+//    clicked++;
+//    if (clicked == 1) clickTime = Time.time;
+
+//    if (clicked > 1 && Time.time - clickTime < clickDelay)
+//    {
+//        clicked = 0;
+//        clickTime = 0;
+//        MakeLine();
+
+//    }
+//    else if (clicked > 2 || Time.time - clickTime > 1) clicked = 0;
+//}

@@ -3,6 +3,7 @@ using UnityEngine.EventSystems;
 
 public class PlayerDragHandler : MonoBehaviour, IDragHandler
 {
+
     //private ChangeTextOfButton changeTextScript;
     private LineCreator lineCreatorScript;
 
@@ -17,10 +18,9 @@ public class PlayerDragHandler : MonoBehaviour, IDragHandler
 
     public void OnDrag(PointerEventData eventData)
     {
-        if (lineCreatorScript.isPlayerDraggable)  //changeTextScript.isDragPlayerEnabled)
-        {
-            transform.position = eventData.position;
-        }
+
+        if (lineCreatorScript.isPlayerDraggable) transform.position = eventData.position;
+        
     }
 }
 
@@ -28,6 +28,5 @@ public class PlayerDragHandler : MonoBehaviour, IDragHandler
         //{
         //    transform.localPosition = Vector2.zero;
         //}
-    
 
 // transform.localPosition = Vector2.zero; This will be useful for BinBehaviour. 
