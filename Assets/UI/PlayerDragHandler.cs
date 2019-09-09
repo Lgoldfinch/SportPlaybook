@@ -22,7 +22,7 @@ public class PlayerDragHandler : MonoBehaviour // IDragHandler
 
     private void Update()
     {
-       if(isBeingHeld == true)
+       if(isBeingHeld == true && lineCreatorScript.isPlayerDraggable)
         {
             Vector2 mousePos;
             mousePos = Input.mousePosition;
