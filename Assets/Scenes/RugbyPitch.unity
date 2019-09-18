@@ -112,18 +112,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &297113532 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1889379875763203033, guid: 754e5663f21794c87b75bcdd9b10f410,
-    type: 3}
-  m_PrefabInstance: {fileID: 2103010103}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbdeb420354835047a4b87a3f29e6ff8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &543669746
 GameObject:
   m_ObjectHideFlags: 0
@@ -872,7 +860,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: def2d0ac417b04e21bc2c31b8b4cdc3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 852057191641292961, guid: ffe3667845c844d89899fd299f2f1ec6, type: 3}
 --- !u!1001 &2103010103
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1004,16 +991,22 @@ PrefabInstance:
         type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 297113532}
+      objectReference: {fileID: 0}
     - target: {fileID: 1770054317193370181, guid: 754e5663f21794c87b75bcdd9b10f410,
         type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 297113532}
+      objectReference: {fileID: 0}
     - target: {fileID: 2157209124740979427, guid: 754e5663f21794c87b75bcdd9b10f410,
         type: 3}
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 259988285352886493, guid: 754e5663f21794c87b75bcdd9b10f410,
+        type: 3}
+      propertyPath: isPlayerRightclicked
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 8391751882277464121, guid: 754e5663f21794c87b75bcdd9b10f410, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 754e5663f21794c87b75bcdd9b10f410, type: 3}

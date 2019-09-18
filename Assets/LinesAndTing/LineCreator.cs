@@ -4,18 +4,12 @@ public class LineCreator : MonoBehaviour {
 
     public GameObject linePrefab;
     Line activeLine;
+    public Player player;
 
-    public void OnMouseDown()
+   private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Debug.Log("a");
-            MakeLine();
-        }
-    }
+        if (Input.GetMouseButtonDown(1) && player.isPlayerRightclicked) MakeLine(); //&& 
 
-    void Update()
-    { 
         if (Input.GetMouseButtonUp(1)) activeLine = null;
 
         if (activeLine != null)
@@ -26,7 +20,7 @@ public class LineCreator : MonoBehaviour {
     }
   
     private void MakeLine()
-    { 
+    {
         GameObject lineGo = Instantiate(linePrefab);
         activeLine = lineGo.GetComponent<Line>();
 		activeLine.transform.SetParent(transform);   
