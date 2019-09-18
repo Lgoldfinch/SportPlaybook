@@ -4,21 +4,19 @@ public class LineCreator : MonoBehaviour {
 
     public GameObject linePrefab;
     Line activeLine;
-    int clicked;
-    float clickTime;
-    float clickDelay = 0.5f;
-    private ChangeTextOfButton changeTextScript;
-    public bool isPlayerDraggable = true;
 
-    void Update()
+    public void OnMouseDown()
     {
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(0))
         {
+            Debug.Log("a");
             MakeLine();
         }
+    }
 
+    void Update()
+    { 
         if (Input.GetMouseButtonUp(1)) activeLine = null;
-
 
         if (activeLine != null)
         {
