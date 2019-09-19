@@ -8,8 +8,12 @@ public class LineCreator : MonoBehaviour {
 
    private void Update()
     {
-        if (Input.GetMouseButtonDown(1) && player.isPlayerRightclicked) MakeLine(); //&& 
+        if (Input.GetMouseButtonDown(1) && player.isPlayerRightclicked)
+        {
+         //   Debug.Log(player.isPlayerRightclicked);
 
+            MakeLine();
+        }
         if (Input.GetMouseButtonUp(1)) activeLine = null;
 
         if (activeLine != null)

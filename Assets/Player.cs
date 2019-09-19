@@ -1,31 +1,29 @@
 ﻿
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
+
     public bool isPlayerRightclicked;
 
-    public void Update()
+    private void Update()
     {
         OnMouseDown();
-
-       if (Input.GetMouseButtonUp(1)) isPlayerRightclicked = false;
+        OnMouseUp();
     }
-    //{
-    //    
-    //    
 
-    void OnMouseDown()
+    public void OnMouseDown() // we have the getMouseButtons and we have OnMouseDown and OMU
     {
-        if (Input.GetMouseButtonDown(1))
-        {
-            Debug.Log("appy");
-            isPlayerRightclicked = true;
-        }
+        if (Input.GetMouseButtonDown(1)) isPlayerRightclicked = true;
     }
-    //private void OnMouseUp()
-    //{
-    //    if (Input.GetMouseButtonUp(1)) isPlayerRightclicked = false;
-    //}
+
+    public void OnMouseUp()
+    {
+
+        if (Input.GetMouseButtonUp(1) && gameObject.transform.position == Input.mousePosition) isPlayerRightclicked = false;
+    }
+    //private void OnMouseDown()
+    // {
+    //     if (Input.GetMouseButtonDown(1)) isPlayerRightclicked = true;
+    // }
 }
