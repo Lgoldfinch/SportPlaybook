@@ -1007,6 +1007,5 @@ PrefabInstance:
       propertyPath: isPlayerRightclicked
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8391751882277464121, guid: 754e5663f21794c87b75bcdd9b10f410, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 754e5663f21794c87b75bcdd9b10f410, type: 3}

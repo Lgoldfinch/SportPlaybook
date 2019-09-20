@@ -1,29 +1,45 @@
 ﻿
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-
     public bool isPlayerRightclicked;
+    private LineCreator lineCreatorScript;
 
-    private void Update()
+    private void Start()
     {
-        OnMouseDown();
-        OnMouseUp();
+        lineCreatorScript = gameObject.GetComponent<LineCreator>();
     }
 
-    public void OnMouseDown() // we have the getMouseButtons and we have OnMouseDown and OMU
+    public void OnPointerDown(PointerEventData eventData)
     {
-        if (Input.GetMouseButtonDown(1)) isPlayerRightclicked = true;
+        if (eventData.button == PointerEventData.InputButton.Right)
+        {
+            isPlayerRightclicked = true;
+            lineCreatorScript.MakeLine();
+        }
     }
 
-    public void OnMouseUp()
+    public void OnPointerUp(PointerEventData eventData)
     {
-
-        if (Input.GetMouseButtonUp(1) && gameObject.transform.position == Input.mousePosition) isPlayerRightclicked = false;
+        if (eventData.button == PointerEventData.InputButton.Right)
+        {
+            //lineCreatorScript = gameObject.GetComponent<LineCreator>();
+            //lineCreatorScript.activeLine = null; 
+            isPlayerRightclicked = false;
+        }
     }
-    //private void OnMouseDown()
-    // {
-    //     if (Input.GetMouseButtonDown(1)) isPlayerRightclicked = true;
-    // }
+
+    // so, at our disposal we have a click handler. We can use this to detect a click on the player.
+    // we have the Exithandler. Could we do if
+
+    //public void OnPointerExit(PointerEventData eventData)
+    //{
+    //    if (isPlayerRightclicked)
+    //    {
+    //        isPlayerRightclicked = false;
+    //    }
+    //}
 }
+    

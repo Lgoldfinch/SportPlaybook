@@ -3,27 +3,30 @@
 public class LineCreator : MonoBehaviour { 
 
     public GameObject linePrefab;
-    Line activeLine;
-    public Player player;
+    public Line activeLine;
+    //public Player player;
 
-   private void Update()
+    private void Update()
     {
-        if (Input.GetMouseButtonDown(1) && player.isPlayerRightclicked)
-        {
-         //   Debug.Log(player.isPlayerRightclicked);
+        //if (player.isPlayerRightclicked)
+        //{
+        //    Debug.Log(player.isPlayerRightClicked);
+        //    //   Debug.Log(player.isPlayerRightclicked);
 
-            MakeLine();
-        }
-        if (Input.GetMouseButtonUp(1)) activeLine = null;
+        //    MakeLine();
+        //}
 
+        //if (Input.GetMouseButtonUp(1)) activeLine = null;
+        //    //player.isPlayerRightclicked = false;
+        
         if (activeLine != null)
         {
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             activeLine.UpdateLine(mousePos);
         }
     }
-  
-    private void MakeLine()
+
+    public void MakeLine()
     {
         GameObject lineGo = Instantiate(linePrefab);
         activeLine = lineGo.GetComponent<Line>();
