@@ -26,7 +26,7 @@ public class Player : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         if (eventData.button == PointerEventData.InputButton.Right)
         {
             //lineCreatorScript = gameObject.GetComponent<LineCreator>();
-            //lineCreatorScript.activeLine = null; 
+            lineCreatorScript.activeLine = null;
             isPlayerRightclicked = false;
         }
     }
