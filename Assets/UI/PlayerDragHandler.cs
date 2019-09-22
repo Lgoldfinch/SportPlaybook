@@ -1,17 +1,20 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PlayerDragHandler : MonoBehaviour // IDragHandler
+public class PlayerDragHandler : MonoBehaviour 
 {
     private LineCreator lineCreatorScript;
     private float startPosX;
     private float startPosY;
     private bool isBeingHeld;
+    private LineDestroyer lineDestroyerScript;
 
     private void Awake()
     {
         GameObject lineCreator = GameObject.Find("Player"); // this wont work when we have loads of players
         lineCreatorScript = lineCreator.GetComponent<LineCreator>();
+
+        lineDestroyerScript = gameObject.GetComponent<LineDestroyer>();
     }
 
     //public void OnDrag(PointerEventData eventData)
@@ -24,6 +27,7 @@ public class PlayerDragHandler : MonoBehaviour // IDragHandler
     {
        if(isBeingHeld == true)
         {
+            lineDestroyerScript.DeleteLine(true);
             Vector2 mousePos;
             mousePos = Input.mousePosition;
             mousePos = Camera.main.WorldToScreenPoint(mousePos);
