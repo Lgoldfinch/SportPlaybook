@@ -3,6 +3,7 @@
 public class LineDestroyer : MonoBehaviour
 {
     public Transform playerTransform;
+
     private void Update()
     {
         DeleteLine(false);

@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 1560292978823183007}
   - component: {fileID: 1716864213839031026}
   - component: {fileID: 749518115211043568}
+  - component: {fileID: 4233847507516829738}
   m_Layer: 5
   m_Name: Player
   m_TagString: Untagged
@@ -145,7 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   linePrefab: {fileID: 902899087084756383, guid: e35062e14ff0da849913037c94af8200,
     type: 3}
-  player: {fileID: 1560292978823183007}
+  activeLine: {fileID: 0}
 --- !u!114 &852057191641294687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,3 +272,15 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 100, y: 100}
   m_Direction: 0
+--- !u!114 &4233847507516829738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 852057191641292961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e03a25b3b33c4bea87ab70085618c82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
