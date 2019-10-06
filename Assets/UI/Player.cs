@@ -31,7 +31,8 @@ public class Player : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         {
             lineCreatorScript.activeLine = null;
             isPlayerRightclicked = false;
-            
+            // We cant store it in the button, the button should just send the signal.
+            // 
         }
     }
 }

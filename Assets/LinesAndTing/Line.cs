@@ -27,7 +27,7 @@ public class Line : MonoBehaviour
             AddPoint(mousePosition);
         }
     }
-
+    
    private void AddPoint(Vector2 point) 
     {
         points.Add(point);

@@ -147,6 +147,8 @@ MonoBehaviour:
   linePrefab: {fileID: 902899087084756383, guid: e35062e14ff0da849913037c94af8200,
     type: 3}
   activeLine: {fileID: 0}
+  playButton: {fileID: 3764771767184060350, guid: 047a4a4d27eec4b51a78d4a23ea46e87,
+    type: 3}
 --- !u!114 &852057191641294687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,6 +216,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayerRightclicked: 0
+  runningLine: {fileID: 0}
+  playButton: {fileID: 3764771767184060350, guid: 047a4a4d27eec4b51a78d4a23ea46e87,
+    type: 3}
 --- !u!114 &1716864213839031026
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,3 +289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e03a25b3b33c4bea87ab70085618c82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 10
+  player: {fileID: 852057191641292961}
+  playButton: {fileID: 3764771767184060350, guid: 047a4a4d27eec4b51a78d4a23ea46e87,
+    type: 3}
