@@ -51,9 +51,8 @@ public class PlayerMovement : MonoBehaviour
     {
 
         timer = 0;
-        //startPosition = player.transform.position; 
-        currentPositionX = listOfPoints[currentPosition].x;
-        currentPositionY = listOfPoints[currentPosition].y;
+        currentPositionX = listOfPoints[currentPosition + 1].x;
+        currentPositionY = listOfPoints[currentPosition + 1].y;
 
         currentPositionHolder = new Vector3(currentPositionX, currentPositionY);
     }

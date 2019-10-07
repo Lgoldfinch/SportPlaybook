@@ -3,24 +3,14 @@ using UnityEngine;
 
 public class PlayerMovementTrial : MonoBehaviour
 {
-    public enum PathTypes
-    {
-        linear
-    }
 
-    public PathTypes pathType;
-    public int movementDirection = 1; // 1 clockwise forward etc etc. 
     public int movingTo = 0; // identify point in path sequence we're moving to 
-    public Transform[] pathSequence; // array of all points in the path
-    private float timer;
-    private float currentPositionX;
-    private float currentPositionY;
     public GameObject player;
     public GameObject playButton;
     private PlayButtonScript playButtonScript;
     public float moveSpeed;
-    static Vector3 currentPositionHolder;
-    private int currentPosition;
+    private Player playerScript;
+    private Line runningLine1;
 
     private void Start()
     {
@@ -31,29 +21,32 @@ public class PlayerMovementTrial : MonoBehaviour
     {
         if (playButtonScript.movementEnabled)
         {
-            Player playerScript = player.GetComponent<Player>();
-            NullLineHandler(playerScript.runningLine);
+            playerScript = player.GetComponent<Player>();
+            runningLine1 = playerScript.runningLine;
+            NullLineHandler(runningLine1);
+
         }
     }
 
-    private void NullLineHandler(Line runningLine)
+    private void NullLineHandler(Line runningLine2)
     {
         try
         {
-            runningLine.GetLine();
+            runningLine2.GetLine();
         }
         catch (System.NullReferenceException)
         {
             return;
         }
-
-        MovePlayer(runningLine.GetLine(), 0);
-        playButtonScript.movementEnabled = false;
+        GetNextPathPoint();
     }
 
-    public IEnumerator<Transform> GetNextPathPoint()
+    public IEnumerator<Vector2> GetNextPathPoint()
     {
-        if(pathSequence == null || pathSequence.Length < 1) // checks whether it constitutes a path.
+
+       List<Vector2> line = runningLine1.GetLine();
+
+        if(line == null || line.Count - 1 < 1) // checks whether it constitutes a path.
         {
             yield break; // function returns an object that implements the IEnumerable interface
             // if a calling function starts foreaching over this object the function is called again until it yields.
@@ -62,22 +55,23 @@ public class PlayerMovementTrial : MonoBehaviour
         while (true) // does not infinite loop due to yield return 
         {
             //Return the current point in pathsequence
-            yield return pathSequence[movingTo];
+            yield return line[movingTo];
             ////////////////////////////////// pauses here ////////////////////////
 
             ///// if there is only one point exit the coroutine
 
-            if (pathSequence.Length == 1) continue;
+            if (line.Count - 1 == 1) continue;
 
-            if (pathType == PathTypes.linear)           // this will always be true
             {
                 //beginning of the line
-                if (movingTo <= 0) movementDirection = 1;
-                else if (movingTo >= pathSequence.Length) movementDirection = -1; // reached end of the line.
+                if (movingTo <= 0) movingTo = movingTo + 1;
+
+                // reached end of the line.
+                else if (movingTo >= line.Count - 1)
+                    playButtonScript.movementEnabled = false;
+
 
             }
-
-            movingTo = movingTo + movementDirection; // we can just add one until we reach the end right?
         }
 
     }

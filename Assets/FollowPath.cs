@@ -1,49 +1,51 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class FollowPath : MonoBehaviour
 {
-    //public enum MovementType
-    //{
-    //    moveTowards,
-    //    LerpTowards
-    //}
 
-    //public MovementType type = MovementType.moveTowards;
-    public PlayerMovementTrial myPath; // we need to access this pat
+    public PlayerMovementTrial playerMovement; // we need to access this path
     public float speed = 1;
     public float maxDistanceToGoal = .1f;
-    private IEnumerator<Transform> pointinPath; // used to reference points returned from GetNextPathPoint
+    private PlayButtonScript playButtonScript;
+    public GameObject playButton;
+
+    private IEnumerator<Vector2> pointInPath; // used to reference points returned from GetNextPathPoint
 
     void Start()
     {
-        if (myPath == null)
+        playButtonScript = playButton.GetComponent<PlayButtonScript>();
+
+
+        if (playerMovement == null)
         {
             Debug.LogError("gimme path", gameObject);
             return;
         }
 
-        pointinPath = myPath.GetNextPathPoint();
+        pointInPath = playerMovement.GetNextPathPoint();
 
-        pointinPath.MoveNext();
+        pointInPath.MoveNext();
 
-        if (pointinPath.Current == null)
+        if (pointInPath.Current == Vector2.zero)
         {
             Debug.LogError("Need a path bru", gameObject);
             return;
         }
 
         // set position of this object to position of starting object
-        transform.position = pointinPath.Current.position;
+        transform.position = pointInPath.Current;
     }
 
+
+
     void Update()
-    {
-        if (pointinPath == null || pointinPath.Current == null) return;
+     {
+
+        if (pointInPath == null || pointInPath.Current == Vector2.zero) return;
 
         transform.position = Vector3.MoveTowards(transform.position,
-            pointinPath.Current.position,
+            pointInPath.Current,
             Time.deltaTime + speed
             );
     }
