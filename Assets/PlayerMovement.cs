@@ -12,7 +12,6 @@ public class PlayerMovement : MonoBehaviour
     private float timer;
     private float currentPositionX;
     private float currentPositionY;
-    public GameObject player;
     public GameObject playButton;
     private PlayButtonScript playButtonScript;
     private Vector3 startPosition; 
@@ -27,7 +26,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (playButtonScript.movementEnabled)
         {
-            Player playerScript = player.GetComponent<Player>();
+            Debug.Log("another attempt");
+            Player playerScript = gameObject.GetComponent<Player>();
             NullLineHandler(playerScript.runningLine);
         }
     }

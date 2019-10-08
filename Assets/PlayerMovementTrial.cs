@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerMovementTrial : MonoBehaviour
 {
 
+    public int movementDirection = 1; // 1 clockwise forward etc etc. 
     public int movingTo = 0; // identify point in path sequence we're moving to 
     public GameObject player;
     public GameObject playButton;
@@ -17,29 +18,29 @@ public class PlayerMovementTrial : MonoBehaviour
         playButtonScript = playButton.GetComponent<PlayButtonScript>();
     }
 
-    private void Update()
-    {
-        if (playButtonScript.movementEnabled)
-        {
-            playerScript = player.GetComponent<Player>();
-            runningLine1 = playerScript.runningLine;
-            NullLineHandler(runningLine1);
+    //private void Update()
+    //{
+    //    if (playButtonScript.movementEnabled)
+    //    {
+    //        playerScript = player.GetComponent<Player>();
+    //        runningLine1 = playerScript.runningLine;
+    //        NullLineHandler(runningLine1);
 
-        }
-    }
+    //    }
+    //}
 
-    private void NullLineHandler(Line runningLine2)
-    {
-        try
-        {
-            runningLine2.GetLine();
-        }
-        catch (System.NullReferenceException)
-        {
-            return;
-        }
-        GetNextPathPoint();
-    }
+    //private void NullLineHandler(Line runningLine2)
+    //{
+    //    try
+    //    {
+    //        runningLine2.GetLine();
+    //    }
+    //    catch (System.NullReferenceException)
+    //    {
+    //        return;
+    //    }
+    //    GetNextPathPoint();
+    //}
 
     public IEnumerator<Vector2> GetNextPathPoint()
     {
@@ -67,15 +68,10 @@ public class PlayerMovementTrial : MonoBehaviour
                 if (movingTo <= 0) movingTo = movingTo + 1;
 
                 // reached end of the line.
-                else if (movingTo >= line.Count - 1)
-                    playButtonScript.movementEnabled = false;
-
-
+                else if (movingTo >= line.Count - 1) { }
+                    //playButtonScript.movementEnabled = false;
             }
         }
 
     }
-
-   
-
 }
