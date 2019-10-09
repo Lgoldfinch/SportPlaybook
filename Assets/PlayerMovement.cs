@@ -7,30 +7,29 @@ public class PlayerMovement : MonoBehaviour
     private Line playersLine;
     public float moveSpeed;
     static Vector3 currentPositionHolder;
-    private int currentPosition;
+    private int currentPosition; 
     //private List<Vector2> listOfPoints;
     private float timer;
     private float currentPositionX;
     private float currentPositionY;
-    public GameObject player;
     public GameObject playButton;
     private PlayButtonScript playButtonScript;
+    private Vector3 startPosition; 
 
 
     private void Start()
     {
-        //playersLine = gameObject.GetComponentInChildren<Line>();
-
-        playButtonScript = playButton.GetComponent<PlayButtonScript>(); 
+        playButtonScript = playButton.GetComponent<PlayButtonScript>();
     }
 
     private void Update()
     {
-        if (playButtonScript.movementEnabled) {
-            Player playerScript = player.GetComponent<Player>();
+        if (playButtonScript.movementEnabled)
+        {
+            Debug.Log("another attempt");
+            Player playerScript = gameObject.GetComponent<Player>();
             NullLineHandler(playerScript.runningLine);
-           
-                }
+        }
     }
 
     private void NullLineHandler(Line runningLine)
@@ -44,47 +43,37 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        MovePlayer(runningLine.GetLine());
-
+        MovePlayer(runningLine.GetLine(), 0);
+        playButtonScript.movementEnabled = false;
     }
 
-    void CheckLine(List<Vector2> listOfPoints)
+    private void CheckLine(List<Vector2> listOfPoints)
     {
+
         timer = 0;
-        currentPositionX = listOfPoints[currentPosition].x;
-        currentPositionY = listOfPoints[currentPosition].y;
+        currentPositionX = listOfPoints[currentPosition + 1].x;
+        currentPositionY = listOfPoints[currentPosition + 1].y;
 
         currentPositionHolder = new Vector3(currentPositionX, currentPositionY);
     }
 
-    public void MovePlayer(List<Vector2> listOfPoints)
+    public void MovePlayer(List<Vector2> listOfPoints, int index)
     {
-        //SetLine();
-        Debug.Log("hi");
-        //timer += Time.deltaTime * moveSpeed;
-        //if (transform.position != currentPositionHolder)
-        //{
-        //    transform.position = Vector3.Lerp(transform.position, currentPositionHolder, timer);
-        //}
-
-        //else
-        //{
-        //    if (currentPosition < listOfPoints.Count - 1)
-        //    {
-        //        currentPosition++;
-        //        CheckLine(listOfPoints);
-            } // should only move if getLine returns something
+        timer += Time.deltaTime * moveSpeed;
+        if (transform.position != currentPositionHolder)
+        {
+            transform.position = Vector3.Lerp(transform.position, currentPositionHolder, timer);
+             MovePlayer(listOfPoints, index + 1);
+            return;
         }
-    
 
-    //public void SetLine()
-    //{
-    //    playersLine = player.GetComponentInChildren<Line>();
-    //    Debug.Log(playersLine);
-    //    if (playersLine != null)
-    //    {
-    //        listOfPoints = playersLine.GetLine();
-    //        Debug.Log("");
-    //    }
-    //    else Debug.Log("yooo");
-    //}
+        else
+        {
+            if (currentPosition < listOfPoints.Count - 1)
+            {
+                currentPosition++;
+                CheckLine(listOfPoints);
+            }
+        }
+    }
+}
