@@ -44,7 +44,6 @@ public class PlayerMovement : MonoBehaviour
         }
 
         MovePlayer(runningLine.GetLine(), 0);
-        playButtonScript.movementEnabled = false;
     }
 
     private void CheckLine(List<Vector2> listOfPoints)
