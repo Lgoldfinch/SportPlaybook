@@ -61,6 +61,7 @@ public class PlayerMovement : MonoBehaviour
         if (index >= listOfPoints.Count - 1)
         {
             Debug.Log("bing");
+            return;
         }
         else
         {
