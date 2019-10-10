@@ -5,7 +5,7 @@ public class LineCreator : MonoBehaviour {
     public GameObject linePrefab;
     public Line activeLine;
     public GameObject playButton;
-    private PlayButtonScript playButtonScript;
+    public bool lineExists;
     private Player player;
 
     private void Start()
@@ -28,5 +28,6 @@ public class LineCreator : MonoBehaviour {
         activeLine = lineGo.GetComponent<Line>();
         activeLine.transform.SetParent(transform);
         player.runningLine = activeLine;
+        lineExists = true;
     }
 }

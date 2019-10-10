@@ -4,31 +4,31 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private Line playersLine;
     public float moveSpeed;
     static Vector3 currentPositionHolder;
     private int currentPosition; 
-    //private List<Vector2> listOfPoints;
     private float timer;
     private float currentPositionX;
     private float currentPositionY;
     public GameObject playButton;
     private PlayButtonScript playButtonScript;
-    private Vector3 startPosition; 
-
+    private LineCreator lineCreator;
 
     private void Start()
     {
         playButtonScript = playButton.GetComponent<PlayButtonScript>();
+        lineCreator = gameObject.GetComponent<LineCreator>();
+
     }
 
     private void Update()
     {
-        if (playButtonScript.movementEnabled)
+        if (playButtonScript.movementEnabled && lineCreator.lineExists)
         {
-            Debug.Log("another attempt");
             Player playerScript = gameObject.GetComponent<Player>();
-            NullLineHandler(playerScript.runningLine);
+            MovePlayer(playerScript.runningLine.GetLine(), 0);
+
+            //NullLineHandler(playerScript.runningLine);
         }
     }
 
@@ -43,7 +43,6 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        MovePlayer(runningLine.GetLine(), 0);
     }
 
     private void CheckLine(List<Vector2> listOfPoints)
@@ -58,21 +57,29 @@ public class PlayerMovement : MonoBehaviour
 
     public void MovePlayer(List<Vector2> listOfPoints, int index)
     {
-        timer += Time.deltaTime * moveSpeed;
-        if (transform.position != currentPositionHolder)
+        if (index <= listOfPoints.Count - 1)
         {
-            transform.position = Vector3.Lerp(transform.position, currentPositionHolder, timer);
-             MovePlayer(listOfPoints, index + 1);
-            return;
-        }
 
-        else
-        {
-            if (currentPosition < listOfPoints.Count - 1)
+            timer += Time.deltaTime * moveSpeed;
+            if (transform.position != currentPositionHolder)
             {
-                currentPosition++;
-                CheckLine(listOfPoints);
+                transform.position = Vector3.Lerp(transform.position, currentPositionHolder, timer);
+                MovePlayer(listOfPoints, index + 1);
+                return;
             }
-        }
+
+            else
+            {
+                if (currentPosition < listOfPoints.Count - 1)
+                {
+                    currentPosition++;
+                    CheckLine(listOfPoints);
+                }
+            }
+        } 
     }
 }
+
+// problems we have. Playert skips about when there is no line and you press play. ----> Have some way to negate anything unless a line exists.
+// Player goes too far and you get an out of bounds index exception.
+// There is   
