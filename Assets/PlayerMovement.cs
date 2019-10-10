@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject playButton;
     private PlayButtonScript playButtonScript;
     private LineCreator lineCreator;
+    //private List<Vector2> lineCr
 
     private void Start()
     {
@@ -57,9 +58,12 @@ public class PlayerMovement : MonoBehaviour
 
     public void MovePlayer(List<Vector2> listOfPoints, int index)
     {
-        if (index <= listOfPoints.Count - 1)
+        if (index >= listOfPoints.Count - 1)
         {
-
+            Debug.Log("bing");
+        }
+        else
+        {
             timer += Time.deltaTime * moveSpeed;
             if (transform.position != currentPositionHolder)
             {
@@ -68,16 +72,16 @@ public class PlayerMovement : MonoBehaviour
                 return;
             }
 
-            else
+            else if (currentPosition < listOfPoints.Count - 1)
             {
-                if (currentPosition < listOfPoints.Count - 1)
-                {
-                    currentPosition++;
-                    CheckLine(listOfPoints);
-                }
+                currentPosition++;
+                CheckLine(listOfPoints);
             }
+
+        }
+
         } 
-    }
+    
 }
 
 // problems we have. Playert skips about when there is no line and you press play. ----> Have some way to negate anything unless a line exists.
