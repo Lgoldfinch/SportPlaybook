@@ -20,7 +20,6 @@ public class LineDestroyer : MonoBehaviour
     {
         LineCreator lineCreator = gameObject.GetComponent<LineCreator>();
         Destroy(GetComponent<Transform>().GetChild(1).gameObject);
-        Debug.Log(lineCreator);
         lineCreator.lineExists = false;
     }
 }
