@@ -6,10 +6,14 @@ public class Player : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     public bool isPlayerRightclicked;
     private LineCreator lineCreatorScript;
+    public Line runningLine;
+    public GameObject playButton;
+    private PlayButtonScript playButtonScript;
 
     private void Start()
     {
         lineCreatorScript = gameObject.GetComponent<LineCreator>();
+        playButtonScript = playButton.GetComponent<PlayButtonScript>(); 
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -27,6 +31,8 @@ public class Player : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         {
             lineCreatorScript.activeLine = null;
             isPlayerRightclicked = false;
+            // We cant store it in the button, the button should just send the signal.
+            // 
         }
     }
 }

@@ -9,7 +9,6 @@ public class Line : MonoBehaviour
     public EdgeCollider2D edgeCollider;
     public float lineSpacing;
 	public GameObject player;
-    GameObject existingLine;
 
     private List<Vector2> points;
 
@@ -28,8 +27,8 @@ public class Line : MonoBehaviour
             AddPoint(mousePosition);
         }
     }
-
-    void AddPoint(Vector2 point) // Only call this function if a player has been double clicked
+    
+   private void AddPoint(Vector2 point) 
     {
         points.Add(point);
 
@@ -40,6 +39,11 @@ public class Line : MonoBehaviour
         {
             edgeCollider.points = points.ToArray();
         }
+    }
+
+    public List<Vector2> GetLine()
+    {
+        return points;
     }
 }
  
