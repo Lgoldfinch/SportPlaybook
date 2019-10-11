@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (playButtonScript.movementEnabled && lineCreator.lineExists)
         {
+            Debug.Log("hi");
             Player playerScript = gameObject.GetComponent<Player>();
             List<Vector2> listOfPoints = playerScript.runningLine.GetLine();
 
@@ -52,11 +53,11 @@ public class PlayerMovement : MonoBehaviour
         {
             timer += Time.deltaTime * moveSpeed;
 
-            //if(transform.position != currentPositionHolder)  is position of the player diff to the current position holder
+            //if(transform.position != currentPositionHolder)  
 
-            if (transform.position != currentPositionHolder)
+            if (transform.position != currentPositionHolder) // is position of the player different to the current position holder
             {
-                if (currentPositionHolder == Vector3.zero) currentPositionHolder = listOfPoints.First();
+                if (currentPositionHolder == Vector3.zero) currentPositionHolder = listOfPoints.First(); 
                 
                 transform.position = Vector3.Lerp(transform.position, currentPositionHolder, timer);
                 MovePlayer(listOfPoints, index + 1);
