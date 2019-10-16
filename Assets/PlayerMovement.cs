@@ -24,11 +24,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if (playButtonScript.movementEnabled && lineCreator.lineExists)
         {
-            Debug.Log("hi");
             Player playerScript = gameObject.GetComponent<Player>();
             List<Vector2> listOfPoints = playerScript.runningLine.GetLine();
 
-            MovePlayer(listOfPoints, 0);
+            MovePlayer(listOfPoints);
         }
     }
 
@@ -42,9 +41,9 @@ public class PlayerMovement : MonoBehaviour
         currentPositionHolder = new Vector3(currentPositionX, currentPositionY);
     }
 
-    public void MovePlayer(List<Vector2> listOfPoints, int index)
+    public void MovePlayer(List<Vector2> listOfPoints)
     {
-            if (index >= listOfPoints.Count - 1) // index is less than count MO
+            if (currentPosition >= listOfPoints.Count - 2) // index is less than count MO
         {
             return;
         }
@@ -60,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
                 if (currentPositionHolder == Vector3.zero) currentPositionHolder = listOfPoints.First(); 
                 
                 transform.position = Vector3.Lerp(transform.position, currentPositionHolder, timer);
-                MovePlayer(listOfPoints, index + 1);
+                MovePlayer(listOfPoints);
             }
 
             else if (currentPosition < listOfPoints.Count - 1)
