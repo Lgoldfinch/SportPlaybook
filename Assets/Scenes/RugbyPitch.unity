@@ -1364,5 +1364,10 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 3764771767184060347, guid: 047a4a4d27eec4b51a78d4a23ea46e87,
+        type: 3}
+      propertyPath: playerPanel
+      value: 
+      objectReference: {fileID: 765003418}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 047a4a4d27eec4b51a78d4a23ea46e87, type: 3}

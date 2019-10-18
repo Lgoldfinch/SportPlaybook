@@ -8,12 +8,20 @@ public class Player : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     private LineCreator lineCreatorScript;
     public Line runningLine;
     public GameObject playButton;
-    private PlayButtonScript playButtonScript;
+    private PlayerMovement playerMovement;
 
     private void Start()
     {
         lineCreatorScript = gameObject.GetComponent<LineCreator>();
-        playButtonScript = playButton.GetComponent<PlayButtonScript>(); 
+        playerMovement = gameObject.GetComponent<PlayerMovement>();
+    }
+
+    public void GondorCallsForAid()
+    {
+        if (lineCreatorScript.lineExists)
+        {
+            playerMovement.MusterTheRohirrim(runningLine.GetLine());
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData)
