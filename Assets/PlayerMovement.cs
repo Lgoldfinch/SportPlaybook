@@ -32,44 +32,52 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public void MusterTheRohirrim(List<Vector2> listOfPoints)
-        
+
     {
         //Debug.Log("got here1");
-        if (currentPosition >= listOfPoints.Count - 2) // index is less than count MO
+        //if (currentPosition >= listOfPoints.Count - 2) // index is less than count MO
+        //{
+        //    //Debug.Log("got here2");
+
+        //    return;
+        //}
+
+        for (int currentPositionInLine = 0; currentPositionInLine <= listOfPoints.Count - 1; currentPositionInLine++)
         {
-            //Debug.Log("got here2");
+            Debug.Log(currentPositionInLine);
+            Debug.Log(listOfPoints.Count);
+            timer += Time.deltaTime * moveSpeed;
 
-            return;
-        }
+            if (transform.position != currentPositionHolder) // is position of the player different to the current position holder
+            {
+                Debug.Log("got here3");
+                if (currentPositionHolder == Vector3.zero) currentPositionHolder = listOfPoints.First();
 
-        timer += Time.deltaTime * moveSpeed;
+                transform.position = Vector3.Lerp(transform.position, currentPositionHolder, timer);
+                return;
+            }
 
-        if (transform.position != currentPositionHolder) // is position of the player different to the current position holder
-        {
-            Debug.Log("got here3");
-            if (currentPositionHolder == Vector3.zero) currentPositionHolder = listOfPoints.First();
+            else
+            {
+                Debug.Log("line checked");
+                CheckLine(listOfPoints, currentPositionInLine);
+                currentPositionInLine--;
+                return;
+            }
 
-            transform.position = Vector3.Lerp(transform.position, currentPositionHolder, timer);
-            MusterTheRohirrim(listOfPoints);
-        }
+           
 
-        else if (currentPosition < listOfPoints.Count - 1)
-        {
-            Debug.Log("got here4");
-
-            currentPosition++;
-            CheckLine(listOfPoints);
-        }
+        }    
     }
 
-    private void CheckLine(List<Vector2> listOfPoints)
+    private void CheckLine(List<Vector2> listOfPoints, int currentPositionInLine)
     {
         timer = 0;
 
         Debug.Log("lineChecked");
 
-        currentPositionX = listOfPoints[currentPosition + 1].x;
-        currentPositionY = listOfPoints[currentPosition + 1].y;
+        currentPositionX = listOfPoints[currentPositionInLine + 1].x;
+        currentPositionY = listOfPoints[currentPositionInLine + 1].y;
 
         currentPositionHolder = new Vector3(currentPositionX, currentPositionY);
     }
