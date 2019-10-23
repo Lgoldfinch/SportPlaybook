@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System.Threading;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 currentPositionHolder;
     private int currentPosition;
     private float timer;
+    private float lastTime = - 1;
     private float currentPositionX;
     private float currentPositionY;
     public GameObject playButton;
@@ -20,64 +22,38 @@ public class PlayerMovement : MonoBehaviour
         lineCreator = gameObject.GetComponent<LineCreator>();
     }
 
-    private void Update()
-    {
-        //if (playButtonScript.movementEnabled && lineCreator.lineExists)
-        //{
-        //    Player playerScript = gameObject.GetComponent<Player>();
-        //    List<Vector2> listOfPoints = playerScript.runningLine.GetLine();
-
-        //    MusterTheRohirrim(listOfPoints);
-        //}
-    }
-
     public void MusterTheRohirrim(List<Vector2> listOfPoints)
-
     {
-        //Debug.Log("got here1");
-        //if (currentPosition >= listOfPoints.Count - 2) // index is less than count MO
-        //{
-        //    //Debug.Log("got here2");
+        for (int currentPositionInLine = 0; currentPositionInLine <= listOfPoints.Count - 1; currentPositionInLine++) { //, we start at 0, add 1 every time we go through the loop.  
+            timer += Time.deltaTime;                                                                                                            // We use this index to adjust the current point the player is in the path.
+            var rate = 1.0f / timer;
 
-        //    return;
-        //}
-
-        for (int currentPositionInLine = 0; currentPositionInLine <= listOfPoints.Count - 1; currentPositionInLine++)
-        {
-            Debug.Log(currentPositionInLine);
-            Debug.Log(listOfPoints.Count);
-            timer += Time.deltaTime * moveSpeed;
-
-            if (transform.position != currentPositionHolder) // is position of the player different to the current position holder
-            {
-                Debug.Log("got here3");
-                if (currentPositionHolder == Vector3.zero) currentPositionHolder = listOfPoints.First();
-
-                transform.position = Vector3.Lerp(transform.position, currentPositionHolder, timer);
-                return;
-            }
-
-            else
-            {
-                Debug.Log("line checked");
-                CheckLine(listOfPoints, currentPositionInLine);
-                currentPositionInLine--;
-                return;
-            }
-
-           
-
+            if (currentPositionHolder == Vector3.zero)
+                {
+                    currentPositionHolder = listOfPoints.First();
+                }
+            transform.position = Vector3.Lerp(transform.position, currentPositionHolder, 0.2f);
+                    CheckLine(listOfPoints, currentPositionInLine);               
         }    
     }
 
     private void CheckLine(List<Vector2> listOfPoints, int currentPositionInLine)
     {
+
         timer = 0;
 
-        Debug.Log("lineChecked");
 
-        currentPositionX = listOfPoints[currentPositionInLine + 1].x;
-        currentPositionY = listOfPoints[currentPositionInLine + 1].y;
+        // delta = 0;
+
+        //if (lastTime > 0)
+        //{
+        //    delta = Time.time - lastTime;
+        //}
+
+        //lastTime = Time.time;
+
+        currentPositionX = listOfPoints[currentPositionInLine].x;
+        currentPositionY = listOfPoints[currentPositionInLine].y;
 
         currentPositionHolder = new Vector3(currentPositionX, currentPositionY);
     }
