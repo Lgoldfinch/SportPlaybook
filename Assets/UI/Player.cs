@@ -20,7 +20,7 @@ public class Player : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         if (lineCreatorScript.lineExists)
         {
-            playerMovement.MusterTheRohirrim(runningLine.GetLine());
+            StartCoroutine(playerMovement.MusterTheRohirrim(runningLine.GetLine()));
         }
     }
 

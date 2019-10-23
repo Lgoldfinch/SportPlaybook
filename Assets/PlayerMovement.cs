@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Linq;
 using System.Threading;
+using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -22,35 +23,24 @@ public class PlayerMovement : MonoBehaviour
         lineCreator = gameObject.GetComponent<LineCreator>();
     }
 
-    public void MusterTheRohirrim(List<Vector2> listOfPoints)
+    public IEnumerator MusterTheRohirrim(List<Vector2> listOfPoints)
     {
-        for (int currentPositionInLine = 0; currentPositionInLine <= listOfPoints.Count - 1; currentPositionInLine++) { //, we start at 0, add 1 every time we go through the loop.  
-            timer += Time.deltaTime;                                                                                                            // We use this index to adjust the current point the player is in the path.
-            var rate = 1.0f / timer;
-
+        //for (int currentPositionInLine = 0; currentPositionInLine <= listOfPoints.Count - 1; currentPositionInLine++) { //, we start at 0, add 1 every time we go through the loop.  
+        // We use this index to adjust the current point the player is in the path.
+        while (currentPosition <= listOfPoints.Count - 1)
+        {
             if (currentPositionHolder == Vector3.zero)
-                {
-                    currentPositionHolder = listOfPoints.First();
-                }
-            transform.position = Vector3.Lerp(transform.position, currentPositionHolder, 0.2f);
-                    CheckLine(listOfPoints, currentPositionInLine);               
-        }    
+            {
+                currentPositionHolder = listOfPoints.First();
+            }
+            transform.position = Vector3.Lerp(transform.position, currentPositionHolder, 1);
+            yield return new WaitForEndOfFrame();
+            CheckLine(listOfPoints, currentPosition++);
+        }
     }
 
     private void CheckLine(List<Vector2> listOfPoints, int currentPositionInLine)
     {
-
-        timer = 0;
-
-
-        // delta = 0;
-
-        //if (lastTime > 0)
-        //{
-        //    delta = Time.time - lastTime;
-        //}
-
-        //lastTime = Time.time;
 
         currentPositionX = listOfPoints[currentPositionInLine].x;
         currentPositionY = listOfPoints[currentPositionInLine].y;
