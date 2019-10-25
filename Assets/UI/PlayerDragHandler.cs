@@ -1,31 +1,26 @@
-﻿using UnityEngine;
-using UnityEngine.EventSystems;
+﻿using System;
+using UnityEngine;
+using UnityEngine.UI;
 
-public class PlayerDragHandler : MonoBehaviour 
+public class PlayerDragHandler : MonoBehaviour
 {
-    private LineCreator lineCreatorScript;
     private float startPosX;
     private float startPosY;
     private bool isBeingHeld;
     private LineDestroyer lineDestroyerScript;
+    public GameObject playerSpeedSlider;
+    private PlayerSpeedController playerSpeedController;
+    private PlayerMovement playerMovementScript;
 
     private void Awake()
     {
-        GameObject lineCreator = GameObject.Find("Player"); // this wont work when we have loads of players
-        lineCreatorScript = lineCreator.GetComponent<LineCreator>();
-
         lineDestroyerScript = gameObject.GetComponent<LineDestroyer>();
+        playerMovementScript = gameObject.GetComponent<PlayerMovement>();
     }
-
-    //public void OnDrag(PointerEventData eventData)
-    //{
-    //    if (lineCreatorScript.isPlayerDraggable) transform.position = eventData.position;
-
-    //}
 
     private void Update()
     {
-       if(isBeingHeld == true)
+        if (isBeingHeld == true)
         {
             lineDestroyerScript.DeleteLine(true);
             Vector2 mousePos;
@@ -47,7 +42,15 @@ public class PlayerDragHandler : MonoBehaviour
             startPosX = mousePos.x - transform.localPosition.x;
             startPosY = mousePos.y - transform.localPosition.y;
             isBeingHeld = true;
+
+            AttachSpeedSliderToClickedPlayer();
         }
+    }
+
+    private void AttachSpeedSliderToClickedPlayer()
+    {
+        playerSpeedController = playerSpeedSlider.GetComponent<PlayerSpeedController>();
+        playerSpeedController.SetInitialMovementSpeed(playerMovementScript.moveSpeed, playerMovementScript);
     }
 
     private void OnMouseUp()

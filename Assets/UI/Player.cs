@@ -31,6 +31,8 @@ public class Player : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             isPlayerRightclicked = true;
             lineCreatorScript.MakeLine();
         }
+
+
     }
 
     public void OnPointerUp(PointerEventData eventData)

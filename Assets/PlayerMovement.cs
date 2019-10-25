@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-using System.Threading;
 using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed;
+    public float moveSpeed = 1;
     private Vector3 currentPositionHolder;
     private int currentPositionInLine;
     private float currentPositionX;
@@ -15,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
 
     public IEnumerator MusterTheRohirrim(List<Vector2> listOfPoints)
     {
-        currentPositionHolder = listOfPoints.First();
+        currentPositionHolder = listOfPoints.First(); // This line is needed so that the first point that the player moves to is not the default vector3(0,0,0). 
 
         while (currentPositionInLine <= listOfPoints.Count - 1)
         {
