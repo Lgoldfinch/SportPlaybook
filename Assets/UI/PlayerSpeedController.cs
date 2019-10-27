@@ -16,7 +16,6 @@ public class PlayerSpeedController : MonoBehaviour, IPointerUpHandler
     {
         slider.value = movementSpeed;
         playerMovement = playerMovementScript;
-        Debug.Log(playerMovement.moveSpeed);
     }
 
     public void OnPointerUp(PointerEventData eventData) // when the user releases the slider, set the players movement speed. 
