@@ -1224,7 +1224,7 @@ PrefabInstance:
     - target: {fileID: 7202192714482906065, guid: 754e5663f21794c87b75bcdd9b10f410,
         type: 3}
       propertyPath: moveSpeed
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8391751882277464121, guid: 754e5663f21794c87b75bcdd9b10f410,
         type: 3}
@@ -1522,12 +1522,12 @@ PrefabInstance:
     - target: {fileID: 5685086209830115659, guid: 58dda846c710e41cf9d5482bacf35334,
         type: 3}
       propertyPath: m_Value
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5685086209830115659, guid: 58dda846c710e41cf9d5482bacf35334,
         type: 3}
       propertyPath: m_WholeNumbers
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5685086209830115659, guid: 58dda846c710e41cf9d5482bacf35334,
         type: 3}
