@@ -20,11 +20,8 @@ public class PlayerMovement : MonoBehaviour
         while (currentPositionInLine <= listOfPoints.Count - 1)
         {
             transform.position = Vector3.Lerp(transform.position, currentPositionHolder, 1);
-            //for (int i = 0; i == moveSpeed; i++)
-            //{
-            Debug.Log(moveSpeed);
+                        
                 yield return moveSpeed;
-            //}
 
             CheckLine(listOfPoints, currentPositionInLine++); // CheckLine uses the incremented value to provide the next position in the line for the player to move to.
         }
