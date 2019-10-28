@@ -20,7 +20,7 @@ public class LineDestroyer : MonoBehaviour
     {
         LineCreator lineCreator = gameObject.GetComponent<LineCreator>();
         Destroy(GetComponent<Transform>().GetChild(1).gameObject);
-
+        
         if (needANewLine) lineCreator.lineExists = true; // this means a new line can be made.
         
         else lineCreator.lineExists = false; 
