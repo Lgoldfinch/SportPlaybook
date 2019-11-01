@@ -142,7 +142,7 @@ EdgeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
+  m_EdgeRadius: 1
   m_Points:
   - {x: -0.5, y: 0}
   - {x: 0.5, y: 0}
@@ -162,3 +162,5 @@ MonoBehaviour:
   edgeCollider: {fileID: 902899087084756382}
   lineSpacing: 0
   player: {fileID: 852057191641292961, guid: ffe3667845c844d89899fd299f2f1ec6, type: 3}
+  eventModeButton: {fileID: 7921612866790149704, guid: d1ac7cbc334734773a7fd8a3d1620e4f,
+    type: 3}

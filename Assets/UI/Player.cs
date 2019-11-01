@@ -9,6 +9,7 @@ public class Player : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public Line runningLine;
     public GameObject playButton;
     private PlayerMovement playerMovement;
+    public bool isEventModeEnabled; 
 
     private void Start()
     {

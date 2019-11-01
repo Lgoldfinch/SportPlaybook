@@ -35,4 +35,3 @@ public class PlayerMovement : MonoBehaviour
         currentPositionHolder = new Vector3(currentPositionX, currentPositionY); // this is used by the lerp in the MusterTheRohirrim function
     }
 }
-// Do I have the movement speed multiply the number of frames spent at each point 

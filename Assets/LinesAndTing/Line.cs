@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-
+using UnityEngine.EventSystems;
 public class Line : MonoBehaviour
 {
 
@@ -9,8 +9,15 @@ public class Line : MonoBehaviour
     public EdgeCollider2D edgeCollider;
     public float lineSpacing;
 	public GameObject player;
+    public GameObject eventModeButton;
+    private EventModeButtonScript eventModeButtonScript;
 
     private List<Vector2> points;
+
+    //private void Start()
+    //{
+    //    eventModeButtonScript = eventModeButton.GetComponent<EventModeButtonScript>();
+    //}
 
     public void UpdateLine(Vector2 mousePosition) 
     { 
@@ -44,6 +51,17 @@ public class Line : MonoBehaviour
     public List<Vector2> GetLine()
     {
         return points;
+    }
+
+    public void OnMouseDown()
+    {
+        //eventModeButtonScript = eventModeButton.GetComponent<EventModeButtonScript>();
+
+        Debug.Log(EventModeButtonScript.isEventModeEnabled);
+        if (EventModeButtonScript.isEventModeEnabled)
+        {
+            Debug.Log("yey");
+        }
     }
 }
  
