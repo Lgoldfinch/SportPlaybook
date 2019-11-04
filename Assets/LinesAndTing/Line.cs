@@ -48,6 +48,8 @@ public class Line : MonoBehaviour
 
     public void OnMouseDown()
     {
+        EventTypeHandler.isDynamicEvent = true;
+
         if (EventModeButtonScript.isEventModeEnabled)
         {
             Vector2 clickedPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
