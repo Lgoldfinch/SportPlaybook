@@ -1,18 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using System;
+
 public class Line : MonoBehaviour
 {
-
     public LineRenderer lineRenderer;
     public EdgeCollider2D edgeCollider;
     public float lineSpacing;
 	public GameObject player;
     public float tolerance;
     private List<Vector2> points;
-    private Vector2 eventPositionInLine;
+    public int eventPositionInLine;
 
     public void UpdateLine(Vector2 mousePosition) 
     {
@@ -54,48 +52,37 @@ public class Line : MonoBehaviour
         {
             Vector2 clickedPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-            var clickLocationX = clickedPosition.x;
-            var clickLocationY = clickedPosition.y;
-
-            var x1 = clickLocationX + tolerance;
-            var x2 = clickLocationX - tolerance;
-
-            var y1 = clickLocationY + tolerance;
-            var y2 = clickLocationY - tolerance;
-
-            for (int i = 0; i < lineRenderer.positionCount - 1; i++)
-            {
-                var pointsX = points[i].x;
-                var pointsY = points[i].y;
-
-                if (x2 <= pointsX && pointsX <= x1 && y2 <= pointsY && pointsY <= y1)
-                {
-                    eventPositionInLine = points[i];
-                    break;
-                }
+            while (eventPositionInLine == 0) // this is to cover the possibility that the tolerance isn't large enough to catch the line. 
+            { 
+                FindNearestPositionInLine(clickedPosition);
+                tolerance++;
             }
-            Debug.Log(eventPositionInLine);
         }
     }
-        //{
-        //    if (clickedPosition <= points[i]  || case2 == points[i] || case3 == points[i] || case4 == points[i]) Debug.Log("lol");
 
-        //if (clickedPosition == (points[i].x +) Debug.Log("hi");  We would have to check per point whether the line was clicked to a certain tolerance for each of the cases
-        //   } // these are x + 2 & y +2 | x + 2 & y -2 | x - 2 & y + 2 | x - 2 & y -2 | 
+    private void FindNearestPositionInLine(Vector2 clickedPosition) // we store the vector and use that when we could use the integer position and be more precise.  
+    {
+        var clickLocationX = clickedPosition.x;
+        var clickLocationY = clickedPosition.y;
 
-        //Vector3[] newPos = new Vector3[lineRenderer.positionCount];
-        //Debug.Log(lineRenderer.GetPositions(newPos)).;
+        var x1 = clickLocationX + tolerance;
+        var x2 = clickLocationX - tolerance;
+
+        var y1 = clickLocationY + tolerance;
+        var y2 = clickLocationY - tolerance;
+
+        for (int i = 0; i < lineRenderer.positionCount - 1; i++)
+        {
+            var pointsX = points[i].x;
+            var pointsY = points[i].y;
 
 
-        //lineRenderer.GetPositions();
-        //{
-        //    var p
-
-        //    for (int i = 0; i < lineRenderer.positionCount; i++)
-        //    {
-        //        if ( )
-        //    }
-        //}
-    
+            if (x2 <= pointsX && pointsX <= x1 && y2 <= pointsY && pointsY <= y1) 
+            {
+                eventPositionInLine = i;
+                break;
+            }
+        }
+    } 
 }
  

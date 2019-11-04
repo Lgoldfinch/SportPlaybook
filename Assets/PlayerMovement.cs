@@ -11,19 +11,28 @@ public class PlayerMovement : MonoBehaviour
     private float currentPositionX;
     private float currentPositionY;
     public GameObject playButton;
-
+    private Line runningLine;
+    private LineBasedEvent eventHandler; 
 
     public IEnumerator MusterTheRohirrim(List<Vector2> listOfPoints)
     {
+        runningLine = gameObject.GetComponentInChildren<Line>();
+        eventHandler = gameObject.GetComponentInChildren<LineBasedEvent>();
+
         currentPositionHolder = listOfPoints.First(); // This line is needed so that the first point that the player moves to is not the default vector3(0,0,0). 
 
         while (currentPositionInLine <= listOfPoints.Count - 1)
         {
+            if (currentPositionInLine == runningLine.eventPositionInLine)
+            {
+                eventHandler.DoEvent();
+            }
             transform.position = Vector3.Lerp(transform.position, currentPositionHolder, 1);
                         
                 yield return moveSpeed;
 
             CheckLine(listOfPoints, currentPositionInLine++); // CheckLine uses the incremented value to provide the next position in the line for the player to move to.
+            
         }
     }
 
