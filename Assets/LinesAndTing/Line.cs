@@ -11,8 +11,7 @@ public class Line : MonoBehaviour
     public float tolerance;
     private List<Vector2> points;
     public int eventPositionInLine;
-    public GameObject EventTypeButton;
-    private (int, EventTypeHandler.DynamicEventTypes) eventInfo;
+    public (int, EventTypeHandler.DynamicEventTypes) eventInfo;
 
     public void UpdateLine(Vector2 mousePosition) 
     {
@@ -66,8 +65,6 @@ public class Line : MonoBehaviour
 
     private void FindNearestPositionInLine(Vector2 clickedPosition)
     {
-        EventTypeHandler eventTypeHandler = EventTypeButton.GetComponent<EventTypeHandler>();
-
         var clickLocationX = clickedPosition.x;
         var clickLocationY = clickedPosition.y;
 
@@ -102,7 +99,7 @@ public class Line : MonoBehaviour
                 return (eventPosition, EventTypeHandler.DynamicEventTypes.kick);
             case 2:
                 return (eventPosition, EventTypeHandler.DynamicEventTypes.stopMovement);
-            default: throw new System.Exception("Argument out of DynamicEventType range");
+            default: throw new System.Exception("Argument out of DynamicEventTypes range");
         }
     }
 }

@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (currentPositionInLine == runningLine.eventPositionInLine)
             {
-                eventHandler.DoEvent();
+                eventHandler.DoEvent(runningLine.eventInfo);
             }
             transform.position = Vector3.Lerp(transform.position, currentPositionHolder, 1);
                         
