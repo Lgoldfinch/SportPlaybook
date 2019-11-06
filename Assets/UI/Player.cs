@@ -9,6 +9,7 @@ public class Player : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public Line runningLine;
     public GameObject playButton;
     private PlayerMovement playerMovement;
+    public bool isEventModeEnabled; 
 
     private void Start()
     {
@@ -31,8 +32,6 @@ public class Player : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             isPlayerRightclicked = true;
             lineCreatorScript.MakeLine();
         }
-
-
     }
 
     public void OnPointerUp(PointerEventData eventData)
