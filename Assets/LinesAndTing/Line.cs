@@ -12,7 +12,8 @@ public class Line : MonoBehaviour
     private List<Vector2> points;
     public int eventPositionInLine;
     public GameObject EventTypeButton;
-    private (int, EventTypeHandler.DynamicEventTypes) eventInfo;
+    public (int, EventTypeHandler.DynamicEventTypes) eventInfo; // do we need position in here? Maybe for other types of events.
+    public GameObject marker;
 
     public void UpdateLine(Vector2 mousePosition) 
     {
@@ -86,7 +87,11 @@ public class Line : MonoBehaviour
             {
                 
                eventPositionInLine = i;
-               eventInfo = MakeEvent(eventPositionInLine); 
+               eventInfo = MakeEvent(eventPositionInLine);
+               GameObject makeYourMarker = Instantiate(marker);
+               //makeYourMarker.transform.SetParent(transform);
+                makeYourMarker.transform.position = points[i];
+                   
                break;
             }
         }
