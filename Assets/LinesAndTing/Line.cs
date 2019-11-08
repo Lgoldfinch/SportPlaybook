@@ -57,6 +57,17 @@ public class Line : MonoBehaviour
         {
             Vector2 clickedPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
+
+
+            if(EventTypeHandler.currentDynamicEventType == (int)EventTypeHandler.DynamicEventTypes.pass)
+            {
+                int passTarget = 0;
+                while(passTarget == 0)
+                {
+
+                }
+            }
+
             while (eventPositionInLine == 0) // this is to cover the possibility that the tolerance isn't large enough to catch the line. 
             { 
                 FindNearestPositionInLine(clickedPosition);
@@ -67,8 +78,6 @@ public class Line : MonoBehaviour
 
     private void FindNearestPositionInLine(Vector2 clickedPosition)
     {
-        EventTypeHandler eventTypeHandler = EventTypeButton.GetComponent<EventTypeHandler>();
-
         var clickLocationX = clickedPosition.x;
         var clickLocationY = clickedPosition.y;
 
@@ -88,28 +97,41 @@ public class Line : MonoBehaviour
                 
                eventPositionInLine = i;
                eventInfo = MakeEvent(eventPositionInLine);
-               GameObject makeYourMarker = Instantiate(marker);
-               //makeYourMarker.transform.SetParent(transform);
-                makeYourMarker.transform.position = points[i];
-                   
+                MakeMarker(i);
                break;
             }
         }
     }
 
-    private (int, EventTypeHandler.DynamicEventTypes) MakeEvent(int eventPosition)
+    private void MakeMarker(int positionForMarker)
+    {
+        GameObject makeYourMarker = Instantiate(marker);
+        makeYourMarker.transform.position = points[positionForMarker];
+    }
+
+    private (int, EventTypeHandler.DynamicEventTypes, Vector2) MakeEvent(int eventPosition)
     {
         switch (EventTypeHandler.currentDynamicEventType)
         {
             case 0:
-                return (eventPosition, EventTypeHandler.DynamicEventTypes.pass);
+                return (eventPosition, EventTypeHandler.DynamicEventTypes.pass, Vector2.zero);
             case 1:
-                return (eventPosition, EventTypeHandler.DynamicEventTypes.kick);
+                return (eventPosition, EventTypeHandler.DynamicEventTypes.kick, Vector2.zero);
             case 2:
-                return (eventPosition, EventTypeHandler.DynamicEventTypes.stopMovement);
+                return (eventPosition, EventTypeHandler.DynamicEventTypes.stopMovement, Vector2.zero);
             default: throw new System.Exception("Argument out of DynamicEventType range");
         }
 
     }
 }
- 
+ // event starts with the event button being clicked.
+ // sets isEventTime or whatever to true.
+ // Clicking on the line when this is true will place event marker at the nearest point.
+ // The data type could just include an extra row and we could fill it.
+
+
+
+
+
+
+    

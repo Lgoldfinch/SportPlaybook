@@ -32,7 +32,6 @@ public class PlayerMovement : MonoBehaviour
                 yield return moveSpeed;
 
             CheckLine(listOfPoints, currentPositionInLine++); // CheckLine uses the incremented value to provide the next position in the line for the player to move to.
-            
         }
     }
 
