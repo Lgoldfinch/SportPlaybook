@@ -23,9 +23,9 @@ public class PlayerMovement : MonoBehaviour
 
         while (currentPositionInLine <= listOfPoints.Count - 1)
         {
-            if (currentPositionInLine == runningLine.eventPositionInLine)
+            if (currentPositionInLine == runningLine.eventPositionInLine) // if the second player is at the point in the line where the event is due.
             {
-                eventHandler.DoEvent(runningLine.eventInfo);
+                eventHandler.DoEvent(runningLine.eventInfo); // do event 
             }
             transform.position = Vector3.Lerp(transform.position, currentPositionHolder, 1);
                         

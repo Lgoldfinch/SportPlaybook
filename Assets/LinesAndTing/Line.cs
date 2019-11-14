@@ -12,7 +12,7 @@ public class Line : MonoBehaviour
     private List<Vector2> points;
     public int eventPositionInLine;
     public GameObject EventTypeButton;
-    public (int, EventTypeHandler.DynamicEventTypes) eventInfo; // do we need position in here? Maybe for other types of events.
+    public (Player, EventTypeHandler.DynamicEventTypes) eventInfo; // do we need position in here? Maybe for other types of events.
     public GameObject marker;
 
     public void UpdateLine(Vector2 mousePosition) 
@@ -51,25 +51,14 @@ public class Line : MonoBehaviour
 
     public void OnMouseDown()
     {
-        EventTypeHandler.isDynamicEvent = true;
+        //var isPassMode = EventTypeHandler.currentDynamicEventType == (int)EventTypeHandler.DynamicEventTypes.pass;
 
-        if (EventModeButtonScript.isEventModeEnabled)
+        if (Player.isLookingForPassRecipient) // ventModeButtonScript.isEventModeEnabled && isPassMode
         {
             Vector2 clickedPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-
-
-            if(EventTypeHandler.currentDynamicEventType == (int)EventTypeHandler.DynamicEventTypes.pass)
-            {
-                int passTarget = 0;
-                while(passTarget == 0)
-                {
-
-                }
-            }
-
             while (eventPositionInLine == 0) // this is to cover the possibility that the tolerance isn't large enough to catch the line. 
-            { 
+            {
                 FindNearestPositionInLine(clickedPosition);
                 tolerance++;
             }
@@ -78,6 +67,8 @@ public class Line : MonoBehaviour
 
     private void FindNearestPositionInLine(Vector2 clickedPosition)
     {
+        var playerMenuScript = GetComponentInParent<PlayerMenuScript>();
+
         var clickLocationX = clickedPosition.x;
         var clickLocationY = clickedPosition.y;
 
@@ -92,13 +83,13 @@ public class Line : MonoBehaviour
             var pointsX = points[i].x;
             var pointsY = points[i].y;
 
-            if (x2 <= pointsX && pointsX <= x1 && y2 <= pointsY && pointsY <= y1) 
-            {
-                
+            if (x2 <= pointsX && pointsX <= x1 && y2 <= pointsY && pointsY <= y1)
+            { 
                eventPositionInLine = i;
-               eventInfo = MakeEvent(eventPositionInLine);
+                eventInfo = MakeEvent(playerMenuScript.passerOfBall);
                 MakeMarker(i);
-               break;
+                Player.isLookingForPassRecipient = false;
+                break;
             }
         }
     }
@@ -109,19 +100,18 @@ public class Line : MonoBehaviour
         makeYourMarker.transform.position = points[positionForMarker];
     }
 
-    private (int, EventTypeHandler.DynamicEventTypes, Vector2) MakeEvent(int eventPosition)
+    private (Player, EventTypeHandler.DynamicEventTypes) MakeEvent(Player passerOfBall)
     {
         switch (EventTypeHandler.currentDynamicEventType)
         {
             case 0:
-                return (eventPosition, EventTypeHandler.DynamicEventTypes.pass, Vector2.zero);
+                return (passerOfBall, EventTypeHandler.DynamicEventTypes.pass);
             case 1:
-                return (eventPosition, EventTypeHandler.DynamicEventTypes.kick, Vector2.zero);
+                return (passerOfBall, EventTypeHandler.DynamicEventTypes.kick);
             case 2:
-                return (eventPosition, EventTypeHandler.DynamicEventTypes.stopMovement, Vector2.zero);
+                return (passerOfBall, EventTypeHandler.DynamicEventTypes.stopMovement);
             default: throw new System.Exception("Argument out of DynamicEventType range");
         }
-
     }
 }
  // event starts with the event button being clicked.
@@ -129,9 +119,9 @@ public class Line : MonoBehaviour
  // Clicking on the line when this is true will place event marker at the nearest point.
  // The data type could just include an extra row and we could fill it.
 
+    // We need to send the ball when the recipient player reachers the position 
+    // when the second player hits the marker the first player needs to pass the ball 
+    // we need to think of a way to send the number of the player that was previously clicked to the next player.
 
 
-
-
-
-    
+    // we need to pass the position of the pass from the recipient player to the 

@@ -12,8 +12,11 @@ public class EventModeButtonScript : MonoBehaviour
 
     public void EnableOrDisableEvents() 
     {
-        if (!isEventModeEnabled) isEventModeEnabled = true;
-
+        if (!isEventModeEnabled)
+        {
+            isEventModeEnabled = true;
+            Debug.Log(isEventModeEnabled);
+        }
         else isEventModeEnabled = false;
     }
 }

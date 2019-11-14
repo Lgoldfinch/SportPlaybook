@@ -2,7 +2,7 @@
 
 public class EventTypeHandler : MonoBehaviour 
 {
-    public static bool isDynamicEvent; // 
+    public static bool isDynamicEvent;
     public static int currentDynamicEventType; // might not need two. 
     public static int currentStaticEventType;
 
