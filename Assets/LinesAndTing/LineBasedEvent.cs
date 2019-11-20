@@ -8,18 +8,17 @@ public class LineBasedEvent : MonoBehaviour
         if(eventInfo.Item2 == EventTypeHandler.DynamicEventTypes.pass)
         {
             PassBallToNextPlayer(eventInfo.Item1);
+            Debug.Log(counter);
+            counter++;
+            Debug.Log(eventInfo.Item1);
         }
 
     }
 
     private void PassBallToNextPlayer(Player player)
-    {
-        counter++;
-        Debug.Log($"pass to player : {player.playerNumber}");
-        Debug.Log(counter);
+    { 
+        Debug.Log($"pass received from player : {player.playerNumber}");
     }
-
-   
 }
 //Options:
 // 1) Purely for the pass - click on the running line. Initial player will pass when he hits the marker.
