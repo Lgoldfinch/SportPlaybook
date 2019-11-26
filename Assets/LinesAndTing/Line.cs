@@ -12,7 +12,7 @@ public class Line : MonoBehaviour
     private List<Vector2> points;
     public int eventPositionInLine;
     public GameObject EventTypeButton;
-    public (Player, EventTypeHandler.DynamicEventTypes) eventInfo; // do we need position in here? Maybe for other types of events.
+    public EventInformation eventInfo; // do we need position in here? Maybe for other types of events.
     public GameObject marker;
 
     public void UpdateLine(Vector2 mousePosition) 
@@ -68,6 +68,7 @@ public class Line : MonoBehaviour
     private void FindNearestPositionInLine(Vector2 clickedPosition)
     {
         var playerMenuScript = GetComponentInParent<PlayerMenuScript>();
+        var lineBasedEvent = GetComponent<LineBasedEvent>();
 
         var clickLocationX = clickedPosition.x;
         var clickLocationY = clickedPosition.y;
@@ -86,33 +87,16 @@ public class Line : MonoBehaviour
             if (x2 <= pointsX && pointsX <= x1 && y2 <= pointsY && pointsY <= y1)
             { 
                eventPositionInLine = i;
-                eventInfo = MakeEvent(playerMenuScript.passerOfBall);
-                MakeMarker(i);
+                eventInfo = lineBasedEvent.MakeEvent(playerMenuScript.passerOfBall);
+                Debug.Log(lineBasedEvent.MakeEvent(playerMenuScript.passerOfBall));
+                lineBasedEvent.MakeMarker(i, points);
                 Player.isLookingForPassRecipient = false;
                 break;
             }
         }
     }
 
-    private void MakeMarker(int positionForMarker)
-    {
-        GameObject makeYourMarker = Instantiate(marker);
-        makeYourMarker.transform.position = points[positionForMarker];
-    }
 
-    private (Player, EventTypeHandler.DynamicEventTypes) MakeEvent(Player passerOfBall)
-    {
-        switch (EventTypeHandler.currentDynamicEventType)
-        {
-            case 0:
-                return (passerOfBall, EventTypeHandler.DynamicEventTypes.pass);
-            case 1:
-                return (passerOfBall, EventTypeHandler.DynamicEventTypes.kick);
-            case 2:
-                return (passerOfBall, EventTypeHandler.DynamicEventTypes.stopMovement);
-            default: throw new System.Exception("Argument out of DynamicEventType range");
-        }
-    }
 }
  // event starts with the event button being clicked.
  // sets isEventTime or whatever to true.

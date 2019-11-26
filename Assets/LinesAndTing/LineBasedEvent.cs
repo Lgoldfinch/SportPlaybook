@@ -1,23 +1,46 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class LineBasedEvent : MonoBehaviour
 {
-    private int counter; 
-    public void DoEvent((Player, EventTypeHandler.DynamicEventTypes) eventInfo) // DynamicEventTypes eventType) 
+    private int counter;
+    public GameObject marker;
+
+    public void DoEvent(EventInformation eventInfo) // DynamicEventTypes eventType) 
     {
-        if(eventInfo.Item2 == EventTypeHandler.DynamicEventTypes.pass)
+        if(eventInfo.eventType == EventTypeHandler.DynamicEventTypes.pass)
         {
-            PassBallToNextPlayer(eventInfo.Item1);
+            PassBallToNextPlayer(eventInfo.playerWithBall);
             Debug.Log(counter);
             counter++;
-            Debug.Log(eventInfo.Item1);
+            Debug.Log(eventInfo.playerWithBall);
         }
-
     }
 
     private void PassBallToNextPlayer(Player player)
     { 
         Debug.Log($"pass received from player : {player.playerNumber}");
+    }
+
+
+    public void MakeMarker(int positionForMarker, List<Vector2> points)
+    {
+        GameObject makeYourMarker = Instantiate(marker);
+        makeYourMarker.transform.position = points[positionForMarker];
+    }
+
+    public EventInformation MakeEvent(Player passerOfBall)
+    {
+        switch (EventTypeHandler.currentDynamicEventType)
+        {
+            case 0:
+                return new EventInformation(passerOfBall, EventTypeHandler.DynamicEventTypes.pass, false);
+            case 1:
+                return new EventInformation(passerOfBall, EventTypeHandler.DynamicEventTypes.kick, false);
+            case 2:
+                return new EventInformation(passerOfBall, EventTypeHandler.DynamicEventTypes.stopMovement, false);
+            default: throw new System.Exception("Argument out of DynamicEventType range");
+        }
     }
 }
 //Options:

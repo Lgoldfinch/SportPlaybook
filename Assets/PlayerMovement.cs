@@ -13,23 +13,20 @@ public class PlayerMovement : MonoBehaviour
     public GameObject playButton;
     private Line runningLine;
     private LineBasedEvent eventHandler;
-    private bool eventHasBeenMade;
 
     public IEnumerator MusterTheRohirrim(List<Vector2> listOfPoints)
     {
         runningLine = gameObject.GetComponentInChildren<Line>();
         eventHandler = gameObject.GetComponentInChildren<LineBasedEvent>();
-
+        Debug.Log(runningLine);
         currentPositionHolder = listOfPoints.First(); // This line is needed so that the first point that the player moves to is not the default vector3(0,0,0). 
         Debug.Log(runningLine.eventInfo);
-
         while (currentPositionInLine <= listOfPoints.Count - 1)
         {
-            if (currentPositionInLine == runningLine.eventPositionInLine && !eventHasBeenMade) // if the second player is at the point in the line where the event is due.
+            if (currentPositionInLine == runningLine.eventPositionInLine && !runningLine.eventInfo.hasEventBeenMade) // if the second player is at the point in the line where the event is due.
             {
-                //eventHandler.DoEvent(runningLine.eventInfo); // do event
-                Debug.Log(eventHasBeenMade);
-                eventHasBeenMade = true;
+                runningLine.eventInfo.hasEventBeenMade = true;
+                eventHandler.DoEvent(runningLine.eventInfo);
             }
 
             transform.position = Vector3.Lerp(transform.position, currentPositionHolder, 1);

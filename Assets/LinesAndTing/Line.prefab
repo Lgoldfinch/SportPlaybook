@@ -159,6 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5abfb0d7324564de587091048ec49cc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  marker: {fileID: 4783233180059981448, guid: b5fcad61d667b43548ba1fffa7dfc39e, type: 3}
 --- !u!114 &1527876185763655896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,5 +181,3 @@ MonoBehaviour:
   EventTypeButton: {fileID: 5999027861465535788, guid: b411ed9c1fd654443a02c2fab163813c,
     type: 3}
   marker: {fileID: 4783233180059981448, guid: b5fcad61d667b43548ba1fffa7dfc39e, type: 3}
-  playerMenu: {fileID: 9212247606557010428, guid: d859397a5ceec4ea5b09080f46b68cf0,
-    type: 3}
