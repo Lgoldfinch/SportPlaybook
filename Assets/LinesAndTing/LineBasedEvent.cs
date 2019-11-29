@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 public class LineBasedEvent : MonoBehaviour
 {
-    private int counter;
     public GameObject marker;
 
     public void DoEvent(EventInformation eventInfo) // DynamicEventTypes eventType) 
@@ -11,15 +10,13 @@ public class LineBasedEvent : MonoBehaviour
         if(eventInfo.eventType == EventTypeHandler.DynamicEventTypes.pass)
         {
             PassBallToNextPlayer(eventInfo.playerWithBall);
-            Debug.Log(counter);
-            counter++;
-            Debug.Log(eventInfo.playerWithBall);
         }
     }
 
-    private void PassBallToNextPlayer(Player player)
+    private void PassBallToNextPlayer(Player playerWithBall)
     { 
-        Debug.Log($"pass received from player : {player.playerNumber}");
+        Debug.Log($"pass received from player : {playerWithBall.playerNumber}");
+
     }
 
 
@@ -31,6 +28,7 @@ public class LineBasedEvent : MonoBehaviour
 
     public EventInformation MakeEvent(Player passerOfBall)
     {
+
         switch (EventTypeHandler.currentDynamicEventType)
         {
             case 0:
