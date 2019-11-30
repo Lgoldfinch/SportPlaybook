@@ -44,3 +44,4 @@ public class PlayerMovement : MonoBehaviour
         currentPositionHolder = new Vector3(currentPositionX, currentPositionY); // this is used by the lerp in the MusterTheRohirrim function
     }
 }
+

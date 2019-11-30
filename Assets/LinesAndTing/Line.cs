@@ -88,7 +88,6 @@ public class Line : MonoBehaviour
             { 
                eventPositionInLine = i;
                 eventInfo = lineBasedEvent.MakeEvent(playerMenuScript.passerOfBall);
-                Debug.Log(lineBasedEvent.MakeEvent(playerMenuScript.passerOfBall));
                 lineBasedEvent.MakeMarker(i, points);
                 Player.isLookingForPassRecipient = false;
                 break;

@@ -3,7 +3,6 @@
 public class PlayerMenuScript : MonoBehaviour
 {
     public Player passerOfBall;
-    public int test = 8008;
     private Player[] players;
 
     void Start()
