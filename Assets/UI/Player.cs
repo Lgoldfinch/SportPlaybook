@@ -14,12 +14,14 @@ public class Player : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public static bool isLookingForPassRecipient;
     public GameObject playerMenu;
     private PlayerMenuScript playerMenuScript;
-
+    private LineDestroyer lineDestroyer;
+   
     private void Start()
     {
         playerMenuScript = playerMenu.GetComponent<PlayerMenuScript>();
         lineCreatorScript = gameObject.GetComponent<LineCreator>();
         playerMovement = gameObject.GetComponent<PlayerMovement>();
+        lineDestroyer = gameObject.GetComponent<LineDestroyer>();
     }
 
     public void GondorCallsForAid()
@@ -36,13 +38,19 @@ public class Player : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         {
             isPlayerRightclicked = true;
             lineCreatorScript.MakeLine();
+            
         }
 
-        if (eventData.button == PointerEventData.InputButton.Left && EventModeButtonScript.isEventModeEnabled)// && EventTypeHandler.isDynamicEvent && Line.lookingForPassRecipient)
+        if (eventData.button == PointerEventData.InputButton.Left)
         {
-           EventTypeHandler.isDynamicEvent = true;
-           isLookingForPassRecipient = true;
-            playerMenuScript.passerOfBall = this;
+            if (EventModeButtonScript.isEventModeEnabled)
+            {
+                EventTypeHandler.isDynamicEvent = true;
+                isLookingForPassRecipient = true;
+                playerMenuScript.passerOfBall = this;
+            }
+
+            lineDestroyer.DeleteLine(transform);
         }
     }
 

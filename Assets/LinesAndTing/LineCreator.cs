@@ -7,10 +7,12 @@ public class LineCreator : MonoBehaviour {
     public GameObject playButton;
     public bool lineExists;
     private Player player;
+    private LineDestroyer lineDestroyer;
 
     private void Start()
     {
          player = gameObject.GetComponent<Player>();
+         lineDestroyer = gameObject.GetComponent<LineDestroyer>();
     }
 
     private void Update()
@@ -24,6 +26,8 @@ public class LineCreator : MonoBehaviour {
 
     public void MakeLine()
     {
+        if (lineExists) lineDestroyer.DeleteLine(transform);
+
         GameObject lineGo = Instantiate(linePrefab);
         activeLine = lineGo.GetComponent<Line>();
         activeLine.transform.SetParent(transform);

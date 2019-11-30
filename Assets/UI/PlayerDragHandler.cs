@@ -22,7 +22,7 @@ public class PlayerDragHandler : MonoBehaviour
     {
         if (isBeingHeld == true)
         {
-            lineDestroyerScript.DeleteLine(true);
+            //lineDestroyerScript.DeleteLine(true);
             Vector2 mousePos;
             mousePos = Input.mousePosition;
             mousePos = Camera.main.WorldToScreenPoint(mousePos);
