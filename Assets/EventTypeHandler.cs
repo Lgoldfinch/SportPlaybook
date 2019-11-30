@@ -48,8 +48,8 @@ public class EventTypeHandler : MonoBehaviour
             Debug.Log(currentDynamicEventType);
             return DynamicEventTypes.pass;
         }
-        default: throw new System.Exception("Argument out of DynamicEventTypes range");
 
+        throw new System.Exception("Argument out of DynamicEventType range");
     }
 
     private void StaticEventCycle()

@@ -159,7 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5abfb0d7324564de587091048ec49cc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventMode: {fileID: 0}
+  marker: {fileID: 4783233180059981448, guid: b5fcad61d667b43548ba1fffa7dfc39e, type: 3}
 --- !u!114 &1527876185763655896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,3 +177,7 @@ MonoBehaviour:
   lineSpacing: 0
   player: {fileID: 852057191641292961, guid: ffe3667845c844d89899fd299f2f1ec6, type: 3}
   tolerance: 5
+  eventPositionInLine: 0
+  EventTypeButton: {fileID: 5999027861465535788, guid: b411ed9c1fd654443a02c2fab163813c,
+    type: 3}
+  marker: {fileID: 4783233180059981448, guid: b5fcad61d667b43548ba1fffa7dfc39e, type: 3}

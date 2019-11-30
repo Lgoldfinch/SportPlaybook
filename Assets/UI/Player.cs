@@ -1,6 +1,7 @@
 ﻿
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
@@ -9,10 +10,14 @@ public class Player : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public Line runningLine;
     public GameObject playButton;
     private PlayerMovement playerMovement;
-    public bool isEventModeEnabled; 
+    public int playerNumber;
+    public static bool isLookingForPassRecipient;
+    public GameObject playerMenu;
+    private PlayerMenuScript playerMenuScript;
 
     private void Start()
     {
+        playerMenuScript = playerMenu.GetComponent<PlayerMenuScript>();
         lineCreatorScript = gameObject.GetComponent<LineCreator>();
         playerMovement = gameObject.GetComponent<PlayerMovement>();
     }
@@ -32,6 +37,13 @@ public class Player : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             isPlayerRightclicked = true;
             lineCreatorScript.MakeLine();
         }
+
+        if (eventData.button == PointerEventData.InputButton.Left && EventModeButtonScript.isEventModeEnabled)// && EventTypeHandler.isDynamicEvent && Line.lookingForPassRecipient)
+        {
+           EventTypeHandler.isDynamicEvent = true;
+           isLookingForPassRecipient = true;
+            playerMenuScript.passerOfBall = this;
+        }
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -41,6 +53,12 @@ public class Player : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             lineCreatorScript.activeLine = null;
             isPlayerRightclicked = false;
         }
+    }
+
+    public void SetPlayerKitNumber()
+    {
+        Text text = gameObject.GetComponentInChildren<Text>();
+        text.text = playerNumber.ToString();
     }
 }
     

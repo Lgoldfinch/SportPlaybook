@@ -13,7 +13,7 @@ public class LineDestroyer : MonoBehaviour
     {
         if (playerTransform.childCount > 2) DeleteLineHelper(true); // If the user tries to draw a new line when one line exists, delete the existing line. 
         
-        if (playerMoved && playerTransform.childCount == 2) DeleteLineHelper(false); // if the player is moved and a line exists, delete the existing line.
+        //if (playerMoved && playerTransform.childCount == 2) DeleteLineHelper(false); // if the player is moved and a line exists, delete the existing line.
     }
 
     private void DeleteLineHelper(bool needANewLine)
