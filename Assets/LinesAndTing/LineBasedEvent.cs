@@ -51,3 +51,10 @@ public class LineBasedEvent : MonoBehaviour
 // 3) You click on the first player and establish that he's gonna pass.
    // You then select a point on the second players line, pass will be delivered when second player reaches the marker. 
 
+
+
+
+
+    // more thoughts, do I begin the pass when recipient player reaches the marker?
+
+    // could have the player highlighted when he has the ball...
