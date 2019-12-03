@@ -3,7 +3,7 @@
 public class PlayerMenuScript : MonoBehaviour
 {
     public Player passerOfBall;
-    private Player[] players;
+    public static Player[] players;
 
     void Start()
     {
@@ -15,6 +15,12 @@ public class PlayerMenuScript : MonoBehaviour
         }
     }
 
+    public int GetNumberOfPlayers()
+    { 
+        PlayerArrayErrorHandling();
+
+        return players.Length;
+    }
 
     public Player FindPlayerByTheirNumber(int playerNumber)
     {
@@ -29,5 +35,13 @@ public class PlayerMenuScript : MonoBehaviour
             }
         }
         return requiredPlayer;
+    }
+
+    private void PlayerArrayErrorHandling()
+    {
+        if (players == null || players.Length == 0)
+        {
+            Debug.LogWarning("Need players in the list for the rewind button to work.");
+        }
     }
 }
