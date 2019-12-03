@@ -205,7 +205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 173f63f659121426d9070e500ebf6590, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerMovement: {fileID: 0}
+  playerMovement: {fileID: 8489210359823632787}
 --- !u!114 &3348459142208031172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,7 +218,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bac3ddec7a205446a9db0cbeb6e5cbc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTransform: {fileID: 852057191641292960}
 --- !u!114 &8489210359823632787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,6 +249,9 @@ MonoBehaviour:
   runningLine: {fileID: 0}
   playButton: {fileID: 3764771767184060350, guid: 047a4a4d27eec4b51a78d4a23ea46e87,
     type: 3}
+  playerMovement: {fileID: 0}
+  playerNumber: 0
+  playerMenu: {fileID: 0}
 --- !u!114 &1716864213839031026
 MonoBehaviour:
   m_ObjectHideFlags: 0

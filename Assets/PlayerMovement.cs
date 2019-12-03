@@ -7,9 +7,9 @@ public class PlayerMovement : MonoBehaviour
 {
     public int moveSpeed = 1;
     private Vector3 currentPositionHolder;
-    private int currentPositionInLine;
-    private float currentPositionX;
-    private float currentPositionY;
+    public int currentPositionInLine;
+    public float currentPositionX;
+    public float currentPositionY;
     public GameObject playButton;
     private Line runningLine;
     private LineBasedEvent eventHandler;
