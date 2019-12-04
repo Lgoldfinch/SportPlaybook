@@ -9,7 +9,7 @@ public class Player : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     private LineCreator lineCreatorScript;
     public Line runningLine;
     public GameObject playButton;
-    private PlayerMovement playerMovement;
+    public PlayerMovement playerMovement;
     public int playerNumber;
     public static bool isLookingForPassRecipient;
     public GameObject playerMenu;

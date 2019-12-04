@@ -7,14 +7,12 @@ public class PlayerDragHandler : MonoBehaviour
     private float startPosX;
     private float startPosY;
     private bool isBeingHeld;
-    private LineDestroyer lineDestroyerScript;
     public GameObject playerSpeedSlider;
     private PlayerSpeedController playerSpeedController;
     private PlayerMovement playerMovementScript;
 
     private void Awake()
     {
-        lineDestroyerScript = gameObject.GetComponent<LineDestroyer>();
         playerMovementScript = gameObject.GetComponent<PlayerMovement>();
     }
 
@@ -22,7 +20,6 @@ public class PlayerDragHandler : MonoBehaviour
     {
         if (isBeingHeld == true)
         {
-            //lineDestroyerScript.DeleteLine(true);
             Vector2 mousePos;
             mousePos = Input.mousePosition;
             mousePos = Camera.main.WorldToScreenPoint(mousePos);
