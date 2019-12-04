@@ -972,6 +972,11 @@ PrefabInstance:
       propertyPath: playerPanel
       value: 
       objectReference: {fileID: 765003418}
+    - target: {fileID: 3764771767184060347, guid: 047a4a4d27eec4b51a78d4a23ea46e87,
+        type: 3}
+      propertyPath: playerMenu
+      value: 
+      objectReference: {fileID: 765003418}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 047a4a4d27eec4b51a78d4a23ea46e87, type: 3}
 --- !u!1001 &5577121569399084436

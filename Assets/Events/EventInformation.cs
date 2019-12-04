@@ -1,17 +1,25 @@
-﻿
-public class EventInformation
+﻿using UnityEngine;
+
+abstract class EventInformation : MonoBehaviour
 {
     public Player playerWithBall;
-    public EventTypeHandler.DynamicEventTypes eventType;
+    public EventTypeHandler.DynamicEventTypes dynamicEvent;
+    public EventTypeHandler.StaticEventTypes staticEvent;
+
     public bool hasEventBeenMade;
 
     public EventInformation(
-        Player aPlayerWithBall,
-        EventTypeHandler.DynamicEventTypes anEventType,
-        bool hasEventBeenMade2)
+        EventTypeHandler.DynamicEventTypes anEventType
     {
-        playerWithBall = aPlayerWithBall;
-        eventType = anEventType;
+        dynamicEvent = anEventType;
+        hasEventBeenMade = hasEventBeenMade2;
+    }
+
+    public EventInformation(
+       EventTypeHandler.StaticEventTypes anEventType,
+       bool hasEventBeenMade2)
+    {
+        staticEvent = anEventType;
         hasEventBeenMade = hasEventBeenMade2;
     }
 }
