@@ -23,6 +23,7 @@ public class LineBasedEvent : MonoBehaviour
     public void MakeMarker(int positionForMarker, List<Vector2> points)
     {
         GameObject makeYourMarker = Instantiate(marker);
+        makeYourMarker.transform.SetParent(transform);
         makeYourMarker.transform.position = points[positionForMarker];
     }
 
