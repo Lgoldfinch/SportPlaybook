@@ -1,18 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿
 
-public class NewBehaviourScript : MonoBehaviour
+public class PassEvent : EventInformation
 {
-    // Start is called before the first frame update
-    void Start()
+    public PassEvent(Player passerOfBall, rec) // are we doing two pass locations or providing two players
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

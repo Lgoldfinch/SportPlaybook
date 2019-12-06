@@ -28,15 +28,14 @@ public class LineBasedEvent : MonoBehaviour
 
 public EventInformation MakeEvent(Player passerOfBall)
     {
-
         switch (EventTypeHandler.currentDynamicEventType)
         {
             case 0:
-                return new EventInformation(passerOfBall, EventTypeHandler.DynamicEventTypes.pass, false);
+                return new PassEvent(passerOfBall, EventTypeHandler.DynamicEventTypes.pass);
             case 1:
-                return new EventInformation(passerOfBall, EventTypeHandler.DynamicEventTypes.kick, false);
+                return new EventInformation(passerOfBall, EventTypeHandler.DynamicEventTypes.kick);
             case 2:
-                return new EventInformation(passerOfBall, EventTypeHandler.DynamicEventTypes.stopMovement, false);
+                return new EventInformation(passerOfBall, EventTypeHandler.DynamicEventTypes.stopMovement);
             default: throw new System.Exception("Argument out of DynamicEventType range");
         }
     }
