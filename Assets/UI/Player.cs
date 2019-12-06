@@ -11,6 +11,7 @@ public class Player : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public GameObject playButton;
     public PlayerMovement playerMovement;
     public int playerNumber;
+    public bool isLookingToShiftAPass;
     public static bool isLookingForPassRecipient;
     public GameObject playerMenu;
     private PlayerMenuScript playerMenuScript;
@@ -38,16 +39,16 @@ public class Player : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         {
             isPlayerRightclicked = true;
             lineCreatorScript.MakeLine();
-            
         }
 
-        if (eventData.button == PointerEventData.InputButton.Left)
+        if (eventData.button == PointerEventData.InputButton.Left) 
         {
             if (EventModeButtonScript.isEventModeEnabled)
             {
                 EventTypeHandler.isDynamicEvent = true;
-                isLookingForPassRecipient = true;
+                isLookingToShiftAPass = true; // if the player is looking to shift a pass, he needs a marker on his own line.
                 playerMenuScript.passerOfBall = this;
+                return;
             }
 
             lineDestroyer.DeleteLine(transform);

@@ -7,13 +7,24 @@ public class Line : MonoBehaviour
     public LineRenderer lineRenderer;
     public EdgeCollider2D edgeCollider;
     public float lineSpacing;
-	public GameObject player;
     public float tolerance;
     private List<Vector2> points;
     public int eventPositionInLine;
     public GameObject EventTypeButton;
     public EventInformation eventInfo; // do we need position in here? Maybe for other types of events.
     public GameObject marker;
+    private Player player;
+
+    private enum EventState {
+        pass,
+        receive
+    }
+
+    private void Start()
+    {
+        player = gameObject.GetComponentInParent<Player>(); // on mouse down, if player.isLooking to shift a pass, onMouseDown will make a marker on that line.
+                                                             // if isLookingForAPass, onMouseDown has to be on a different line. Maybe one that doesnt have lookingToShift? 
+    } 
 
     public void UpdateLine(Vector2 mousePosition) 
     {
@@ -51,21 +62,36 @@ public class Line : MonoBehaviour
 
     public void OnMouseDown()
     {
-        //var isPassMode = EventTypeHandler.currentDynamicEventType == (int)EventTypeHandler.DynamicEventTypes.pass;
+        if (player.isLookingToShiftAPass && !Player.isLookingForPassRecipient)
+        {
+            Vector2 clickedPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        if (Player.isLookingForPassRecipient) // ventModeButtonScript.isEventModeEnabled && isPassMode
+            while (eventPositionInLine == 0)
+            {
+                FindNearestPositionInLine(clickedPosition, EventState.pass);
+                tolerance++;
+             }
+
+            Player.isLookingForPassRecipient = true;
+            player.isLookingToShiftAPass = false;
+        }
+
+       else if (Player.isLookingForPassRecipient && !player.isLookingToShiftAPass)
         {
             Vector2 clickedPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
             while (eventPositionInLine == 0) // this is to cover the possibility that the tolerance isn't large enough to catch the line. 
             {
-                FindNearestPositionInLine(clickedPosition);
+                FindNearestPositionInLine(clickedPosition, EventState.receive);
                 tolerance++;
             }
+
+            Player.isLookingForPassRecipient = false;
         }
+
     }
 
-    private void FindNearestPositionInLine(Vector2 clickedPosition)
+    private void FindNearestPositionInLine(Vector2 clickedPosition, EventState eventState) 
     {
         var playerMenuScript = GetComponentInParent<PlayerMenuScript>();
         var lineBasedEvent = GetComponent<LineBasedEvent>();
@@ -79,32 +105,41 @@ public class Line : MonoBehaviour
         var y1 = clickLocationY + tolerance;
         var y2 = clickLocationY - tolerance;
 
-        for (int i = 0; i < lineRenderer.positionCount - 1; i++)
+        if (eventState == EventState.pass) // looking to make a marker on the line of the passer of the ball. 
         {
-            var pointsX = points[i].x;
-            var pointsY = points[i].y;
+            for (int i = 0; i < lineRenderer.positionCount - 1; i++) // 
+            {
+                var pointsX = points[i].x;
+                var pointsY = points[i].y;
 
-            if (x2 <= pointsX && pointsX <= x1 && y2 <= pointsY && pointsY <= y1)
-            { 
-               eventPositionInLine = i;
-                eventInfo = lineBasedEvent.MakeEvent(playerMenuScript.passerOfBall);
-                lineBasedEvent.MakeMarker(i, points);
-                Player.isLookingForPassRecipient = false;
-                break;
+                if (x2 <= pointsX && pointsX <= x1 && y2 <= pointsY && pointsY <= y1)
+                {
+                    eventPositionInLine = i;
+                    eventInfo = lineBasedEvent.MakeEvent(playerMenuScript.passerOfBall);
+                    lineBasedEvent.MakeMarker(i, points);
+                    Player.isLookingForPassRecipient = false;
+                    break;
+                }
             }
         }
+
+        else if (eventState == EventState.receive)
+        {
+            for (int i = 0; i < lineRenderer.positionCount - 1; i++)
+            {
+                var pointsX = points[i].x;
+                var pointsY = points[i].y;
+
+                if (x2 <= pointsX && pointsX <= x1 && y2 <= pointsY && pointsY <= y1)
+                {
+                    eventPositionInLine = i;
+                    eventInfo = lineBasedEvent.MakeEvent(playerMenuScript.passerOfBall);
+                    lineBasedEvent.MakeMarker(i, points);
+                    Player.isLookingForPassRecipient = false;
+                    break;
+                }
+            }
+
+        }
     }
-
-
 }
- // event starts with the event button being clicked.
- // sets isEventTime or whatever to true.
- // Clicking on the line when this is true will place event marker at the nearest point.
- // The data type could just include an extra row and we could fill it.
-
-    // We need to send the ball when the recipient player reachers the position 
-    // when the second player hits the marker the first player needs to pass the ball 
-    // we need to think of a way to send the number of the player that was previously clicked to the next player.
-
-
-    // we need to pass the position of the pass from the recipient player to the 
