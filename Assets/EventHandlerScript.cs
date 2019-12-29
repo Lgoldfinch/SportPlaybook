@@ -14,10 +14,11 @@ public class EventHandlerScript : MonoBehaviour
         //passEvent2 = passEvent.GetComponent<PassEvent>();
     }
 
-    public List<EventInformation> AddEventToList(EventInformation eventInfo)
+    public List<EventInformation> AddEventToList(PassEvent eventInfo)
     {
-        Debug.Log(eventInfo);
+        Debug.Log(eventInfo.passOrigin + "" + eventInfo.passEnd);
         eventsList.Add(eventInfo);
+        //Debug.Log((PassEvent)eventsList.ToArray().GetValue(0));
         return eventsList;
     }
 
