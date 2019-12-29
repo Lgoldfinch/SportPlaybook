@@ -4,43 +4,33 @@ using System.Collections.Generic;
 public class LineBasedEvent : MonoBehaviour
 {
     public GameObject marker;
+    public PassEvent passEvent;
+    public GameObject eventHandlerObj;
 
-    public void DoEvent(EventInformation eventInfo) // DynamicEventTypes eventType) 
+    public void DoEvent(EventInformation eventInfo) 
     {
         if(eventInfo.eventType == EventTypeHandler.DynamicEventTypes.pass)
         {
-            PassBallToNextPlayer(eventInfo.playerWithBall);
+            passEvent.PassBallToNextPlayer((PassEvent)eventInfo);
         }
     }
-
-    private void PassBallToNextPlayer(Player playerWithBall)
-    { 
-        Debug.Log($"pass received from player : {playerWithBall.playerNumber}");
-
-    }
-
-
     public void MakeMarker(int positionForMarker, List<Vector2> points)
     {
+        var eventHandler = eventHandlerObj.GetComponent<EventHandlerScript>();        
+        
         GameObject makeYourMarker = Instantiate(marker);
         makeYourMarker.transform.SetParent(transform);
         makeYourMarker.transform.position = points[positionForMarker];
+        eventHandler.EventDelegator(points[positionForMarker]);
+        
+        //for (int i = 0; i < eventsList.Count - 1; i++) // event is in the list waiting for value to be added to it.
+        //{
+        //   var a = eventsList.ToArray()[i];
+
+        //}
+        
     }
 
-    public EventInformation MakeEvent(Player passerOfBall)
-    {
-
-        switch (EventTypeHandler.currentDynamicEventType)
-        {
-            case 0:
-                return new EventInformation(passerOfBall, EventTypeHandler.DynamicEventTypes.pass, false);
-            case 1:
-                return new EventInformation(passerOfBall, EventTypeHandler.DynamicEventTypes.kick, false);
-            case 2:
-                return new EventInformation(passerOfBall, EventTypeHandler.DynamicEventTypes.stopMovement, false);
-            default: throw new System.Exception("Argument out of DynamicEventType range");
-        }
-    }
 }
 //Options:
 // 1) Purely for the pass - click on the running line. Initial player will pass when he hits the marker.

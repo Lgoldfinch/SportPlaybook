@@ -160,6 +160,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   marker: {fileID: 4783233180059981448, guid: b5fcad61d667b43548ba1fffa7dfc39e, type: 3}
+  passEvent: {fileID: 0}
+  eventHandlerObj: {fileID: 1128793154351058319, guid: 18e05b50a02a643c88543d6d6986f0d6,
+    type: 3}
 --- !u!114 &1527876185763655896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,4 +183,7 @@ MonoBehaviour:
   eventPositionInLine: 0
   EventTypeButton: {fileID: 5999027861465535788, guid: b411ed9c1fd654443a02c2fab163813c,
     type: 3}
+  eventInfo: {fileID: 0}
   marker: {fileID: 4783233180059981448, guid: b5fcad61d667b43548ba1fffa7dfc39e, type: 3}
+  eventHandlerObj: {fileID: 1128793154351058319, guid: 18e05b50a02a643c88543d6d6986f0d6,
+    type: 3}

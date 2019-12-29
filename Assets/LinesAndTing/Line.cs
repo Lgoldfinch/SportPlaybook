@@ -12,8 +12,9 @@ public class Line : MonoBehaviour
     private List<Vector2> points;
     public int eventPositionInLine;
     public GameObject EventTypeButton;
-    public EventInformation eventInfo; // do we need position in here? Maybe for other types of events.
+    public EventInformation eventInfo; 
     public GameObject marker;
+    public GameObject eventHandlerObj;
 
     public void UpdateLine(Vector2 mousePosition) 
     {
@@ -69,6 +70,7 @@ public class Line : MonoBehaviour
     {
         var playerMenuScript = GetComponentInParent<PlayerMenuScript>();
         var lineBasedEvent = GetComponent<LineBasedEvent>();
+        //var eventHandler = eventHandlerObj.GetComponent<EventHandlerScript>();
 
         var clickLocationX = clickedPosition.x;
         var clickLocationY = clickedPosition.y;
@@ -87,15 +89,15 @@ public class Line : MonoBehaviour
             if (x2 <= pointsX && pointsX <= x1 && y2 <= pointsY && pointsY <= y1)
             { 
                eventPositionInLine = i;
-                eventInfo = lineBasedEvent.MakeEvent(playerMenuScript.passerOfBall);
-                lineBasedEvent.MakeMarker(i, points);
+                //eventInfo = eventHandler.MakeEvent(playerMenuScript.passerOfBall); // we need to decide at what point here that we pass the variable...
+                lineBasedEvent.MakeMarker(i, points); // should this go through eventHandlerScript?
                 Player.isLookingForPassRecipient = false;
                 break;
             }
         }
     }
 
-
+  
 }
  // event starts with the event button being clicked.
  // sets isEventTime or whatever to true.

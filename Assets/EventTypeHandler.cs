@@ -6,7 +6,7 @@ public class EventTypeHandler : MonoBehaviour
     public static int currentDynamicEventType; // might not need two. 
     public static int currentStaticEventType;
 
-    public enum DynamicEventTypes
+public enum DynamicEventTypes
     {
         pass,
         kick,
@@ -52,24 +52,26 @@ public class EventTypeHandler : MonoBehaviour
         throw new System.Exception("Argument out of DynamicEventType range");
     }
 
-    private void StaticEventCycle()
+    private StaticEventTypes StaticEventCycle()
     {
         if ((int)StaticEventTypes.scrum == currentStaticEventType)
         {
             currentStaticEventType = (int)StaticEventTypes.lineout;
-            return;// DynamicEventTypes.kick;
+            return StaticEventTypes.lineout;
         }
 
         if ((int)StaticEventTypes.lineout == currentStaticEventType)
         {
             currentStaticEventType = (int)StaticEventTypes.ruck;
-            return; //DynamicEventTypes.stop;
+            return StaticEventTypes.ruck;
         }
 
         if ((int)StaticEventTypes.ruck == currentStaticEventType)
         {
             currentStaticEventType = (int)StaticEventTypes.scrum;
-            return; //DynamicEventTypes.pass;
+            return StaticEventTypes.scrum; 
         }
+
+        throw new System.Exception("Argument out of StaticEventType range");
     }
 }
