@@ -10,13 +10,14 @@ public class Player : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public GameObject playButton;
     public PlayerMovement playerMovement;
     public int playerNumber;
-    public static bool isLookingForPassRecipient;
     public GameObject playerMenu;
     private PlayerMenuScript playerMenuScript;
     private LineDestroyer lineDestroyer;
-   
+    private EventHandlerScript eventHandler;
+
     private void Start()
     {
+        eventHandler = gameObject.GetComponent<EventHandlerScript>();
         playerMenuScript = playerMenu.GetComponent<PlayerMenuScript>();
         lineCreatorScript = gameObject.GetComponent<LineCreator>();
         playerMovement = gameObject.GetComponent<PlayerMovement>();
@@ -45,10 +46,12 @@ public class Player : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             if (EventModeButtonScript.isEventModeEnabled)
             {
                 EventTypeHandler.isDynamicEvent = true;
-                isLookingForPassRecipient = true;
-                playerMenuScript.passerOfBall = this;
+                EventHandlerScript.isLookingForPassRecipient = true;
+                playerMenuScript.passerOfBall = this; // pretty sure this line needs to be deleted.
+                //gameObject.AddComponent<PassEvent>();
+               
             }
-
+            
             lineDestroyer.DeleteLine(transform);
         }
     }

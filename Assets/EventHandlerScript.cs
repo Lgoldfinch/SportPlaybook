@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class EventHandlerScript : MonoBehaviour
 {
-    public List<EventInformation> eventsList;
+    public static List<EventInformation> events;
     private PassEvent passEvent;
+    public static bool isLookingForPassRecipient;
 
     public void Awake()
     {
@@ -16,10 +17,10 @@ public class EventHandlerScript : MonoBehaviour
 
     public List<EventInformation> AddEventToList(PassEvent eventInfo)
     {
-        Debug.Log(eventInfo.passOrigin + "" + eventInfo.passEnd);
-        eventsList.Add(eventInfo);
+        Debug.Log(eventInfo.passOrigin + " " + eventInfo.passEnd);
+        events.Add(eventInfo);
         //Debug.Log((PassEvent)eventsList.ToArray().GetValue(0));
-        return eventsList;
+        return events;
     }
 
     //public EventInformation MakeEvent(Player passerOfBall)
@@ -39,7 +40,7 @@ public EventInformation EventDelegator(Vector2 startPoint)
         switch (EventTypeHandler.currentDynamicEventType)
     {
         case 0:
-            return passEvent.MakePassEvent(startPoint);
+            return passEvent.MakePassEventWithStart(startPoint);
         //case 1:
         //    return new EventInformation(passerOfBall, EventTypeHandler.DynamicEventTypes.kick);
         //case 2:

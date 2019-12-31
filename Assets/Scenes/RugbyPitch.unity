@@ -380,18 +380,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1128793154110858246}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &844589451 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1128793154351058317, guid: 18e05b50a02a643c88543d6d6986f0d6,
-    type: 3}
-  m_PrefabInstance: {fileID: 1128793154110858246}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 844589449}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9e960ea91176498a9c0e2053e6ff856, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1079147987 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3764771767184060350, guid: 047a4a4d27eec4b51a78d4a23ea46e87,
@@ -925,6 +913,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1128793154351058316, guid: 18e05b50a02a643c88543d6d6986f0d6,
         type: 3}
+      propertyPath: eventsList.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1128793154351058316, guid: 18e05b50a02a643c88543d6d6986f0d6,
+        type: 3}
       propertyPath: passEvent
       value: 
       objectReference: {fileID: 0}
@@ -932,13 +925,14 @@ PrefabInstance:
         type: 3}
       propertyPath: passEventObj
       value: 
-      objectReference: {fileID: 844589451}
+      objectReference: {fileID: 0}
     - target: {fileID: 1128793154351058316, guid: 18e05b50a02a643c88543d6d6986f0d6,
         type: 3}
       propertyPath: arth
       value: 
       objectReference: {fileID: 844589449}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1128793154351058317, guid: 18e05b50a02a643c88543d6d6986f0d6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 18e05b50a02a643c88543d6d6986f0d6, type: 3}
 --- !u!114 &2406472092073422377 stripped
 MonoBehaviour:

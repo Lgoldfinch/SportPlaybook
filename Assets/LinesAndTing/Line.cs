@@ -54,7 +54,7 @@ public class Line : MonoBehaviour
     {
         //var isPassMode = EventTypeHandler.currentDynamicEventType == (int)EventTypeHandler.DynamicEventTypes.pass;
 
-        if (Player.isLookingForPassRecipient) // ventModeButtonScript.isEventModeEnabled && isPassMode
+        if (EventHandlerScript.isLookingForPassRecipient)
         {
             Vector2 clickedPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
@@ -68,18 +68,17 @@ public class Line : MonoBehaviour
 
     private void FindNearestPositionInLine(Vector2 clickedPosition)
     {
-        var playerMenuScript = GetComponentInParent<PlayerMenuScript>();
         var lineBasedEvent = GetComponent<LineBasedEvent>();
         //var eventHandler = eventHandlerObj.GetComponent<EventHandlerScript>();
 
-        var clickLocationX = clickedPosition.x;
-        var clickLocationY = clickedPosition.y;
+        var clickPositionX = clickedPosition.x;
+        var clickPositionY = clickedPosition.y;
 
-        var x1 = clickLocationX + tolerance;
-        var x2 = clickLocationX - tolerance;
+        var x1 = clickPositionX + tolerance;
+        var x2 = clickPositionX - tolerance;
 
-        var y1 = clickLocationY + tolerance;
-        var y2 = clickLocationY - tolerance;
+        var y1 = clickPositionY + tolerance;
+        var y2 = clickPositionY - tolerance;
 
         for (int i = 0; i < lineRenderer.positionCount - 1; i++)
         {
@@ -87,17 +86,29 @@ public class Line : MonoBehaviour
             var pointsY = points[i].y;
 
             if (x2 <= pointsX && pointsX <= x1 && y2 <= pointsY && pointsY <= y1)
-            { 
-               eventPositionInLine = i;
-                //eventInfo = eventHandler.MakeEvent(playerMenuScript.passerOfBall); // we need to decide at what point here that we pass the variable...
-                lineBasedEvent.MakeMarker(i, points); // should this go through eventHandlerScript?
-                Player.isLookingForPassRecipient = false;
+            {
+                eventPositionInLine = i;
+                M(eventPositionInLine, points, lineBasedEvent); 
                 break;
             }
         }
-    }
+     }
 
-  
+    public void M(int eventPositionInLine, List<Vector2> points, LineBasedEvent lineBasedEvent)
+    {
+        if (EventHandlerScript.isLookingForPassRecipient)
+        {
+            lineBasedEvent.MakeMarker(eventPositionInLine, points, true);
+        }
+
+        else if (!EventHandlerScript.isLookingForPassRecipient)
+        {
+            lineBasedEvent.MakeMarker(eventPositionInLine, points, false);
+
+        }
+
+
+    }
 }
  // event starts with the event button being clicked.
  // sets isEventTime or whatever to true.

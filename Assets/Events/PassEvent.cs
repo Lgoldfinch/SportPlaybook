@@ -2,7 +2,7 @@
 
 public class PassEvent : EventInformation
 {
-    public EventHandlerScript eventHandler;
+    private EventHandlerScript eventHandler;
     public Vector2 passOrigin = Vector2.zero;
     public Vector2 passEnd = Vector2.zero;
     
@@ -16,12 +16,26 @@ public class PassEvent : EventInformation
         Debug.Log($"pass made from: {passEvent.passOrigin} to {passEvent.passEnd}");
     }
 
-    public PassEvent MakePassEvent(Vector2 passOrig)//List<EventInformation> eventsList)
+    public PassEvent MakePassEventWithStart(Vector2 passOrig)//List<EventInformation> eventsList)
     {
         passOrigin = passOrig;
         eventHandler.AddEventToList(this);
+        EventHandlerScript.isLookingForPassRecipient = false;
         return this;
     }
 
-    // we have a list on the the eventHandlerList
+    public PassEvent MakePassEventWithEnd(Vector2 passEnd2)//List<EventInformation> eventsList)
+    {
+        passEnd = passEnd2;
+        eventHandler.AddEventToList(this);
+        EventHandlerScript.isLookingForPassRecipient = false;
+        return this;
+    }
+
+
+
+    // so options
+    // we instantiate a passEvent in player/line.
+    // if done in make marker, we could add the start and not have an end. Would need to be replaced later.
+    // im basing what im doing on isPlayerlooking...
 }
