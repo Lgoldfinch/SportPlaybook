@@ -7,6 +7,7 @@ public class EventHandlerScript : MonoBehaviour
     public static List<EventInformation> events;
     private PassEvent passEvent;
     public static bool isLookingForPassRecipient;
+    public static bool isEventModeEnabled;
 
     public void Awake()
     {
@@ -48,4 +49,6 @@ public EventInformation EventDelegator(Vector2 startPoint)
         default: throw new System.Exception("Argument out of DynamicEventType range");
     }
 }
+
+
 }

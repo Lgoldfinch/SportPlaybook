@@ -7,7 +7,6 @@ public class Line : MonoBehaviour
     public LineRenderer lineRenderer;
     public EdgeCollider2D edgeCollider;
     public float lineSpacing;
-	public GameObject player;
     public float tolerance;
     private List<Vector2> points;
     public int eventPositionInLine;
@@ -15,6 +14,15 @@ public class Line : MonoBehaviour
     public EventInformation eventInfo; 
     public GameObject marker;
     public GameObject eventHandlerObj;
+
+
+    private Player player;
+
+    private void Start()
+    {
+        player = GetComponentInParent<Player>();
+        Debug.Log(player);
+    }
 
     public void UpdateLine(Vector2 mousePosition) 
     {
@@ -52,9 +60,10 @@ public class Line : MonoBehaviour
 
     public void OnMouseDown()
     {
-        //var isPassMode = EventTypeHandler.currentDynamicEventType == (int)EventTypeHandler.DynamicEventTypes.pass;
+        var eventHandler = eventHandlerObj.GetComponent<EventHandlerScript>();
 
-        if (EventHandlerScript.isLookingForPassRecipient)
+        //var isPassMode = EventTypeHandler.currentDynamicEventType == (int)EventTypeHandler.DynamicEventTypes.pass;
+        if (EventHandlerScript.isEventModeEnabled)
         {
             Vector2 clickedPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
@@ -63,13 +72,14 @@ public class Line : MonoBehaviour
                 FindNearestPositionInLine(clickedPosition);
                 tolerance++;
             }
+
+           
         }
     }
 
-    private void FindNearestPositionInLine(Vector2 clickedPosition)
+    private Vector2 FindNearestPositionInLine(Vector2 clickedPosition)
     {
         var lineBasedEvent = GetComponent<LineBasedEvent>();
-        //var eventHandler = eventHandlerObj.GetComponent<EventHandlerScript>();
 
         var clickPositionX = clickedPosition.x;
         var clickPositionY = clickedPosition.y;
@@ -80,32 +90,48 @@ public class Line : MonoBehaviour
         var y1 = clickPositionY + tolerance;
         var y2 = clickPositionY - tolerance;
 
+        var pointsX = 0f;
+        var pointsY = 0f;
+
         for (int i = 0; i < lineRenderer.positionCount - 1; i++)
         {
-            var pointsX = points[i].x;
-            var pointsY = points[i].y;
+             pointsX = points[i].x;
+             pointsY = points[i].y;
 
             if (x2 <= pointsX && pointsX <= x1 && y2 <= pointsY && pointsY <= y1)
             {
                 eventPositionInLine = i;
-                M(eventPositionInLine, points, lineBasedEvent); 
+                AddPassOrigin(points[eventPositionInLine], lineBasedEvent);
                 break;
             }
         }
-     }
+        return new Vector2(pointsX, pointsY);
+    }
 
-    public void M(int eventPositionInLine, List<Vector2> points, LineBasedEvent lineBasedEvent)
+    public void AddPassOrigin(Vector2 eventPosition, LineBasedEvent lineBasedEvent)
     {
-        if (EventHandlerScript.isLookingForPassRecipient)
-        {
-            lineBasedEvent.MakeMarker(eventPositionInLine, points, true);
-        }
+        Debug.Log(player.playerNumber);
+        var passEvent = player.GetComponent<PassEvent>();
+        passEvent.passOrigin = eventPosition;
 
-        else if (!EventHandlerScript.isLookingForPassRecipient)
-        {
-            lineBasedEvent.MakeMarker(eventPositionInLine, points, false);
+        //var mostRecentEvent = EventHandlerScript.events.Last();
 
-        }
+            //if (mostRecentEvent is PassEvent) // getting the last one in the list will guarantee that you'll get the most recent event made.
+            //{
+            ////((PassEvent)EventHandlerScript.events.Last()).passOrigin = points[eventPositionInLine];
+            //}
+            // only add the passEvent from the player to the eventHandler script when the origin and the end are known.
+
+        //if (EventHandlerScript.isLookingForPassRecipient)
+        //{
+        //    lineBasedEvent.MakeMarker(eventPositionInLine, points, true);
+        //}
+
+        //else if (!EventHandlerScript.isLookingForPassRecipient)
+        //{
+        //    lineBasedEvent.MakeMarker(eventPositionInLine, points, false);
+
+        //}
 
 
     }

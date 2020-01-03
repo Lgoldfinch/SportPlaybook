@@ -231,6 +231,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  currentPositionInLine: 0
+  currentPositionX: 0
+  currentPositionY: 0
   playButton: {fileID: 3764771767184060350, guid: 047a4a4d27eec4b51a78d4a23ea46e87,
     type: 3}
 --- !u!114 &1560292978823183007
@@ -251,7 +254,10 @@ MonoBehaviour:
     type: 3}
   playerMovement: {fileID: 0}
   playerNumber: 0
-  playerMenu: {fileID: 0}
+  playerMenu: {fileID: 9212247606557010428, guid: d859397a5ceec4ea5b09080f46b68cf0,
+    type: 3}
+  eventHandlerObj: {fileID: 1128793154351058319, guid: 18e05b50a02a643c88543d6d6986f0d6,
+    type: 3}
 --- !u!114 &1716864213839031026
 MonoBehaviour:
   m_ObjectHideFlags: 0

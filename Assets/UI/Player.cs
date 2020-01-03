@@ -13,11 +13,12 @@ public class Player : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public GameObject playerMenu;
     private PlayerMenuScript playerMenuScript;
     private LineDestroyer lineDestroyer;
+    public GameObject eventHandlerObj;
     private EventHandlerScript eventHandler;
 
     private void Start()
     {
-        eventHandler = gameObject.GetComponent<EventHandlerScript>();
+        eventHandler = eventHandlerObj.GetComponent<EventHandlerScript>();
         playerMenuScript = playerMenu.GetComponent<PlayerMenuScript>();
         lineCreatorScript = gameObject.GetComponent<LineCreator>();
         playerMovement = gameObject.GetComponent<PlayerMovement>();
@@ -43,15 +44,14 @@ public class Player : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            if (EventModeButtonScript.isEventModeEnabled)
+            if (EventHandlerScript.isEventModeEnabled)
             {
                 EventTypeHandler.isDynamicEvent = true;
+                EventDelegator();
                 EventHandlerScript.isLookingForPassRecipient = true;
                 playerMenuScript.passerOfBall = this; // pretty sure this line needs to be deleted.
-                //gameObject.AddComponent<PassEvent>();
-               
             }
-            
+
             lineDestroyer.DeleteLine(transform);
         }
     }
@@ -69,6 +69,22 @@ public class Player : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         Text text = gameObject.GetComponentInChildren<Text>();
         text.text = playerNumber.ToString();
+    }
+
+    public EventInformation EventDelegator()
+    {// probably need to make an if statement to distinguish between static/dynamic
+
+        switch (EventTypeHandler.currentDynamicEventType)
+        {
+            case 0:
+
+                return gameObject.AddComponent<PassEvent>();
+            //case 1:
+            //    return new EventInformation(passerOfBall, EventTypeHandler.DynamicEventTypes.kick);
+            //case 2:
+            //    return new EventInformation(passerOfBall, EventTypeHandler.DynamicEventTypes.stopMovement);
+            default: throw new System.Exception("Argument out of DynamicEventType range");
+        }
     }
 }
     

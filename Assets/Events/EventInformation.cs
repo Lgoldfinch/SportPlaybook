@@ -6,6 +6,3 @@
     public EventTypeHandler.DynamicEventTypes eventType;
     public bool hasEventBeenMade; 
 }
-
-
-

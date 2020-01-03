@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
 
 public class EventModeButtonScript : MonoBehaviour
-{
-    public static bool isEventModeEnabled;
-
+{ 
     public enum EventMode
     {
         Disabled,
@@ -12,11 +10,12 @@ public class EventModeButtonScript : MonoBehaviour
 
     public void EnableOrDisableEvents() 
     {
-        if (!isEventModeEnabled)
+        if (!EventHandlerScript.isEventModeEnabled)
         {
-            isEventModeEnabled = true;
-            Debug.Log(isEventModeEnabled);
+            EventHandlerScript.isEventModeEnabled = true;
+            Debug.Log(EventHandlerScript.isEventModeEnabled);
         }
-        else isEventModeEnabled = false;
+
+        else EventHandlerScript.isEventModeEnabled = false;
     }
 }

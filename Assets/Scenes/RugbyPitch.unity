@@ -1632,5 +1632,11 @@ PrefabInstance:
       propertyPath: playButton
       value: 
       objectReference: {fileID: 1079147987}
+    - target: {fileID: 8954233118667502189, guid: d859397a5ceec4ea5b09080f46b68cf0,
+        type: 3}
+      propertyPath: eventHandlerObj
+      value: 
+      objectReference: {fileID: 1128793154351058319, guid: 18e05b50a02a643c88543d6d6986f0d6,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d859397a5ceec4ea5b09080f46b68cf0, type: 3}
