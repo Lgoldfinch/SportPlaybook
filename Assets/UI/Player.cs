@@ -48,7 +48,7 @@ public class Player : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             {
                 EventTypeHandler.isDynamicEvent = true;
                 EventDelegator();
-                EventHandlerScript.isLookingForPassRecipient = true;
+                //EventHandlerScript.isLookingForPassRecipient = true;
                 playerMenuScript.passerOfBall = this; // pretty sure this line needs to be deleted.
             }
 

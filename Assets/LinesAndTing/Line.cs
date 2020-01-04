@@ -101,26 +101,39 @@ public class Line : MonoBehaviour
             if (x2 <= pointsX && pointsX <= x1 && y2 <= pointsY && pointsY <= y1)
             {
                 eventPositionInLine = i;
-                AddPassOrigin(points[eventPositionInLine], lineBasedEvent);
+                ModifyPassEvent(points[eventPositionInLine]); // this should probably be done in the event handler.
                 break;
             }
         }
         return new Vector2(pointsX, pointsY);
     }
 
-    public void AddPassOrigin(Vector2 eventPosition, LineBasedEvent lineBasedEvent)
+    public void ModifyPassEvent(Vector2 eventPosition)
     {
-        Debug.Log(player.playerNumber);
         var passEvent = player.GetComponent<PassEvent>();
-        passEvent.passOrigin = eventPosition;
+
+        if (!EventHandlerScript.isLookingForPassRecipient) // after the second player is clicked we have mirrored start and end between the two players
+        {            // We need this to not be static then. If each player had its individual variable we could determine which half of the event would be filled.
+            passEvent.passOrigin = eventPosition;
+            EventHandlerScript.isLookingForPassRecipient = true;
+
+        }
+
+        else if (EventHandlerScript.isLookingForPassRecipient)
+        {
+            passEvent.passEnd = eventPosition;
+            EventHandlerScript.isLookingForPassRecipient = false;
+
+        }
+
 
         //var mostRecentEvent = EventHandlerScript.events.Last();
 
-            //if (mostRecentEvent is PassEvent) // getting the last one in the list will guarantee that you'll get the most recent event made.
-            //{
-            ////((PassEvent)EventHandlerScript.events.Last()).passOrigin = points[eventPositionInLine];
-            //}
-            // only add the passEvent from the player to the eventHandler script when the origin and the end are known.
+        //if (mostRecentEvent is PassEvent) // getting the last one in the list will guarantee that you'll get the most recent event made.
+        //{
+        ////((PassEvent)EventHandlerScript.events.Last()).passOrigin = points[eventPositionInLine];
+        //}
+        // only add the passEvent from the player to the eventHandler script when the origin and the end are known.
 
         //if (EventHandlerScript.isLookingForPassRecipient)
         //{
