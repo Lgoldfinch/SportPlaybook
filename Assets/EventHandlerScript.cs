@@ -6,7 +6,7 @@ public class EventHandlerScript : MonoBehaviour
 {
     public static List<EventInformation> events;
     private PassEvent passEvent;
-    public static bool isLookingForPassRecipient;
+    //public static bool isLookingForPassRecipient;
     public static bool isEventModeEnabled;
 
     public void Awake()

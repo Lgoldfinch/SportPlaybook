@@ -5,10 +5,18 @@ public class PassEvent : EventInformation
     private EventHandlerScript eventHandler;
     public Vector2 passOrigin = Vector2.zero;
     public Vector2 passEnd = Vector2.zero;
+    public int passState;
+
+    public enum PassState
+    { 
+        pendingPassState,
+        playerLookingForRecipient,
+        playerLookingToReceive,
+    }
     
     public void Start()
     {
-        eventHandler = gameObject.GetComponent<EventHandlerScript>();
+        eventHandler = GetComponent<EventHandlerScript>();
     }
 
     public void PassBallToNextPlayer(PassEvent passEvent)
@@ -27,7 +35,6 @@ public class PassEvent : EventInformation
     {
         passEnd = passEnd2;
         eventHandler.AddEventToList(this);
-        EventHandlerScript.isLookingForPassRecipient = false;
         return this;
     }
 

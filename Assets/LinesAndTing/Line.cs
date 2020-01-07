@@ -21,7 +21,6 @@ public class Line : MonoBehaviour
     private void Start()
     {
         player = GetComponentInParent<Player>();
-        Debug.Log(player);
     }
 
     public void UpdateLine(Vector2 mousePosition) 
@@ -111,19 +110,26 @@ public class Line : MonoBehaviour
     public void ModifyPassEvent(Vector2 eventPosition)
     {
         var passEvent = player.GetComponent<PassEvent>();
-
-        if (!EventHandlerScript.isLookingForPassRecipient) // after the second player is clicked we have mirrored start and end between the two players
-        {            // We need this to not be static then. If each player had its individual variable we could determine which half of the event would be filled.
+        if ((int)PassEvent.PassState.pendingPassState == passEvent.passState)
+        {
             passEvent.passOrigin = eventPosition;
             EventHandlerScript.isLookingForPassRecipient = true;
-
         }
 
-        else if (EventHandlerScript.isLookingForPassRecipient)
+        if ((int)PassEvent.PassState.playerLookingForRecipient == passEvent.passState)
         {
             passEvent.passEnd = eventPosition;
             EventHandlerScript.isLookingForPassRecipient = false;
+        }
 
+
+
+
+
+
+        else if (EventHandlerScript.isLookingForPassRecipient)
+        {
+     
         }
 
 

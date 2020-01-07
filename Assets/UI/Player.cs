@@ -15,6 +15,9 @@ public class Player : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     private LineDestroyer lineDestroyer;
     public GameObject eventHandlerObj;
     private EventHandlerScript eventHandler;
+    //public bool isPlayerLookingForPassRecipient;
+    //public bool isPasser;
+    //public bool isRecipient;
 
     private void Start()
     {
@@ -77,7 +80,6 @@ public class Player : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         switch (EventTypeHandler.currentDynamicEventType)
         {
             case 0:
-
                 return gameObject.AddComponent<PassEvent>();
             //case 1:
             //    return new EventInformation(passerOfBall, EventTypeHandler.DynamicEventTypes.kick);
