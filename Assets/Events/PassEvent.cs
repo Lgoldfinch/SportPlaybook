@@ -37,6 +37,7 @@ public class PassEvent : EventInformation
         eventHandler.AddEventToList(this);
         return this;
     }
+    }
 
     // so options:
     // we instantiate a passEvent in player/line.
@@ -53,4 +54,3 @@ public class PassEvent : EventInformation
     // we could move the event delegator forward into the player...?
 
     // we got the passEvent in each Player. Where are we gonna add the start location? Line or lineBasedEvent surely? 
-}

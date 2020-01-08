@@ -21,6 +21,6 @@ public class LineBasedEvent : MonoBehaviour
         GameObject makeYourMarker = Instantiate(marker);
         makeYourMarker.transform.SetParent(transform);
         makeYourMarker.transform.position = points[positionForMarker];
-        eventHandler.EventDelegator(points[positionForMarker]); // could add the passEvent to the Line here?  
+        //eventHandler.EventDelegator(points[positionForMarker]); // could add the passEvent to the Line here?  
     }
 }

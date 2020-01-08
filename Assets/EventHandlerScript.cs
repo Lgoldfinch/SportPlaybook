@@ -8,6 +8,9 @@ public class EventHandlerScript : MonoBehaviour
     private PassEvent passEvent;
     //public static bool isLookingForPassRecipient;
     public static bool isEventModeEnabled;
+    public static bool doesEventNeedOrigin = true;
+    public static bool doesEventNeedEnd;
+    public GameObject lastPlayerClicked; 
 
     public void Awake()
     {
@@ -34,21 +37,21 @@ public class EventHandlerScript : MonoBehaviour
 //}
 
 
-public EventInformation EventDelegator(Vector2 startPoint)
-{// probably need to make an if statement to distinguish between static/dynamic
-        passEvent = GetComponent<PassEvent>();
+//public EventInformation EventDelegator(Vector2 startPoint)
+//{// probably need to make an if statement to distinguish between static/dynamic
+//        passEvent = GetComponent<PassEvent>();
 
-        switch (EventTypeHandler.currentDynamicEventType)
-    {
-        case 0:
-            return passEvent.MakePassEventWithStart(startPoint);
-        //case 1:
-        //    return new EventInformation(passerOfBall, EventTypeHandler.DynamicEventTypes.kick);
-        //case 2:
-        //    return new EventInformation(passerOfBall, EventTypeHandler.DynamicEventTypes.stopMovement);
-        default: throw new System.Exception("Argument out of DynamicEventType range");
-    }
-}
+//        switch (EventTypeHandler.currentDynamicEventType)
+//    {
+//        case 0:
+//            return passEvent.MakePassEventWithStart(startPoint);
+//        //case 1:
+//        //    return new EventInformation(passerOfBall, EventTypeHandler.DynamicEventTypes.kick);
+//        //case 2:
+//        //    return new EventInformation(passerOfBall, EventTypeHandler.DynamicEventTypes.stopMovement);
+//        default: throw new System.Exception("Argument out of DynamicEventType range");
+//    }
+//}
 
-
+ 
 }

@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 1128793154351058314}
   - component: {fileID: 1128793154351058316}
   - component: {fileID: 114387986976200976}
+  - component: {fileID: 114034964324710424}
+  - component: {fileID: 114058780413120432}
   m_Layer: 0
   m_Name: MyEventSystem
   m_TagString: Untagged
@@ -61,3 +63,40 @@ MonoBehaviour:
   hasEventBeenMade: 0
   passOrigin: {x: 4.8783293, y: 76.62467}
   passEnd: {x: 0, y: 0}
+  passState: 0
+--- !u!114 &114034964324710424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1128793154351058319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9e960ea91176498a9c0e2053e6ff856, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerWithBall: {fileID: 0}
+  eventType: 0
+  hasEventBeenMade: 0
+  passOrigin: {x: 0, y: 0}
+  passEnd: {x: 0, y: 0}
+  passState: 0
+--- !u!114 &114058780413120432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1128793154351058319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9e960ea91176498a9c0e2053e6ff856, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerWithBall: {fileID: 0}
+  eventType: 0
+  hasEventBeenMade: 0
+  passOrigin: {x: 0, y: 0}
+  passEnd: {x: 0, y: 0}
+  passState: 0
