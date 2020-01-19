@@ -99,6 +99,7 @@ public class Player : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     //    }
 
     //}
+
 }
     // could make a for loop that will go through the list of players
     // and gather all events into the list.

@@ -98,7 +98,6 @@ public class Line : MonoBehaviour
             if (x2 <= pointsX && pointsX <= x1 && y2 <= pointsY && pointsY <= y1)
             {
                 eventPositionInLine = i;
-                //AddPassOrigin(points[eventPositionInLine], lineBasedEvent);
                 break;
             }
         }
@@ -133,65 +132,13 @@ public class Line : MonoBehaviour
 
         //var mostRecentEvent = EventHandlerScript.events.Last();
 
-            //if (mostRecentEvent is PassEvent) // getting the last one in the list will guarantee that you'll get the most recent event made.
-            //{
-            ////((PassEvent)EventHandlerScript.events.Last()).passOrigin = points[eventPositionInLine];
-            //}
-            // only add the passEvent from the player to the eventHandler script when the origin and the end are known.
-
-        //if (EventHandlerScript.doesEventNeedEnd)
+        //if (mostRecentEvent is PassEvent) // getting the last one in the list will guarantee that you'll get the most recent event made.
         //{
-        //    passEvent.passEnd = eventPosition;
-        //    //((PassEvent)EventHandlerScript.events.Last()).passEnd = eventPosition;
-        //    EventHandlerScript.doesEventNeedEnd = false;
-        //    return;
+        ////((PassEvent)EventHandlerScript.events.Last()).passOrigin = points[eventPositionInLine];
         //}
+        // only add the passEvent from the player to the eventHandler script when the origin and the end are known.
     }
 }
-
-//if ((int)PassEvent.PassState.pendingPassState == passEvent.passState)
-//{
-//    passEvent.passOrigin = eventPosition;
-//    EventHandlerScript.isLookingForPassRecipient = true;
-//}
-
-//if ((int)PassEvent.PassState.playerLookingForRecipient == passEvent.passState)
-//{
-//    passEvent.passEnd = eventPosition;
-//    EventHandlerScript.isLookingForPassRecipient = false;
-//}
-
-
-
-
-
-
-//var mostRecentEvent = EventHandlerScript.events.Last();
-
-//if (mostRecentEvent is PassEvent) // getting the last one in the list will guarantee that you'll get the most recent event made.
-//{
-////((PassEvent)EventHandlerScript.events.Last()).passOrigin = points[eventPositionInLine];
-//}
-// only add the passEvent from the player to the eventHandler script when the origin and the end are known.
-
-//if (EventHandlerScript.isLookingForPassRecipient)
-//{
-//    lineBasedEvent.MakeMarker(eventPositionInLine, points, true);
-//}
-
-//else if (!EventHandlerScript.isLookingForPassRecipient)
-//{
-//    lineBasedEvent.MakeMarker(eventPositionInLine, points, false);
-
-//}
-
-
-
-// event starts with the event button being clicked.
-// sets isEventTime or whatever to true.
-// Clicking on the line when this is true will place event marker at the nearest point.
-// The data type could just include an extra row and we could fill it.
-
 // We need to send the ball when the recipient player reachers the position 
 // when the second player hits the marker the first player needs to pass the ball 
 // we need to think of a way to send the number of the player that was previously clicked to the next player.
