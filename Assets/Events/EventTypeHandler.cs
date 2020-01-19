@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 
-public class EventTypeHandler : MonoBehaviour 
+public class EventTypeHandler : MonoBehaviour
 {
     public static bool isDynamicEvent;
     public static int currentDynamicEventType; // might not need two. 
     public static int currentStaticEventType;
 
-public enum DynamicEventTypes
+    public enum DynamicEventTypes
     {
         pass,
         kick,
@@ -69,7 +69,7 @@ public enum DynamicEventTypes
         if ((int)StaticEventTypes.ruck == currentStaticEventType)
         {
             currentStaticEventType = (int)StaticEventTypes.scrum;
-            return StaticEventTypes.scrum; 
+            return StaticEventTypes.scrum;
         }
 
         throw new System.Exception("Argument out of StaticEventType range");

@@ -15,9 +15,11 @@ public class Player : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     private LineDestroyer lineDestroyer;
     public GameObject eventHandlerObj;
     private EventHandlerScript eventHandler;
-    //public bool isPlayerLookingForPassRecipient;
-    //public bool isPasser;
-    //public bool isRecipient;
+    public bool isLookingForPassRecipient;
+    public bool isLookingToRecieve;
+    public bool leTrailblazer;
+    public int passEventCount;
+    private bool playerCanParticipateInEvents = true;
 
     private void Start()
     {
@@ -42,7 +44,7 @@ public class Player : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         {
             isPlayerRightclicked = true;
             lineCreatorScript.MakeLine();
-            
+
         }
 
         if (eventData.button == PointerEventData.InputButton.Left)
@@ -50,8 +52,10 @@ public class Player : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             if (EventHandlerScript.isEventModeEnabled)
             {
                 EventTypeHandler.isDynamicEvent = true;
-                EventDelegator();
-                //EventHandlerScript.isLookingForPassRecipient = true;
+
+               if (playerCanParticipateInEvents) {
+                    playerCanParticipateInEvents = false;
+                }
                 playerMenuScript.passerOfBall = this; // pretty sure this line needs to be deleted.
             }
 
@@ -74,19 +78,28 @@ public class Player : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         text.text = playerNumber.ToString();
     }
 
-    public EventInformation EventDelegator()
-    {// probably need to make an if statement to distinguish between static/dynamic
+    //public EventInformation EventDelegator()
+    //{// probably need to make an if statement to distinguish between static/dynamic
 
-        switch (EventTypeHandler.currentDynamicEventType)
-        {
-            case 0:
-                return gameObject.AddComponent<PassEvent>();
-            //case 1:
-            //    return new EventInformation(passerOfBall, EventTypeHandler.DynamicEventTypes.kick);
-            //case 2:
-            //    return new EventInformation(passerOfBall, EventTypeHandler.DynamicEventTypes.stopMovement);
-            default: throw new System.Exception("Argument out of DynamicEventType range");
-        }
-    }
+    //    switch (EventTypeHandler.currentDynamicEventType)
+    //    {
+    //        case 0:
+    //            return 
+
+    //        //gameObject.AddComponent<PassEvent>();
+    //        //var passComponent = GetComponent<PassEvent>();
+    //        //eventHandler.AddEventToList(passComponent);
+    //        //return passComponent;
+
+    //        //case 1:
+    //        //    return new EventInformation(passerOfBall, EventTypeHandler.DynamicEventTypes.kick);
+    //        //case 2:
+    //        //    return new EventInformation(passerOfBall, EventTypeHandler.DynamicEventTypes.stopMovement);
+    //        default: throw new System.Exception("Argument out of DynamicEventType range");
+    //    }
+
+    //}
 }
-    
+    // could make a for loop that will go through the list of players
+    // and gather all events into the list.
+    // options, we have the lastPlayerClicked in the eventHandler.../
