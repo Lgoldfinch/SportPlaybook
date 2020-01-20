@@ -4,6 +4,7 @@ using System.Collections.Generic;
 public class LineBasedEvent : MonoBehaviour
 {
     public GameObject marker;
+    int counter;
 
     public void DoEvent(EventInformation eventInfo) // DynamicEventTypes eventType) 
     {
@@ -32,11 +33,12 @@ public class LineBasedEvent : MonoBehaviour
         switch (EventTypeHandler.currentDynamicEventType)
         {
             case 0:
-                return new EventInformation(passerOfBall, EventTypeHandler.DynamicEventTypes.pass, false);
-            case 1:
-                return new EventInformation(passerOfBall, EventTypeHandler.DynamicEventTypes.kick, false);
-            case 2:
-                return new EventInformation(passerOfBall, EventTypeHandler.DynamicEventTypes.stopMovement, false);
+                return transform.parent.gameObject.AddComponent<PassEvent>();
+
+            //case 1:
+            //    return new EventInformation(passerOfBall, EventTypeHandler.DynamicEventTypes.kick, false);
+            //case 2:
+            //    return new EventInformation(passerOfBall, EventTypeHandler.DynamicEventTypes.stopMovement, false);
             default: throw new System.Exception("Argument out of DynamicEventType range");
         }
     }

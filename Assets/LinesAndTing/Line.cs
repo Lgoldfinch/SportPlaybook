@@ -15,11 +15,12 @@ public class Line : MonoBehaviour
     public EventInformation eventInfo; // do we need position in here? Maybe for other types of events.
     public GameObject marker;
     private EventHandler eventHandler;
-    public GameObject eventSystemObj;
+    //public GameObject eventSystemObj;
+    private int counter;
 
     private void Start()
     {
-        eventHandler = eventSystemObj.GetComponent<EventHandler>();
+        //eventHandler = eventSystemObj.GetComponent<EventHandler>();
     }
 
     public void UpdateLine(Vector2 mousePosition) 
@@ -94,7 +95,12 @@ public class Line : MonoBehaviour
             if (x2 <= pointsX && pointsX <= x1 && y2 <= pointsY && pointsY <= y1)
             { 
                eventPositionInLine = i;
-                eventInfo = lineBasedEvent.MakeEvent(playerMenuScript.passerOfBall);
+                if (counter == 0)
+                {
+                    eventInfo = lineBasedEvent.MakeEvent(playerMenuScript.passerOfBall);
+                    counter++;
+                }
+
                 lineBasedEvent.MakeMarker(i, points);
                 eventHandler.isAPlayerLookingForAPassRecipient = false;
                 break;

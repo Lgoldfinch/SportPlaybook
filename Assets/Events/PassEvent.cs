@@ -2,17 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PassEvent : MonoBehaviour
+public class PassEvent : EventInformation
 {
-    // Start is called before the first frame update
-    void Start()
+    //private EventHandlerScript eventHandler;
+    public Vector2 passOrigin = Vector2.zero;
+    public Vector2 passEnd = Vector2.zero;
+    public int passState;
+
+    public enum PassState
     {
-        
+        pendingPassState,
+        playerLookingForRecipient,
+        playerLookingToReceive,
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Start()
     {
-        
+        //eventHandler = GetComponent<EventHandlerScript>();
     }
+
+    public void PassBallToNextPlayer(PassEvent passEvent)
+    {
+        Debug.Log($"pass made from: {passEvent.passOrigin} to {passEvent.passEnd}");
+    }
+
 }
