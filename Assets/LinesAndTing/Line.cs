@@ -14,6 +14,13 @@ public class Line : MonoBehaviour
     public GameObject EventTypeButton;
     public EventInformation eventInfo; // do we need position in here? Maybe for other types of events.
     public GameObject marker;
+    private EventHandler eventHandler;
+    public GameObject eventSystemObj;
+
+    private void Start()
+    {
+        eventHandler = eventSystemObj.GetComponent<EventHandler>();
+    }
 
     public void UpdateLine(Vector2 mousePosition) 
     {
@@ -53,7 +60,7 @@ public class Line : MonoBehaviour
     {
         //var isPassMode = EventTypeHandler.currentDynamicEventType == (int)EventTypeHandler.DynamicEventTypes.pass;
 
-        if (Player.isLookingForPassRecipient) // ventModeButtonScript.isEventModeEnabled && isPassMode
+        if (eventHandler.isAPlayerLookingForAPassRecipient) // ventModeButtonScript.isEventModeEnabled && isPassMode
         {
             Vector2 clickedPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
@@ -89,7 +96,7 @@ public class Line : MonoBehaviour
                eventPositionInLine = i;
                 eventInfo = lineBasedEvent.MakeEvent(playerMenuScript.passerOfBall);
                 lineBasedEvent.MakeMarker(i, points);
-                Player.isLookingForPassRecipient = false;
+                eventHandler.isAPlayerLookingForAPassRecipient = false;
                 break;
             }
         }

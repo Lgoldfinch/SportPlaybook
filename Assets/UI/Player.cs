@@ -11,17 +11,20 @@ public class Player : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public GameObject playButton;
     public PlayerMovement playerMovement;
     public int playerNumber;
-    public static bool isLookingForPassRecipient;
     public GameObject playerMenu;
     private PlayerMenuScript playerMenuScript;
     private LineDestroyer lineDestroyer;
-   
+    private EventHandler eventHandler;
+    public GameObject eventSystemObj;
+    int counter;
+
     private void Start()
     {
         playerMenuScript = playerMenu.GetComponent<PlayerMenuScript>();
         lineCreatorScript = gameObject.GetComponent<LineCreator>();
         playerMovement = gameObject.GetComponent<PlayerMovement>();
         lineDestroyer = gameObject.GetComponent<LineDestroyer>();
+        eventHandler = eventSystemObj.GetComponent<EventHandler>();
     }
 
     public void GondorCallsForAid()
@@ -46,7 +49,12 @@ public class Player : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             if (EventModeButtonScript.isEventModeEnabled)
             {
                 EventTypeHandler.isDynamicEvent = true;
-                isLookingForPassRecipient = true;
+                eventHandler.isAPlayerLookingForAPassRecipient = true;
+                if (counter == 0)
+                {
+                    gameObject.AddComponent<DummyScript>();
+                    counter++;
+                }
                 playerMenuScript.passerOfBall = this;
             }
 
@@ -69,4 +77,6 @@ public class Player : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         text.text = playerNumber.ToString();
     }
 }
+
+//
     
