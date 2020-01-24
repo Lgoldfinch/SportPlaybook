@@ -52,7 +52,7 @@ public class Player : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
                 eventHandler.isAPlayerLookingForAPassRecipient = true;
                 if (counter == 0)
                 {
-                    gameObject.AddComponent<DummyScript>();
+                    MakeEvent();
                     counter++;
                 }
                 playerMenuScript.passerOfBall = this;
@@ -60,6 +60,11 @@ public class Player : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
             lineDestroyer.DeleteLine(transform);
         }
+    }
+
+    public void MakeEvent()
+    {
+        gameObject.AddComponent<PassEvent>();
     }
 
     public void OnPointerUp(PointerEventData eventData)

@@ -9,21 +9,9 @@ public class PassEvent : EventInformation
     public Vector2 passEnd = Vector2.zero;
     public int passState;
 
-    public enum PassState
-    {
-        pendingPassState,
-        playerLookingForRecipient,
-        playerLookingToReceive,
-    }
-
-    public void Start()
-    {
-        //eventHandler = GetComponent<EventHandlerScript>();
-    }
-
-    public void PassBallToNextPlayer(PassEvent passEvent)
-    {
-        Debug.Log($"pass made from: {passEvent.passOrigin} to {passEvent.passEnd}");
-    }
+    //public void PassBallToNextPlayer(PassEvent passEvent)
+    //{
+    //    Debug.Log($"pass made from: {passEvent.passOrigin} to {passEvent.passEnd}");
+    //}
 
 }

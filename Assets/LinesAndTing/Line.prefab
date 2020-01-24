@@ -180,4 +180,8 @@ MonoBehaviour:
   eventPositionInLine: 0
   EventTypeButton: {fileID: 5999027861465535788, guid: b411ed9c1fd654443a02c2fab163813c,
     type: 3}
+  eventInfo: {fileID: 0}
   marker: {fileID: 4783233180059981448, guid: b5fcad61d667b43548ba1fffa7dfc39e, type: 3}
+  eventHandler: {fileID: 0}
+  eventSystemObj: {fileID: 81720410454986173, guid: a067fd58cb0514a19a0885d4c7b0c685,
+    type: 3}

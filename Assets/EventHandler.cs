@@ -1,21 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EventHandler : MonoBehaviour
 {
-
     public bool isAPlayerLookingForAPassRecipient;
 
-    // Start is called before the first frame update
-    void Start()
+    public EventInformation EventDelegator()
     {
-        
-    }
+            switch (EventTypeHandler.currentDynamicEventType)
+            {
+                case 0:
+                    return gameObject.AddComponent<PassEvent>();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+                //case 1:
+                //    return new EventInformation(passerOfBall, EventTypeHandler.DynamicEventTypes.kick, false);
+                //case 2:
+                //    return new EventInformation(passerOfBall, EventTypeHandler.DynamicEventTypes.stopMovement, false);
+                default: throw new System.Exception("Argument out of DynamicEventType range");
+            }
+        }
     }
-}
