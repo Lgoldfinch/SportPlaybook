@@ -27,6 +27,26 @@ public class LineBasedEvent : MonoBehaviour
         makeYourMarker.transform.position = points[positionForMarker];
     }
 
+
+    public EventInformation EventDelegator(Vector2 eventOrigin)
+    {
+        switch (EventTypeHandler.currentDynamicEventType)
+        {
+            case 0:
+                Debug.Log("hi");
+                gameObject.AddComponent<PassEvent>();
+                var a = GetComponent<PassEvent>();
+                a.eventOrigin = eventOrigin;
+                return a;
+
+            //case 1:
+            //    return new EventInformation(passerOfBall, EventTypeHandler.DynamicEventTypes.kick, false);
+            //case 2:
+            //    return new EventInformation(passerOfBall, EventTypeHandler.DynamicEventTypes.stopMovement, false);
+            default: throw new System.Exception("Argument out of DynamicEventType range");
+        }
+    }
+
 }
 //Options:
 // 1) Purely for the pass - click on the running line. Initial player will pass when he hits the marker.

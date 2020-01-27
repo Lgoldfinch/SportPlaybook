@@ -16,7 +16,6 @@ public class Player : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     private LineDestroyer lineDestroyer;
     private EventHandler eventHandler;
     public GameObject eventSystemObj;
-    int counter;
 
     private void Start()
     {
@@ -50,11 +49,6 @@ public class Player : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
             {
                 EventTypeHandler.isDynamicEvent = true;
                 eventHandler.isAPlayerLookingForAPassRecipient = true;
-                if (counter == 0)
-                {
-                    MakeEvent();
-                    counter++;
-                }
                 playerMenuScript.passerOfBall = this;
             }
 
@@ -62,10 +56,7 @@ public class Player : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         }
     }
 
-    public void MakeEvent()
-    {
-        gameObject.AddComponent<PassEvent>();
-    }
+
 
     public void OnPointerUp(PointerEventData eventData)
     {

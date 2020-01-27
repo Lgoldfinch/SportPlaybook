@@ -14,6 +14,7 @@ public class Line : MonoBehaviour
     public GameObject EventTypeButton;
     public EventInformation eventInfo; // do we need position in here? Maybe for other types of events.
     public GameObject marker;
+    private LineBasedEvent lineEvents;
 
     private EventHandler eventHandler;
     public GameObject eventSystemObj;
@@ -22,6 +23,7 @@ public class Line : MonoBehaviour
 
     private void Start()
     {
+        lineEvents = GetComponent<LineBasedEvent>();
         eventHandler = eventSystemObj.GetComponent<EventHandler>();
     }
 
@@ -77,7 +79,6 @@ public class Line : MonoBehaviour
 
     private void FindNearestPositionInLine(Vector2 clickedPosition)
     {
-        var playerMenuScript = GetComponentInParent<PlayerMenuScript>();
         var lineBasedEvent = GetComponent<LineBasedEvent>();
 
         var clickLocationX = clickedPosition.x;
@@ -99,7 +100,7 @@ public class Line : MonoBehaviour
                eventPositionInLine = i;
                 if (counter == 0)
                 {
-                    eventInfo = eventHandler.EventDelegator();
+                    eventInfo = lineEvents.EventDelegator(points[eventPositionInLine]);
                     counter++;
                 }
 
