@@ -221,5 +221,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd46521afe6f0411f89821a4addb8c62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPanel: {fileID: 0}
-  isEventModeEnabled: 0
+  hasEventSystemBeenInstantiated: 0
+  eventSystemPrefab: {fileID: 81720410454986173, guid: a067fd58cb0514a19a0885d4c7b0c685,
+    type: 3}

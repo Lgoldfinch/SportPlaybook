@@ -5,6 +5,13 @@ public class LineBasedEvent : MonoBehaviour
 {
     public GameObject marker;
     int counter;
+    public GameObject eventHandlerObj;
+    private EventHandler eventHandler;
+
+    public void Start()
+    {
+        eventHandler = eventHandlerObj.GetComponent<EventHandler>();
+    }
 
     public void DoEvent(EventInformation eventInfo) // DynamicEventTypes eventType) 
     {
@@ -37,6 +44,7 @@ public class LineBasedEvent : MonoBehaviour
                 gameObject.AddComponent<PassEvent>();
                 var a = GetComponent<PassEvent>();
                 a.eventOrigin = eventOrigin;
+                eventHandler.events.Add(a);
                 return a;
 
             //case 1:
