@@ -5,7 +5,8 @@ public class EventModeButtonScript : MonoBehaviour
 {
     public static bool isEventModeEnabled;
     public bool hasEventSystemBeenInstantiated;
-    public GameObject eventSystemPrefab; 
+    public GameObject eventSystemPrefab;
+    
 
     public enum EventMode
     {

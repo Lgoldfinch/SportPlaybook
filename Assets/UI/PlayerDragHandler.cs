@@ -10,10 +10,12 @@ public class PlayerDragHandler : MonoBehaviour
     public GameObject playerSpeedSlider;
     private PlayerSpeedController playerSpeedController;
     private PlayerMovement playerMovementScript;
+    public GameObject eventHandlerButton;
 
     private void Awake()
     {
         playerMovementScript = gameObject.GetComponent<PlayerMovement>();
+        
     }
 
     private void Update()

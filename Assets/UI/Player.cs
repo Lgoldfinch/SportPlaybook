@@ -45,11 +45,11 @@ public class Player : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            if (EventModeButtonScript.isEventModeEnabled)
+            if (EventModeButtonScript.isEventModeEnabled && !eventHandler.isAPlayerLookingForAPassRecipient)
             {
                 EventTypeHandler.isDynamicEvent = true;
                 eventHandler.isAPlayerLookingForAPassRecipient = true;
-                playerMenuScript.passerOfBall = this;
+                playerMenuScript.passerOfBall = this;             
             }
 
             lineDestroyer.DeleteLine(transform);

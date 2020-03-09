@@ -20,7 +20,7 @@ public class Line : MonoBehaviour
     public GameObject eventSystemObj;
 
     private int counter;
-
+   
     private void Start()
     {
         lineEvents = GetComponent<LineBasedEvent>();
@@ -65,17 +65,17 @@ public class Line : MonoBehaviour
     {
         //var isPassMode = EventTypeHandler.currentDynamicEventType == (int)EventTypeHandler.DynamicEventTypes.pass;
 
-        if (eventHandler.isAPlayerLookingForAPassRecipient) // ventModeButtonScript.isEventModeEnabled && isPassMode
+        if (eventHandler.isAPlayerLookingForAPassRecipient)
         {
             Vector2 clickedPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
             while (eventPositionInLine == 0) // this is to cover the possibility that the tolerance isn't large enough to catch the line. 
             {
                 FindNearestPositionInLine(clickedPosition);
                 tolerance++;
             }
         }
-    }
+
+}
 
     private void FindNearestPositionInLine(Vector2 clickedPosition)
     {
@@ -96,7 +96,7 @@ public class Line : MonoBehaviour
             var pointsY = points[i].y;
 
             if (x2 <= pointsX && pointsX <= x1 && y2 <= pointsY && pointsY <= y1)
-            { 
+            {
                eventPositionInLine = i;
                 if (counter == 0)
                 {
@@ -110,17 +110,13 @@ public class Line : MonoBehaviour
             }
         }
     }
-
-
 }
- // event starts with the event button being clicked.
- // sets isEventTime or whatever to true.
- // Clicking on the line when this is true will place event marker at the nearest point.
- // The data type could just include an extra row and we could fill it.
 
-    // We need to send the ball when the recipient player reachers the position 
-    // when the second player hits the marker the first player needs to pass the ball 
-    // we need to think of a way to send the number of the player that was previously clicked to the next player.
+//I think that the problem comes from when you click the player when the line underneath is clickable.
+// This only happens when event mode is on
+// once the player has been clicked we could deactivate the player from being clicked.
 
-
-    // we need to pass the position of the pass from the recipient player to the 
+    // could do this with isPlayerLooking....
+    // Deactivate the player so it cant be moved - will have the implication that the player wont be movable.
+    // If we're going down this road we might need to add another button.
+    // so far, we have: eventmode, playerspeed, rewind button, eventType button. 
