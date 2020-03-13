@@ -15,7 +15,7 @@ TagManager:
   - 
   - 
   - Pitch
-  - Lines
+  - 
   - 
   - 
   - 
@@ -42,7 +42,7 @@ TagManager:
   - name: Pitch
     uniqueID: 423730227
     locked: 0
-  - name: Lines
+  - name: Players
     uniqueID: 2228975333
     locked: 0
   - name: Default

@@ -9,9 +9,4 @@ public class Player2 : MonoBehaviour
     {
         Debug.Log("hi");
     }
-
-    void Update()
-    {
-        
-    }
 }
