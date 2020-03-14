@@ -13,20 +13,12 @@ public class MoveWithMouse : MonoBehaviour
 
         if (spriteInChild == null)
         {
-            Vector2 sizeOfSprite = sprite.bounds.extents;
-
-            minPos = (Vector2)Camera.main.ViewportToWorldPoint(new Vector2(0, 0)) + sizeOfSprite;
-            maxPos = (Vector2)Camera.main.ViewportToWorldPoint(new Vector2(1, 1)) - sizeOfSprite;
-            return;
+            SetExtremaOfSprite(sprite);
         }
 
         if (sprite == null)
         {
-            Vector2 sizeOfSpriteInChild = spriteInChild.bounds.extents;
-
-            minPos = (Vector2)Camera.main.ViewportToWorldPoint(new Vector2(0, 0)) + sizeOfSpriteInChild;
-            maxPos = (Vector2)Camera.main.ViewportToWorldPoint(new Vector2(1, 1)) - sizeOfSpriteInChild;
-            return;
+            SetExtremaOfSprite(spriteInChild);
         }
     
     }
@@ -42,5 +34,14 @@ public class MoveWithMouse : MonoBehaviour
             targetPos.y = Mathf.Clamp(targetPos.y, minPos.y, maxPos.y);
             transform.position = targetPos;
         }
+    }
+
+    private void SetExtremaOfSprite(SpriteRenderer sprite)
+    {
+        Vector2 sizeOfSprite = sprite.bounds.extents;
+
+        minPos = (Vector2)Camera.main.ViewportToWorldPoint(new Vector2(0, 0)) + sizeOfSprite;
+        maxPos = (Vector2)Camera.main.ViewportToWorldPoint(new Vector2(1, 1)) - sizeOfSprite;
+        return;
     }
 }
