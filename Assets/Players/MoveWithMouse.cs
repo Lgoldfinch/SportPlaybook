@@ -4,7 +4,7 @@ public class MoveWithMouse : MonoBehaviour
 {
     Vector2 minPos;
     Vector2 maxPos;
-    Vector2 mousePos;
+    public bool isBeingHeld; 
 
     void Start()
     {
@@ -25,14 +25,31 @@ public class MoveWithMouse : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (isBeingHeld)
         {
-            mousePos = (Input.mousePosition);
-            Vector2 targetPos = new Vector2(Camera.main.ScreenToWorldPoint(mousePos).x, Camera.main.ScreenToWorldPoint(mousePos).y);
+            Vector2 mousePos = Input.mousePosition;
+            Vector2 mousePosToWorldPoint = Camera.main.ScreenToWorldPoint(mousePos);
+            Vector2 targetPos = new Vector2(mousePosToWorldPoint.x, mousePosToWorldPoint.y);
 
             targetPos.x = Mathf.Clamp(targetPos.x, minPos.x, maxPos.x);
             targetPos.y = Mathf.Clamp(targetPos.y, minPos.y, maxPos.y);
             transform.position = targetPos;
+        }
+}
+
+    private void OnMouseDown()
+    {
+        if (Input.GetMouseButton(0))
+        {
+            isBeingHeld = true;
+        }
+    }
+
+    private void OnMouseUp()
+    {
+        if (Input.GetMouseButtonUp(0))
+        {
+            isBeingHeld = false;
         }
     }
 
@@ -44,4 +61,5 @@ public class MoveWithMouse : MonoBehaviour
         maxPos = (Vector2)Camera.main.ViewportToWorldPoint(new Vector2(1, 1)) - sizeOfSprite;
         return;
     }
+
 }
