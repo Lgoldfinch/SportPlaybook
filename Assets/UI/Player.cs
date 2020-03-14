@@ -1,9 +1,7 @@
-﻿
-using UnityEngine;
-using UnityEngine.EventSystems;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class Player : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+public class Player : MonoBehaviour
 {
     public bool isPlayerRightclicked;
     private LineCreator lineCreatorScript;
@@ -12,12 +10,10 @@ public class Player : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public PlayerMovement playerMovement;
     public int playerNumber;
     public static bool isLookingForPassRecipient;
-    private PlayerMenuScript playerMenuScript;
     private LineDestroyer lineDestroyer;
    
     private void Start()
     {
-        //playerMenuScript = playerMenu.GetComponent<PlayerMenuScript>();
         lineCreatorScript = gameObject.GetComponent<LineCreator>();
         playerMovement = gameObject.GetComponent<PlayerMovement>();
         lineDestroyer = gameObject.GetComponent<LineDestroyer>();
@@ -31,31 +27,31 @@ public class Player : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         }
     }
 
-    public void OnPointerDown(PointerEventData eventData)
+    public void OnMouseDown()
     {
-        if (eventData.button == PointerEventData.InputButton.Right)
+        if (Input.GetMouseButton(0))
         {
-            isPlayerRightclicked = true;
-            lineCreatorScript.MakeLine();
-            
-        }
+            Debug.Log("left clicked");
 
-        if (eventData.button == PointerEventData.InputButton.Left)
-        {
-            if (EventModeButtonScript.isEventModeEnabled)
-            {
-                EventTypeHandler.isDynamicEvent = true;
-                isLookingForPassRecipient = true;
-                playerMenuScript.passerOfBall = this;
-            }
-
-            lineDestroyer.DeleteLine(transform);
+            EventTypeHandler.isDynamicEvent = true;
+            isLookingForPassRecipient = true;
         }
     }
 
-    public void OnPointerUp(PointerEventData eventData)
+    public void OnMouseOver()
     {
-        if (eventData.button == PointerEventData.InputButton.Right)
+        if (Input.GetMouseButtonDown(1))
+        {
+            Debug.Log("right clicked");
+            isPlayerRightclicked = true;
+            lineCreatorScript.MakeLine();
+        }
+    }
+
+
+    public void OnMouseUp()
+    {
+        if (Input.GetMouseButtonUp(1))
         {
             lineCreatorScript.activeLine = null;
             isPlayerRightclicked = false;
