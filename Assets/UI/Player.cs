@@ -12,13 +12,12 @@ public class Player : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public PlayerMovement playerMovement;
     public int playerNumber;
     public static bool isLookingForPassRecipient;
-    public GameObject playerMenu;
     private PlayerMenuScript playerMenuScript;
     private LineDestroyer lineDestroyer;
    
     private void Start()
     {
-        playerMenuScript = playerMenu.GetComponent<PlayerMenuScript>();
+        //playerMenuScript = playerMenu.GetComponent<PlayerMenuScript>();
         lineCreatorScript = gameObject.GetComponent<LineCreator>();
         playerMovement = gameObject.GetComponent<PlayerMovement>();
         lineDestroyer = gameObject.GetComponent<LineDestroyer>();

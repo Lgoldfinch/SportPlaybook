@@ -52,7 +52,7 @@ public class Line : MonoBehaviour
     public void OnMouseDown()
     {
         //var isPassMode = EventTypeHandler.currentDynamicEventType == (int)EventTypeHandler.DynamicEventTypes.pass;
-
+        Debug.Log("HI");
         if (Player.isLookingForPassRecipient) // ventModeButtonScript.isEventModeEnabled && isPassMode
         {
             Vector2 clickedPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
