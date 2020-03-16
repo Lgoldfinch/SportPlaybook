@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 public class Player : MonoBehaviour
 {
@@ -12,13 +11,18 @@ public class Player : MonoBehaviour
     public int playerNumber;
     public static bool isLookingForPassRecipient;
 
+    public GameObject drawAndEditBtn;
+    private DrawAndEdit drawAndEditScript;
+
     private void Start()
     {
         lineCreatorScript = gameObject.GetComponent<LineCreator>();
         playerMovement = gameObject.GetComponent<PlayerMovement>();
-    }
+        drawAndEditScript = drawAndEditBtn.GetComponent<DrawAndEdit>();
 
-    private void Update()
+}
+
+private void Update()
     {
         if (Input.GetMouseButtonUp(1) && isPlayerRightclicked)
         {
