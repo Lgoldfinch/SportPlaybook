@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class Player : MonoBehaviour
 {
@@ -10,13 +11,20 @@ public class Player : MonoBehaviour
     public PlayerMovement playerMovement;
     public int playerNumber;
     public static bool isLookingForPassRecipient;
-    private LineDestroyer lineDestroyer;
-   
+
     private void Start()
     {
         lineCreatorScript = gameObject.GetComponent<LineCreator>();
         playerMovement = gameObject.GetComponent<PlayerMovement>();
-        lineDestroyer = gameObject.GetComponent<LineDestroyer>();
+    }
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonUp(1) && isPlayerRightclicked)
+        {
+            lineCreatorScript.activeLine = null;
+            isPlayerRightclicked = false;
+        }
     }
 
     public void GondorCallsForAid()
@@ -29,32 +37,16 @@ public class Player : MonoBehaviour
 
     public void OnMouseDown()
     {
-        if (Input.GetMouseButton(0))
-        {
-            Debug.Log("left clicked");
-
-            EventTypeHandler.isDynamicEvent = true;
-            isLookingForPassRecipient = true;
-        }
+        EventTypeHandler.isDynamicEvent = true;
+        isLookingForPassRecipient = true;
     }
 
     public void OnMouseOver()
     {
         if (Input.GetMouseButtonDown(1))
         {
-            Debug.Log("right clicked");
             isPlayerRightclicked = true;
             lineCreatorScript.MakeLine();
-        }
-    }
-
-
-    public void OnMouseUp()
-    {
-        if (Input.GetMouseButtonUp(1))
-        {
-            lineCreatorScript.activeLine = null;
-            isPlayerRightclicked = false;
         }
     }
 
