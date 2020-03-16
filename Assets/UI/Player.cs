@@ -19,7 +19,6 @@ public class Player : MonoBehaviour
         lineCreatorScript = gameObject.GetComponent<LineCreator>();
         playerMovement = gameObject.GetComponent<PlayerMovement>();
         drawAndEditScript = drawAndEditBtn.GetComponent<DrawAndEdit>();
-
 }
 
 private void Update()
@@ -45,14 +44,14 @@ private void Update()
         isLookingForPassRecipient = true;
     }
 
-    public void OnMouseOver()
-    {
-        if (Input.GetMouseButtonDown(1))
-        {
-            isPlayerRightclicked = true;
-            lineCreatorScript.MakeLine();
-        }
-    }
+    //public void OnMouseOver()
+    //{
+    //    if (Input.GetMouseButtonDown(1))
+    //    {
+    //        isPlayerRightclicked = true;
+    //        lineCreatorScript.MakeLine();
+    //    }
+    //}
 
     public void SetPlayerKitNumber()
     {
