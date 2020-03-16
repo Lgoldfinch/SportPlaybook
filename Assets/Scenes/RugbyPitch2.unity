@@ -127,6 +127,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1749451073861697200, guid: ffe3667845c844d89899fd299f2f1ec6,
+        type: 3}
+      propertyPath: drawAndEditBtn
+      value: 
+      objectReference: {fileID: 8671959593593841089}
+    - target: {fileID: 3959170009180462943, guid: ffe3667845c844d89899fd299f2f1ec6,
+        type: 3}
+      propertyPath: drawAndEditBtn
+      value: 
+      objectReference: {fileID: 8671959593593841089}
     - target: {fileID: 5448994598138980691, guid: ffe3667845c844d89899fd299f2f1ec6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12087,11 +12097,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 8671959593593841089}
+      objectReference: {fileID: 8671959593593841090}
     - target: {fileID: 8671959592317486315, guid: f046c739b86834fe3a35b3582ea1f869,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ActivateDrawAndEditMode2
+      value: DrawAndEditButtonClicked
       objectReference: {fileID: 0}
     - target: {fileID: 8671959592317486315, guid: f046c739b86834fe3a35b3582ea1f869,
         type: 3}
@@ -12116,13 +12126,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f046c739b86834fe3a35b3582ea1f869, type: 3}
---- !u!114 &8671959593593841089 stripped
+--- !u!1 &8671959593593841089 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8671959592317486312, guid: f046c739b86834fe3a35b3582ea1f869,
+    type: 3}
+  m_PrefabInstance: {fileID: 8671959593593841088}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8671959593593841090 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: -4084783174639191521, guid: f046c739b86834fe3a35b3582ea1f869,
     type: 3}
   m_PrefabInstance: {fileID: 8671959593593841088}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 8671959593593841089}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2bfbd61b18b3f46cf9dfa0792e8c22a2, type: 3}

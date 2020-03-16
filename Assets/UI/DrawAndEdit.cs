@@ -14,10 +14,11 @@ public class DrawAndEdit : MonoBehaviour
         if (!isDrawAndEditMode)
         {
             isDrawAndEditMode = true;
+            Debug.Log(isDrawAndEditMode);
             return isDrawAndEditMode;
         }
-
         isDrawAndEditMode = false;
+        Debug.Log(isDrawAndEditMode);
         return isDrawAndEditMode;
     }
 }

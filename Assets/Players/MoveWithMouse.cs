@@ -4,12 +4,16 @@ public class MoveWithMouse : MonoBehaviour
 {
     Vector2 minPos;
     Vector2 maxPos;
-    public bool isBeingHeld; 
+    public bool isBeingHeld;
 
+    public GameObject drawAndEditBtn; 
+    private DrawAndEdit drawAndEditScr;
+    
     void Start()
     {
         var spriteInChild = GetComponentInChildren<SpriteRenderer>();
         var sprite = GetComponent<SpriteRenderer>();
+
 
         if (spriteInChild == null)
         {
@@ -20,34 +24,31 @@ public class MoveWithMouse : MonoBehaviour
         {
             SetExtremaOfSprite(spriteInChild);
         }
-    
     }
 
     void Update()
     {
         if (isBeingHeld)
         {
-            Vector2 mousePos = Input.mousePosition;
-            Vector2 mousePosToWorldPoint = Camera.main.ScreenToWorldPoint(mousePos);
-            Vector2 targetPos = new Vector2(mousePosToWorldPoint.x, mousePosToWorldPoint.y);
+            drawAndEditScr = drawAndEditBtn.GetComponent<DrawAndEdit>();
 
-            targetPos.x = Mathf.Clamp(targetPos.x, minPos.x, maxPos.x);
-            targetPos.y = Mathf.Clamp(targetPos.y, minPos.y, maxPos.y);
-            transform.position = targetPos;
+            if (!drawAndEditScr.isDrawAndEditMode)
+            {
+                Vector2 mousePos = Input.mousePosition;
+                Vector2 mousePosToWorldPoint = Camera.main.ScreenToWorldPoint(mousePos);
+                Vector2 targetPos = new Vector2(mousePosToWorldPoint.x, mousePosToWorldPoint.y);
+
+                targetPos.x = Mathf.Clamp(targetPos.x, minPos.x, maxPos.x);
+                targetPos.y = Mathf.Clamp(targetPos.y, minPos.y, maxPos.y);
+                transform.position = targetPos;
+            }
         }
-
-        if (!isBeingHeld)
-        {
-
-        }
+ 
 }
 
     private void OnMouseDown()
     {
-        if (Input.GetMouseButton(0))
-        {
             isBeingHeld = true;
-        }
     }
 
     private void OnMouseUp()
@@ -66,5 +67,5 @@ public class MoveWithMouse : MonoBehaviour
         maxPos = (Vector2)Camera.main.ViewportToWorldPoint(new Vector2(1, 1)) - sizeOfSprite;
         return;
     }
-
+    // 
 }
