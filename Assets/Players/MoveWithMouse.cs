@@ -47,7 +47,7 @@ public class MoveWithMouse : MonoBehaviour
 
     private void OnMouseUp()
     {
-        if (Input.GetMouseButtonUp(0))
+        if (Input.GetMouseButton(0))
         {
             isBeingHeld = false;
         }

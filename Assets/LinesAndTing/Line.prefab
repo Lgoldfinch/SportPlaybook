@@ -59,6 +59,7 @@ LineRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -76,13 +77,13 @@ LineRenderer:
   - {x: 2, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 1
+    widthMultiplier: 0.25
     widthCurve:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
-        value: 1
+        time: 0.053791046
+        value: 0.48913002
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -146,7 +147,7 @@ EdgeCollider2D:
   m_EdgeRadius: 1
   m_Points:
   - {x: -0.5, y: 0}
-  - {x: 0.5, y: 0}
+  - {x: 2.5122552, y: 0.014071691}
 --- !u!114 &2213217543109593943
 MonoBehaviour:
   m_ObjectHideFlags: 0
