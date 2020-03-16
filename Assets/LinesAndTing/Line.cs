@@ -53,16 +53,16 @@ public class Line : MonoBehaviour
     {
         //var isPassMode = EventTypeHandler.currentDynamicEventType == (int)EventTypeHandler.DynamicEventTypes.pass;
 
-        if (Player.isLookingForPassRecipient) // ventModeButtonScript.isEventModeEnabled && isPassMode
-        {
-            Vector2 clickedPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //if (Player.isLookingForPassRecipient) // ventModeButtonScript.isEventModeEnabled && isPassMode
+        //{
+        //    Vector2 clickedPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-            while (eventPositionInLine == 0) // this is to cover the possibility that the tolerance isn't large enough to catch the line. 
-            {
-                FindNearestPositionInLine(clickedPosition);
-                tolerance++;
-            }
-        }
+        //    while (eventPositionInLine == 0) // this is to cover the possibility that the tolerance isn't large enough to catch the line. 
+        //    {
+        //        FindNearestPositionInLine(clickedPosition);
+        //        tolerance++;
+        //    }
+        //}
     }
 
     private void FindNearestPositionInLine(Vector2 clickedPosition)

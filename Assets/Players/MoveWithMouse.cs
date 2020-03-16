@@ -35,6 +35,11 @@ public class MoveWithMouse : MonoBehaviour
             targetPos.y = Mathf.Clamp(targetPos.y, minPos.y, maxPos.y);
             transform.position = targetPos;
         }
+
+        if (!isBeingHeld)
+        {
+
+        }
 }
 
     private void OnMouseDown()
@@ -47,7 +52,7 @@ public class MoveWithMouse : MonoBehaviour
 
     private void OnMouseUp()
     {
-        if (Input.GetMouseButton(0))
+            if (isBeingHeld)
         {
             isBeingHeld = false;
         }
