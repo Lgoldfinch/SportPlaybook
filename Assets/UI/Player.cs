@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
     public int playerNumber;
     public static bool isLookingForPassRecipient;
 
+    public bool isLineBeingDrawn;
+
     public GameObject drawAndEditBtn;
     private DrawAndEdit drawAndEditScript;
 
@@ -23,10 +25,11 @@ public class Player : MonoBehaviour
 
 private void Update()
     {
-        if (Input.GetMouseButtonUp(1) && isPlayerRightclicked)
+        if (Input.GetMouseButtonUp(0) && isLineBeingDrawn)
         {
             lineCreatorScript.activeLine = null;
-            isPlayerRightclicked = false;
+            isLineBeingDrawn = false;
+            Debug.Log("here");
         }
     }
 
@@ -40,6 +43,12 @@ private void Update()
 
     public void OnMouseDown()
     {
+        if (drawAndEditScript.isDrawAndEditMode) // if its draw and edit mode, clicking on the player
+        {
+            isLineBeingDrawn = true;
+            lineCreatorScript.MakeLine();
+        }
+
         EventTypeHandler.isDynamicEvent = true;
         isLookingForPassRecipient = true;
     }

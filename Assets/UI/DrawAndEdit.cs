@@ -17,6 +17,7 @@ public class DrawAndEdit : MonoBehaviour
             Debug.Log(isDrawAndEditMode);
             return isDrawAndEditMode;
         }
+
         isDrawAndEditMode = false;
         Debug.Log(isDrawAndEditMode);
         return isDrawAndEditMode;
