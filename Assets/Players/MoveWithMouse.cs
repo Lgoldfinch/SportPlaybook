@@ -4,10 +4,10 @@ public class MoveWithMouse : MonoBehaviour
 {
     Vector2 minPos;
     Vector2 maxPos;
-    public bool isBeingHeld;
+    bool isBeingHeld;
 
     public GameObject drawAndEditBtn; 
-    private DrawAndEdit drawAndEditScr;
+    DrawAndEdit drawAndEditScr;
     
     void Start()
     {
@@ -67,5 +67,4 @@ public class MoveWithMouse : MonoBehaviour
         maxPos = (Vector2)Camera.main.ViewportToWorldPoint(new Vector2(1, 1)) - sizeOfSprite;
         return;
     }
-    // 
 }
