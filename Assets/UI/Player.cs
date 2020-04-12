@@ -14,22 +14,26 @@ public class Player : MonoBehaviour
     public bool isLineBeingDrawn;
 
     public GameObject drawAndEditBtn;
-    private DrawAndEdit drawAndEditScript;
+    DrawAndEdit drawAndEditScript;
+
+    public BoxCollider2D collider2d;
 
     private void Start()
     {
-        lineCreatorScript = gameObject.GetComponent<LineCreator>();
-        playerMovement = gameObject.GetComponent<PlayerMovement>();
+        lineCreatorScript = GetComponent<LineCreator>();
+        playerMovement = GetComponent<PlayerMovement>();
         drawAndEditScript = drawAndEditBtn.GetComponent<DrawAndEdit>();
+
+        collider2d = GetComponent<BoxCollider2D>();
 }
 
-private void Update()
+ void Update()
     {
         if (Input.GetMouseButtonUp(0) && isLineBeingDrawn)
         {
             lineCreatorScript.activeLine = null;
+            Debug.Log(isLineBeingDrawn);
             isLineBeingDrawn = false;
-            Debug.Log("here");
         }
     }
 
@@ -43,24 +47,15 @@ private void Update()
 
     public void OnMouseDown()
     {
-        if (drawAndEditScript.isDrawAndEditMode) // if its draw and edit mode, clicking on the player
+        if (drawAndEditScript.isDrawAndEditMode)
         {
             isLineBeingDrawn = true;
             lineCreatorScript.MakeLine();
         }
 
-        EventTypeHandler.isDynamicEvent = true;
-        isLookingForPassRecipient = true;
+        //EventTypeHandler.isDynamicEvent = true;
+        //isLookingForPassRecipient = true;
     }
-
-    //public void OnMouseOver()
-    //{
-    //    if (Input.GetMouseButtonDown(1))
-    //    {
-    //        isPlayerRightclicked = true;
-    //        lineCreatorScript.MakeLine();
-    //    }
-    //}
 
     public void SetPlayerKitNumber()
     {

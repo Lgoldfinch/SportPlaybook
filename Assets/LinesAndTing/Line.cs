@@ -51,6 +51,7 @@ public class Line : MonoBehaviour
 
     public void OnMouseDown()
     {
+        Debug.Log("lined?");
         //var isPassMode = EventTypeHandler.currentDynamicEventType == (int)EventTypeHandler.DynamicEventTypes.pass;
 
         //if (Player.isLookingForPassRecipient) // ventModeButtonScript.isEventModeEnabled && isPassMode
