@@ -9,11 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5448994598138980691}
-  - component: {fileID: 5448994598138980694}
   - component: {fileID: 8410957533345731860}
   - component: {fileID: 1749451073861697200}
   - component: {fileID: 3959170009180462943}
-  m_Layer: 0
+  - component: {fileID: 1416935434}
+  - component: {fileID: 1416935435}
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35,18 +36,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5448994598138980694
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5448994598138980695}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e85a42a94ffd46f4aabf2f08fad2297, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &8410957533345731860
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -86,6 +75,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isBeingHeld: 0
+  drawAndEditBtn: {fileID: 0}
 --- !u!114 &3959170009180462943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,6 +95,38 @@ MonoBehaviour:
     type: 3}
   playerMovement: {fileID: 0}
   playerNumber: 0
+  isLineBeingDrawn: 0
+  drawAndEditBtn: {fileID: 0}
+--- !u!114 &1416935434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5448994598138980695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bac3ddec7a205446a9db0cbeb6e5cbc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1416935435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5448994598138980695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dcb985b3058af449ad197c42810510b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  linePrefab: {fileID: 902899087084756383, guid: e35062e14ff0da849913037c94af8200,
+    type: 3}
+  activeLine: {fileID: 0}
+  playButton: {fileID: 3764771767184060350, guid: 047a4a4d27eec4b51a78d4a23ea46e87,
+    type: 3}
+  lineExists: 0
 --- !u!1 &5448994599464740536
 GameObject:
   m_ObjectHideFlags: 0
@@ -115,7 +137,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5448994599464740519}
   - component: {fileID: 5448994599464740518}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: characterBlue (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171,8 +193,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -2065991963
+  m_SortingLayer: -1
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 73ee775af4ea84eb3a8e69d38589b909, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

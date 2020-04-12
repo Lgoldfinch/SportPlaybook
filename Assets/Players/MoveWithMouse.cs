@@ -4,12 +4,13 @@ public class MoveWithMouse : MonoBehaviour
 {
     Vector2 minPos;
     Vector2 maxPos;
+    [SerializeField]
     bool isBeingHeld;
 
     public GameObject drawAndEditBtn; 
     DrawAndEdit drawAndEditScr;
     
-    void Start()
+    void Awake()
     {
         var spriteInChild = GetComponentInChildren<SpriteRenderer>();
         var sprite = GetComponent<SpriteRenderer>();
@@ -24,6 +25,8 @@ public class MoveWithMouse : MonoBehaviour
         {
             SetExtremaOfSprite(spriteInChild);
         }
+
+        drawAndEditScr = drawAndEditBtn.GetComponent<DrawAndEdit>();
     }
 
     void Update()
@@ -48,7 +51,7 @@ public class MoveWithMouse : MonoBehaviour
 
     private void OnMouseDown()
     {
-            isBeingHeld = true;
+            if (!drawAndEditScr.isDrawAndEditMode) isBeingHeld = true;
     }
 
     private void OnMouseUp()
