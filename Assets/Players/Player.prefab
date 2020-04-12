@@ -97,6 +97,7 @@ MonoBehaviour:
   playerNumber: 0
   isLineBeingDrawn: 0
   drawAndEditBtn: {fileID: 0}
+  collider2d: {fileID: 0}
 --- !u!114 &1416935434
 MonoBehaviour:
   m_ObjectHideFlags: 0

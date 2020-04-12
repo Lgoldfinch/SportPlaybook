@@ -4,6 +4,8 @@ using System.Linq;
 public class DrawAndEdit : MonoBehaviour
 {
     public bool isDrawAndEditMode;
+    public GameObject listOfPlayersObj;
+    //private Player[] players;
 
     public void DrawAndEditButtonClicked()
     {
@@ -15,40 +17,54 @@ public class DrawAndEdit : MonoBehaviour
         if (!isDrawAndEditMode)
         {
             isDrawAndEditMode = true;
+
             Debug.Log(isDrawAndEditMode);
+
+            ChangeColliders();
+
             return isDrawAndEditMode;
         }
 
         isDrawAndEditMode = false;
+
         Debug.Log(isDrawAndEditMode);
+
+        ChangeColliders();
+
         return isDrawAndEditMode;
     }
 
-    public bool ChangePlayerColliders(GameObject listOfPlayersObj)
+    public void ChangeColliders()
     {
+
         var players = listOfPlayersObj.GetComponentsInChildren<Player>();
-        var linesBelongingToPlayers = listOfPlayersObj.GetComponentsInChildren<Line>();
+        Debug.Log(players);
 
-        Debug.Log(linesBelongingToPlayers);
-
-       return ColliderAlteringLoop(players, isDrawAndEditMode);
+        for (int i = 0; i <= players.Length - 1; i++)
+        {
+            players[i].ModifyPlayerCollider(isDrawAndEditMode);
+        }
     }
-
+     
         
-        bool ColliderAlteringLoop(Player[] objects, bool colliderEnabled)
-        {
+        //bool ColliderAlteringLoop(Player[] objects, bool drawAndEditMode)
+        //{
 
-        if (objects.Length == 0)
-        {
-            throw new System.Exception("Should not be empty");
-        }
+        //if (objects.Length == 0)
+        //{
+        //    Debug.LogWarning("There are no players on the pitch.");
+        //}
 
-        for (int i = 0; i <= objects.Length - 1; i++)
-            {
 
-            return objects[i].collider2d.enabled = colliderEnabled;
-            }
 
-        return false; 
-        }
+        //for (int i = 0; i <= objects.Length - 1; i++)
+        //    {
+
+        //    return objects[i].collider2d.enabled = colliderEnabled;
+        //    }
+
+
+
+        //return false; 
+        //}
 }

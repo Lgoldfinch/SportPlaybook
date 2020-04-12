@@ -7,7 +7,7 @@ public class Line : MonoBehaviour
     public LineRenderer lineRenderer;
     public EdgeCollider2D edgeCollider;
     public float lineSpacing;
-	public GameObject player;
+    public GameObject player;
     public float tolerance;
     private List<Vector2> points;
     public int eventPositionInLine;
@@ -15,9 +15,9 @@ public class Line : MonoBehaviour
     public EventInformation eventInfo; // do we need position in here? Maybe for other types of events.
     public GameObject marker;
 
-    public void UpdateLine(Vector2 mousePosition) 
+    public void UpdateLine(Vector2 mousePosition)
     {
-       if (points == null)
+        if (points == null)
         {
             points = new List<Vector2>();
 
@@ -30,8 +30,8 @@ public class Line : MonoBehaviour
             AddPoint(mousePosition);
         }
     }
-    
-   private void AddPoint(Vector2 point) 
+
+    private void AddPoint(Vector2 point)
     {
         points.Add(point);
 
@@ -86,8 +86,8 @@ public class Line : MonoBehaviour
             var pointsY = points[i].y;
 
             if (x2 <= pointsX && pointsX <= x1 && y2 <= pointsY && pointsY <= y1)
-            { 
-               eventPositionInLine = i;
+            {
+                eventPositionInLine = i;
                 eventInfo = lineBasedEvent.MakeEvent(playerMenuScript.passerOfBall);
                 lineBasedEvent.MakeMarker(i, points);
                 Player.isLookingForPassRecipient = false;
@@ -96,8 +96,18 @@ public class Line : MonoBehaviour
         }
     }
 
+    public bool ModifyLineCollider(bool isDrawAndEditMode)
+    {
+        if (isDrawAndEditMode)
+        {
+            return edgeCollider.enabled = true;
+        }
 
+        return edgeCollider.enabled = false;
+    }
 }
+
+
  // event starts with the event button being clicked.
  // sets isEventTime or whatever to true.
  // Clicking on the line when this is true will place event marker at the nearest point.
