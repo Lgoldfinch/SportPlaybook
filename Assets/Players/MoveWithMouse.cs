@@ -9,12 +9,13 @@ public class MoveWithMouse : MonoBehaviour
 
     public GameObject drawAndEditBtn; 
     DrawAndEdit drawAndEditScr;
-    
+    LineDestroyer lineDestroyer;
+
     void Awake()
     {
         var spriteInChild = GetComponentInChildren<SpriteRenderer>();
         var sprite = GetComponent<SpriteRenderer>();
-
+        lineDestroyer = GetComponent<LineDestroyer>();
 
         if (spriteInChild == null)
         {
@@ -51,7 +52,11 @@ public class MoveWithMouse : MonoBehaviour
 
     private void OnMouseDown()
     {
-            if (!drawAndEditScr.isDrawAndEditMode) isBeingHeld = true;
+        if (!drawAndEditScr.isDrawAndEditMode)
+        {
+            lineDestroyer.DeleteLine(transform);
+            isBeingHeld = true;
+        }
     }
 
     private void OnMouseUp()
