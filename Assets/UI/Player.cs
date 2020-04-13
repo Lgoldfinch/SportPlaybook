@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     public bool isPlayerRightclicked;
-private LineCreator lineCreatorScript;
+    private LineCreator lineCreatorScript;
     public Line runningLine;
     public GameObject playButton;
     public PlayerMovement playerMovement;
@@ -52,9 +52,6 @@ private LineCreator lineCreatorScript;
             isLineBeingDrawn = true;
             lineCreatorScript.MakeLine();
         }
-
-        //EventTypeHandler.isDynamicEvent = true;
-        //isLookingForPassRecipient = true;
     }
 
     public void SetPlayerKitNumber()
@@ -65,28 +62,18 @@ private LineCreator lineCreatorScript;
 
     public bool ModifyPlayerCollider(bool isDrawAndEditMode) //TODO reduce duplication between this and the collider deactivator in Line. 
     {
-        Debug.Log("did you even get here");
-
         var actualLine = GetComponentInChildren<Line>();
 
         if (actualLine == null) // cover possbility that the line hasn't been drawn yet.
         {
-            Debug.Log("first");
-
-            return true;
-            //if (isDrawAndEditMode)
-            //{
-            //    runningLine.ModifyLineCollider(isDrawAndEditMode);
-            //    return collider2d.enabled = false;
-            //}
-
-            //runningLine.ModifyLineCollider(isDrawAndEditMode);
-            //return collider2d.enabled = true;
+            if (isDrawAndEditMode)
+            {
+                return collider2d.enabled = true; // TODO this can be simplified.
+            }
+            return collider2d.enabled = true;
         }
 
         else { 
-
-            Debug.Log("second");
             if (isDrawAndEditMode)
             {
                 runningLine.ModifyLineCollider(isDrawAndEditMode);

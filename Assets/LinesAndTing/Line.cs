@@ -106,16 +106,3 @@ public class Line : MonoBehaviour
         return edgeCollider.enabled = false;
     }
 }
-
-
- // event starts with the event button being clicked.
- // sets isEventTime or whatever to true.
- // Clicking on the line when this is true will place event marker at the nearest point.
- // The data type could just include an extra row and we could fill it.
-
-    // We need to send the ball when the recipient player reachers the position 
-    // when the second player hits the marker the first player needs to pass the ball 
-    // we need to think of a way to send the number of the player that was previously clicked to the next player.
-
-
-    // we need to pass the position of the pass from the recipient player to the 
