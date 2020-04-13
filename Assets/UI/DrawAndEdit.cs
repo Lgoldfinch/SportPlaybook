@@ -37,13 +37,17 @@ public class DrawAndEdit : MonoBehaviour
     public void ChangeColliders()
     {
 
-        var players = listOfPlayersObj.GetComponentsInChildren<Player>();
-        Debug.Log(players);
+        Transform playersOnField = listOfPlayersObj.transform;
 
-        for (int i = 0; i <= players.Length - 1; i++)
+        foreach (Transform player in playersOnField)
         {
-            players[i].ModifyPlayerCollider(isDrawAndEditMode);
+            Player playerScript = player.GetComponent<Player>();
+            playerScript.ModifyPlayerCollider(isDrawAndEditMode);
         }
+        //for (int i = 0; i <= players.Length - 1; i++)
+        //{
+        //    players[i].ModifyPlayerCollider(isDrawAndEditMode);
+        //}
     }
      
         
