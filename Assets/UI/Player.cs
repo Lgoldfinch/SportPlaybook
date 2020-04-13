@@ -73,14 +73,15 @@ private LineCreator lineCreatorScript;
         {
             Debug.Log("first");
 
-            if (isDrawAndEditMode)
-            {
-                runningLine.ModifyLineCollider(isDrawAndEditMode);
-                return collider2d.enabled = false;
-            }
+            return true;
+            //if (isDrawAndEditMode)
+            //{
+            //    runningLine.ModifyLineCollider(isDrawAndEditMode);
+            //    return collider2d.enabled = false;
+            //}
 
-            runningLine.ModifyLineCollider(isDrawAndEditMode);
-            return collider2d.enabled = true;
+            //runningLine.ModifyLineCollider(isDrawAndEditMode);
+            //return collider2d.enabled = true;
         }
 
         else { 
