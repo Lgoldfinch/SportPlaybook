@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     public GameObject drawAndEditBtn;
     DrawAndEdit drawAndEditScript;
 
-    public BoxCollider2D collider2d;
+    BoxCollider2D collider2d;
 
     private void Start()
     {
