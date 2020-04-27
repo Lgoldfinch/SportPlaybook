@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
             if (currentPositionInLine == runningLine.eventPositionInLine && runningLine.eventInfo != null) // if the second player is at the point in the line where the event is due.
             {
                 runningLine.eventInfo.hasEventBeenMade = true;
-                eventHandler.DoEvent(runningLine.eventInfo);
+                //eventHandler.DoEvent(runningLine.eventInfo);
             }
 
             transform.position = Vector3.Lerp(transform.position, currentPositionHolder, 1);
