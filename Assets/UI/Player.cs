@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     {
         lineCreatorScript = GetComponent<LineCreator>();
         playerMovement = GetComponent<PlayerMovement>();
+        Debug.Log(playerMovement);
         drawAndEditScript = drawAndEditBtn.GetComponent<DrawAndEdit>();
 
         collider2d = GetComponent<BoxCollider2D>();

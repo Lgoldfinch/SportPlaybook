@@ -5,13 +5,13 @@ public class LineBasedEvent : MonoBehaviour
 {
     public GameObject marker;
 
-    public void DoEvent(EventInformation eventInfo) // DynamicEventTypes eventType) 
-    {
-        if(eventInfo.eventType == EventTypeHandler.DynamicEventTypes.pass)
-        {
-            PassBallToNextPlayer(eventInfo.playerWithBall);
-        }
-    }
+    //public void DoEvent(EventInformation eventInfo) // DynamicEventTypes eventType) 
+    //{
+    //    if(eventInfo.eventType == EventTypeHandler.DynamicEventTypes.pass)
+    //    {
+    //        PassBallToNextPlayer(eventInfo.playerWithBall);
+    //    }
+    //}
 
     private void PassBallToNextPlayer(Player playerWithBall)
     { 

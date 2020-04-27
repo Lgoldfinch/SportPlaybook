@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3959170009180462943}
   - component: {fileID: 1416935434}
   - component: {fileID: 1416935435}
+  - component: {fileID: 2039775686}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -96,8 +97,8 @@ MonoBehaviour:
   playerMovement: {fileID: 0}
   playerNumber: 0
   isLineBeingDrawn: 0
-  drawAndEditBtn: {fileID: 0}
-  collider2d: {fileID: 0}
+  drawAndEditBtn: {fileID: 8671959592317486312, guid: f046c739b86834fe3a35b3582ea1f869,
+    type: 3}
 --- !u!114 &1416935434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,6 +129,24 @@ MonoBehaviour:
   playButton: {fileID: 3764771767184060350, guid: 047a4a4d27eec4b51a78d4a23ea46e87,
     type: 3}
   lineExists: 0
+--- !u!114 &2039775686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5448994598138980695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e03a25b3b33c4bea87ab70085618c82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 1
+  currentPositionInLine: 0
+  currentPositionX: 0
+  currentPositionY: 0
+  playButton: {fileID: 3764771767184060350, guid: 047a4a4d27eec4b51a78d4a23ea46e87,
+    type: 3}
 --- !u!1 &5448994599464740536
 GameObject:
   m_ObjectHideFlags: 0
