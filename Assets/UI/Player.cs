@@ -3,13 +3,12 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    public bool isPlayerRightclicked;
     private LineCreator lineCreatorScript;
-    public Line runningLine;
-    public GameObject playButton;
-    public PlayerMovement playerMovement;
-    public int playerNumber;
-    public static bool isLookingForPassRecipient;
+    public  Line runningLine;
+    public  GameObject playButton;
+    public  PlayerMovement playerMovement;
+    public  int playerNumber;
+    public  static bool isLookingForPassRecipient;
 
     public bool isLineBeingDrawn;
 
@@ -22,7 +21,6 @@ public class Player : MonoBehaviour
     {
         lineCreatorScript = GetComponent<LineCreator>();
         playerMovement = GetComponent<PlayerMovement>();
-        Debug.Log(playerMovement);
         drawAndEditScript = drawAndEditBtn.GetComponent<DrawAndEdit>();
 
         collider2d = GetComponent<BoxCollider2D>();
@@ -49,7 +47,7 @@ public class Player : MonoBehaviour
     public void OnMouseDown()
     {
         if (drawAndEditScript.isDrawAndEditMode)
-        {
+        {   
             isLineBeingDrawn = true;
             lineCreatorScript.MakeLine();
         }

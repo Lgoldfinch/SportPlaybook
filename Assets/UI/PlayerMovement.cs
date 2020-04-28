@@ -5,19 +5,20 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public int moveSpeed = 1;
+    public  int moveSpeed = 1;
     private Vector3 currentPositionHolder;
-    public int currentPositionInLine;
-    public float currentPositionX;
-    public float currentPositionY;
-    public GameObject playButton;
+    public  int currentPositionInLine;
+    public  float currentPositionX;
+    public  float currentPositionY;
+    public  GameObject playButton;
     private Line runningLine;
     private LineBasedEvent eventHandler;
+    private float angleOfPlayer;
 
     public IEnumerator MusterTheRohirrim(List<Vector2> listOfPoints)
     {
-        runningLine = gameObject.GetComponentInChildren<Line>();
-        eventHandler = gameObject.GetComponentInChildren<LineBasedEvent>();
+        runningLine = GetComponentInChildren<Line>();
+        eventHandler = GetComponentInChildren<LineBasedEvent>();
         currentPositionHolder = listOfPoints.First(); // This line is needed so that the first point that the player moves to is not the default vector3(0,0,0). 
 
         while (currentPositionInLine <= listOfPoints.Count - 1)
@@ -28,13 +29,15 @@ public class PlayerMovement : MonoBehaviour
                 //eventHandler.DoEvent(runningLine.eventInfo);
             }
 
+            AdjustPlayerAngle();
+
             transform.position = Vector3.Lerp(transform.position, currentPositionHolder, 1);
                         
                 yield return moveSpeed;
-
+            
             CheckLine(listOfPoints, currentPositionInLine++); // CheckLine uses the incremented value to provide the next position in the line for the player to move to.
         }
-    }
+    } 
 
     private void CheckLine(List<Vector2> listOfPoints, int nextPosition)
     {
@@ -42,6 +45,26 @@ public class PlayerMovement : MonoBehaviour
         currentPositionY = listOfPoints[nextPosition].y;
 
         currentPositionHolder = new Vector3(currentPositionX, currentPositionY); // this is used by the lerp in the MusterTheRohirrim function
+    }
+
+    private float AdjustPlayerAngle()
+    {
+        Vector2[] points = runningLine.GetLine().ToArray();
+
+        //Vector3[] points = new Vector3[rl.lineRenderer.positionCount];
+        if (currentPositionInLine + 1 >= points.Length)
+        {
+            return angleOfPlayer;
+        }
+
+        Vector2 startPoint = points[currentPositionInLine];
+        Vector2 nextPoint = points[currentPositionInLine + 1];
+
+        angleOfPlayer = Vector2.Angle(startPoint, nextPoint);
+        
+        transform.Rotate(Vector3.forward * angleOfPlayer);
+
+        return angleOfPlayer;
     }
 }
 
