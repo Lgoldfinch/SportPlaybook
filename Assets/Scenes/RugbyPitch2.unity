@@ -140,12 +140,12 @@ PrefabInstance:
     - target: {fileID: 5448994598138980691, guid: ffe3667845c844d89899fd299f2f1ec6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1.55
       objectReference: {fileID: 0}
     - target: {fileID: 5448994598138980691, guid: ffe3667845c844d89899fd299f2f1ec6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.5
+      value: -0.4
       objectReference: {fileID: 0}
     - target: {fileID: 5448994598138980691, guid: ffe3667845c844d89899fd299f2f1ec6,
         type: 3}
@@ -155,17 +155,17 @@ PrefabInstance:
     - target: {fileID: 5448994598138980691, guid: ffe3667845c844d89899fd299f2f1ec6,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5448994598138980691, guid: ffe3667845c844d89899fd299f2f1ec6,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5448994598138980691, guid: ffe3667845c844d89899fd299f2f1ec6,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5448994598138980691, guid: ffe3667845c844d89899fd299f2f1ec6,
         type: 3}
@@ -196,6 +196,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5448994599464740518, guid: ffe3667845c844d89899fd299f2f1ec6,
+        type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5448994599464740518, guid: ffe3667845c844d89899fd299f2f1ec6,
+        type: 3}
+      propertyPath: m_FlipY
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8410957533345731860, guid: ffe3667845c844d89899fd299f2f1ec6,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ffe3667845c844d89899fd299f2f1ec6, type: 3}
@@ -12117,29 +12132,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!1 &2039775685 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5448994598138980695, guid: ffe3667845c844d89899fd299f2f1ec6,
-    type: 3}
-  m_PrefabInstance: {fileID: 175696951}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2039775686
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2039775685}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e03a25b3b33c4bea87ab70085618c82, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 1
-  currentPositionInLine: 0
-  currentPositionX: 0
-  currentPositionY: 0
-  playButton: {fileID: 0}
 --- !u!1001 &8671959593593841088
 PrefabInstance:
   m_ObjectHideFlags: 0
