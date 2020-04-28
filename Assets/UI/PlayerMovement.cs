@@ -50,17 +50,21 @@ public class PlayerMovement : MonoBehaviour
     private float AdjustPlayerAngle()
     {
         Vector2[] points = runningLine.GetLine().ToArray();
+        Vector2 currentPoint = points[currentPositionInLine];
 
-        //Vector3[] points = new Vector3[rl.lineRenderer.positionCount];
         if (currentPositionInLine + 1 >= points.Length)
         {
+            //Vector2 previousPoint = points[currentPositionInLine - 1];
+            //angleOfPlayer = Vector2.Angle(previousPoint, currentPoint);
+
+            transform.Rotate(Vector3.forward * angleOfPlayer);
             return angleOfPlayer;
         }
 
-        Vector2 startPoint = points[currentPositionInLine];
         Vector2 nextPoint = points[currentPositionInLine + 1];
 
-        angleOfPlayer = Vector2.Angle(startPoint, nextPoint);
+
+        angleOfPlayer = Vector2.Angle(currentPoint, nextPoint);
         
         transform.Rotate(Vector3.forward * angleOfPlayer);
 
