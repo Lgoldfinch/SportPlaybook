@@ -6,7 +6,7 @@ using System.Collections;
 public class PlayerMovement : MonoBehaviour
 {
     public  int moveSpeed = 1;
-    private Vector3 currentPositionHolder;
+    private Vector2 currentPositionHolder;
     public  int currentPositionInLine;
     public  float currentPositionX;
     public  float currentPositionY;
@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
 
     public IEnumerator MusterTheRohirrim(List<Vector2> listOfPoints)
     {
-        runningLine = GetComponentInChildren<Line>();
+        runningLine  = GetComponentInChildren<Line>();
         eventHandler = GetComponentInChildren<LineBasedEvent>();
         currentPositionHolder = listOfPoints.First(); // This line is needed so that the first point that the player moves to is not the default vector3(0,0,0). 
 
@@ -31,7 +31,9 @@ public class PlayerMovement : MonoBehaviour
 
             AdjustPlayerAngle();
 
-            transform.position = Vector3.Lerp(transform.position, currentPositionHolder, 1);
+            //yield return new WaitForSeconds(1);
+
+            transform.position = Vector2.Lerp(transform.position, currentPositionHolder, 1);
                         
                 yield return moveSpeed;
             
@@ -44,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
         currentPositionX = listOfPoints[nextPosition].x;
         currentPositionY = listOfPoints[nextPosition].y;
 
-        currentPositionHolder = new Vector3(currentPositionX, currentPositionY); // this is used by the lerp in the MusterTheRohirrim function
+        currentPositionHolder = new Vector2(currentPositionX, currentPositionY); // this is used by the lerp in the MusterTheRohirrim function
     }
 
     private float AdjustPlayerAngle()
@@ -54,9 +56,6 @@ public class PlayerMovement : MonoBehaviour
 
         if (currentPositionInLine + 1 >= points.Length)
         {
-            //Vector2 previousPoint = points[currentPositionInLine - 1];
-            //angleOfPlayer = Vector2.Angle(previousPoint, currentPoint);
-
             transform.Rotate(Vector3.forward * angleOfPlayer);
             return angleOfPlayer;
         }
