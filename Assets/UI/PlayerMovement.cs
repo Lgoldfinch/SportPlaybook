@@ -31,8 +31,6 @@ public class PlayerMovement : MonoBehaviour
 
             AdjustPlayerAngle();
 
-            //yield return new WaitForSeconds(1);
-
             transform.position = Vector2.Lerp(transform.position, currentPositionHolder, 1);
                         
                 yield return moveSpeed;
@@ -62,9 +60,8 @@ public class PlayerMovement : MonoBehaviour
 
         Vector2 nextPoint = points[currentPositionInLine + 1];
 
-
         angleOfPlayer = Vector2.Angle(currentPoint, nextPoint);
-        
+
         transform.Rotate(Vector3.forward * angleOfPlayer);
 
         return angleOfPlayer;
