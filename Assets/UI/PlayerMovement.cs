@@ -1,70 +1,102 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-using System.Linq;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public  int moveSpeed = 1;
-    private Vector2 currentPositionHolder;
-    public  int currentPositionInLine;
-    public  float currentPositionX;
-    public  float currentPositionY;
-    public  GameObject playButton;
+    // World-units per second.
+    public float moveSpeed = 1f;
+
+    // Current vertex index in the player's running line.
+    public int currentPositionInLine;
+    public float currentPositionX;
+    public float currentPositionY;
+
+    // Extra rotation to match the sprite's "forward" direction.
+    public float rotationOffsetDegrees = 0f;
+
     private Line runningLine;
     private LineBasedEvent eventHandler;
-    private float angleOfPlayer;
 
     public IEnumerator MusterTheRohirrim(List<Vector2> listOfPoints)
     {
-        runningLine  = GetComponentInChildren<Line>();
+        runningLine = GetComponentInChildren<Line>();
         eventHandler = GetComponentInChildren<LineBasedEvent>();
-        currentPositionHolder = listOfPoints.First(); // This line is needed so that the first point that the player moves to is not the default vector3(0,0,0). 
 
-        while (currentPositionInLine <= listOfPoints.Count - 1)
+        if (listOfPoints == null || listOfPoints.Count == 0)
+            yield break;
+
+        currentPositionInLine = Mathf.Clamp(currentPositionInLine, 0, listOfPoints.Count - 1);
+
+        // Snap to the starting vertex immediately.
+        currentPositionX = listOfPoints[currentPositionInLine].x;
+        currentPositionY = listOfPoints[currentPositionInLine].y;
+        transform.position = listOfPoints[currentPositionInLine];
+        TryTriggerEventAtCurrentVertex();
+        UpdateFacing(listOfPoints, currentPositionInLine);
+
+        // Walk vertex-to-vertex.
+        while (currentPositionInLine < listOfPoints.Count - 1)
         {
-            if (currentPositionInLine == runningLine.eventPositionInLine && runningLine.eventInfo != null) // if the second player is at the point in the line where the event is due.
+            Vector2 nextPoint = listOfPoints[currentPositionInLine + 1];
+            while (Vector2.Distance(transform.position, nextPoint) > 0.01f)
             {
-                runningLine.eventInfo.hasEventBeenMade = true;
-                //eventHandler.DoEvent(runningLine.eventInfo);
+                UpdateFacing(listOfPoints, currentPositionInLine);
+                transform.position = Vector2.MoveTowards(transform.position, nextPoint, moveSpeed * Time.deltaTime);
+                yield return null;
             }
 
-            AdjustPlayerAngle();
+            currentPositionInLine++;
+            currentPositionX = listOfPoints[currentPositionInLine].x;
+            currentPositionY = listOfPoints[currentPositionInLine].y;
 
-            transform.position = Vector2.Lerp(transform.position, currentPositionHolder, 1);
-                        
-                yield return moveSpeed;
-            
-            CheckLine(listOfPoints, currentPositionInLine++); // CheckLine uses the incremented value to provide the next position in the line for the player to move to.
+            // Trigger when the player arrives at this vertex.
+            TryTriggerEventAtCurrentVertex();
         }
-    } 
-
-    private void CheckLine(List<Vector2> listOfPoints, int nextPosition)
-    {
-        currentPositionX = listOfPoints[nextPosition].x;
-        currentPositionY = listOfPoints[nextPosition].y;
-
-        currentPositionHolder = new Vector2(currentPositionX, currentPositionY); // this is used by the lerp in the MusterTheRohirrim function
     }
 
-    private float AdjustPlayerAngle()
+    private void TryTriggerEventAtCurrentVertex()
     {
-        Vector2[] points = runningLine.GetLine().ToArray();
-        Vector2 currentPoint = points[currentPositionInLine];
+        if (runningLine == null)
+            return;
 
-        if (currentPositionInLine + 1 >= points.Length)
+        if (runningLine.eventInfo == null)
+            return;
+
+        if (currentPositionInLine != runningLine.eventPositionInLine)
+            return;
+
+        // The event execution is currently stubbed; we at least mark it as having happened.
+        runningLine.eventInfo.hasEventBeenMade = true;
+        //eventHandler.DoEvent(runningLine.eventInfo);
+    }
+
+    private void UpdateFacing(List<Vector2> points, int currentIndex)
+    {
+        if (points == null || points.Count < 2)
+            return;
+
+        Vector2 from;
+        Vector2 to;
+
+        if (currentIndex + 1 < points.Count)
         {
-            transform.Rotate(Vector3.forward * angleOfPlayer);
-            return angleOfPlayer;
+            from = points[currentIndex];
+            to = points[currentIndex + 1];
+        }
+        else
+        {
+            // Last vertex: face from the previous segment.
+            from = points[currentIndex - 1];
+            to = points[currentIndex];
         }
 
-        Vector2 nextPoint = points[currentPositionInLine + 1];
+        Vector2 dir = to - from;
+        if (dir.sqrMagnitude < 0.0001f)
+            return;
 
-        angleOfPlayer = Vector2.Angle(currentPoint, nextPoint);
-
-        transform.Rotate(Vector3.forward * angleOfPlayer);
-
-        return angleOfPlayer;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, 0f, angle + rotationOffsetDegrees);
     }
 }
 

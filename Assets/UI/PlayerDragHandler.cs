@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +13,14 @@ public class PlayerDragHandler : MonoBehaviour
 
     private void Awake()
     {
+        // This script appears to be an unfinished legacy drag implementation.
+        // Prefer `MoveWithMouse` (component on the player) to avoid fighting input.
+        if (GetComponent<MoveWithMouse>() != null || GetComponentInChildren<MoveWithMouse>() != null)
+        {
+            enabled = false;
+            return;
+        }
+
         //playerMovementScript = gameObject.GetComponent<PlayerMovement>();
     }
 

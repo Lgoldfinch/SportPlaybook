@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -47,6 +47,34 @@ public class Line : MonoBehaviour
     public List<Vector2> GetLine()
     {
         return points;
+    }
+
+    public void SetLinePoints(List<Vector2> newPoints)
+    {
+        points = newPoints != null ? new List<Vector2>(newPoints) : null;
+
+        if (lineRenderer == null)
+            return;
+
+        if (points == null || points.Count == 0)
+        {
+            lineRenderer.positionCount = 0;
+            if (edgeCollider != null)
+                edgeCollider.points = new Vector2[0];
+            return;
+        }
+
+        lineRenderer.positionCount = points.Count;
+        for (int i = 0; i < points.Count; i++)
+            lineRenderer.SetPosition(i, points[i]);
+
+        if (edgeCollider != null)
+        {
+            if (points.Count > 1)
+                edgeCollider.points = points.ToArray();
+            else
+                edgeCollider.points = new Vector2[0];
+        }
     }
 
     public void OnMouseDown()

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
@@ -26,6 +26,6 @@ public class PlayerSpeedController : MonoBehaviour, IPointerUpHandler
 
     private void SetPlayerMovementSpeed()
     {
-        playerMovement.moveSpeed = (int)slider.value;
+        playerMovement.moveSpeed = slider.value;
     }
 }

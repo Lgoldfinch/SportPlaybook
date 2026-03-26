@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class LineCreator : MonoBehaviour { 
 
@@ -19,8 +19,12 @@ public class LineCreator : MonoBehaviour {
     {
         if (activeLine != null)
         {
-            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            activeLine.UpdateLine(mousePos);
+            if (PointerInput.IsPointerOverUI())
+                return;
+
+            Vector2 screenPos = PointerInput.PointerPosition;
+            Vector2 worldPos = Camera.main.ScreenToWorldPoint(screenPos);
+            activeLine.UpdateLine(worldPos);
         }
     }
 

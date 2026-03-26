@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour
@@ -28,11 +28,24 @@ public class Player : MonoBehaviour
 
  void Update()
     {
-        if (Input.GetMouseButtonUp(0) && isLineBeingDrawn)
+        if (isLineBeingDrawn && PointerInput.PointerUpThisFrame())
         {
-            lineCreatorScript.activeLine = null;
-            Debug.Log(isLineBeingDrawn);
+            if (lineCreatorScript != null)
+                lineCreatorScript.activeLine = null;
             isLineBeingDrawn = false;
+            return;
+        }
+
+        if (drawAndEditScript == null || lineCreatorScript == null)
+            return;
+
+        if (!drawAndEditScript.isDrawAndEditMode)
+            return;
+
+        if (!isLineBeingDrawn && PointerInput.PointerDownThisFrame() && IsPointerOverThisPlayer())
+        {
+            isLineBeingDrawn = true;
+            lineCreatorScript.MakeLine();
         }
     }
 
@@ -46,8 +59,12 @@ public class Player : MonoBehaviour
 
     public void OnMouseDown()
     {
-        if (drawAndEditScript.isDrawAndEditMode)
-        {   
+        // Touch handling is done in Update; OnMouseDown will still fire when Unity emulates mouse.
+        if (Input.touchCount > 0)
+            return;
+
+        if (drawAndEditScript != null && drawAndEditScript.isDrawAndEditMode)
+        {
             isLineBeingDrawn = true;
             lineCreatorScript.MakeLine();
         }
@@ -82,6 +99,18 @@ public class Player : MonoBehaviour
             runningLine.ModifyLineCollider(isDrawAndEditMode);
             return collider2d.enabled = true;
         }
+    }
+
+    private bool IsPointerOverThisPlayer()
+    {
+        if (PointerInput.IsPointerOverUI())
+            return false;
+
+        if (collider2d == null || !collider2d.enabled)
+            return false;
+
+        Vector2 worldPos = Camera.main.ScreenToWorldPoint(PointerInput.PointerPosition);
+        return collider2d.OverlapPoint(worldPos);
     }
 }
 
